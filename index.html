@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>Приглашение на свадьбу | Алексей & Екатерина</title>
-    <!-- Шрифты и стили -->
+    <title>Приглашение на свадьбу | Никита & Юлия</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         * {
@@ -12,14 +11,74 @@
             padding: 0;
             box-sizing: border-box;
         }
+        
         body {
             font-family: 'Montserrat', sans-serif;
-            background: #fef6f0;
             color: #4a3528;
             line-height: 1.6;
+            min-height: 100vh;
+            /* Новый фон: нежные размытые линии, символизирующие нити */
+            background: linear-gradient(135deg, #fdf8f2 0%, #f5ebe1 50%, #fdf8f2 100%);
+            position: relative;
+        }
+        
+        /* Декоративные нити на фоне */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: repeating-linear-gradient(90deg, 
+                rgba(192, 102, 61, 0.03) 0px, 
+                rgba(192, 102, 61, 0.03) 2px,
+                transparent 2px,
+                transparent 8px),
+                repeating-linear-gradient(0deg, 
+                rgba(192, 102, 61, 0.03) 0px, 
+                rgba(192, 102, 61, 0.03) 2px,
+                transparent 2px,
+                transparent 8px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        /* Парящие нити-сердечки */
+        .floating-threads {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .thread {
+            position: absolute;
+            font-size: 1.2rem;
+            opacity: 0.2;
+            animation: floatThread linear infinite;
+        }
+        
+        @keyframes floatThread {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.2; }
+            90% { opacity: 0.2; }
+            100% {
+                transform: translateY(-20vh) rotate(360deg);
+                opacity: 0;
+            }
         }
         
         .main-content {
+            position: relative;
+            z-index: 2;
             opacity: 0;
             transition: opacity 1.2s ease;
         }
@@ -33,19 +92,189 @@
             padding: 2rem 1.5rem;
         }
         
-        /* Терракотовые акценты */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(2px);
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(192, 102, 61, 0.15);
+        }
+        
+        /* ===== ТАЙМИНГ НА КРАСНОЙ НИТИ ===== */
+        .timeline-section {
+            background: transparent;
+            box-shadow: none;
+            padding: 1rem 0;
+        }
+        
+        .red-thread {
+            position: relative;
+            padding: 2rem 0;
+            background: linear-gradient(180deg, 
+                rgba(192, 102, 61, 0) 0%,
+                rgba(192, 102, 61, 0.8) 5%,
+                #b85a3a 10%,
+                #b85a3a 90%,
+                rgba(192, 102, 61, 0.8) 95%,
+                rgba(192, 102, 61, 0) 100%);
+            width: 3px;
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+        
+        .timeline-event {
+            position: relative;
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+        
+        .timeline-event:nth-child(odd) {
+            flex-direction: row;
+        }
+        
+        .timeline-event:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .timeline-time {
+            background: #b85a3a;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            width: 120px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(184, 90, 58, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .timeline-desc {
+            background: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 20px;
+            margin: 0 1rem;
+            flex: 1;
+            min-width: 150px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-left: 3px solid #b85a3a;
+        }
+        
+        .timeline-event::before {
+            content: "🧵";
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+            opacity: 0.6;
+        }
+        
+        @media (max-width: 600px) {
+            .timeline-event {
+                flex-direction: column !important;
+                gap: 0.5rem;
+                margin: 2rem 0;
+            }
+            .timeline-time {
+                width: auto;
+            }
+            .timeline-event::before {
+                display: none;
+            }
+        }
+        
+        /* Опрос про напитки */
+        .drink-option {
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: #fef6f0;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #e8d5c4;
+        }
+        
+        .drink-option.selected {
+            background: #b85a3a;
+            color: white;
+            border-color: #b85a3a;
+        }
+        
+        /* Галерея образов */
+        .style-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        
+        .style-item {
+            width: calc(33% - 0.7rem);
+            min-width: 100px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .style-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .style-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .style-item p {
+            font-size: 0.7rem;
+            padding: 0.5rem;
+            text-align: center;
+            background: #fef6f0;
+        }
+        
         .hero {
             text-align: center;
             padding: 2rem 0 1rem;
-            border-bottom: 1px solid #e8d5c4;
+            border-bottom: 1px solid rgba(184, 90, 58, 0.3);
         }
+        
         .date-badge {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.2rem;
             letter-spacing: 3px;
-            color: #c sixteen6;
-            margin-bottom: 0.5rem;
+            color: #b85a3a;
         }
+        
         h1 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 3rem;
@@ -53,134 +282,57 @@
             margin: 0.5rem 0;
             color: #8b4a2e;
         }
+        
         .names {
             font-size: 2rem;
             font-weight: 500;
             margin: 0.2rem 0;
-            color: #c sixteen6;
+            color: #b85a3a;
         }
-        .invite-text {
-            font-style: italic;
-            margin: 1rem 0;
-            color: #a06e52;
-        }
-        .card {
-            background: white;
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            padding: 2rem;
-            margin: 2rem 0;
-            text-align: center;
-        }
+        
         h2 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: #c sixteen6;
-        }
-        .event-detail {
-            margin: 1rem 0;
-            font-size: 1.1rem;
-        }
-        .icon {
             font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #b85a3a;
+        }
+        
+        .icon {
+            font-size: 1.5rem;
             display: inline-block;
             margin-right: 8px;
             vertical-align: middle;
         }
-        .address {
-            background: #fef6f0;
-            padding: 1rem;
-            border-radius: 40px;
-            margin: 1rem 0;
-        }
-        .map-link {
-            display: inline-block;
-            margin-top: 0.5rem;
-            color: #c sixteen6;
-            text-decoration: none;
-            border-bottom: 1px dashed;
-            cursor: pointer;
-        }
-        .rsvp-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        input, select, button {
+        
+        .rsvp-form input, .rsvp-form select, button {
             padding: 12px 16px;
             border-radius: 40px;
             border: 1px solid #e8d5c4;
             font-family: inherit;
             font-size: 1rem;
             background: white;
+            width: 100%;
+            margin-bottom: 1rem;
         }
+        
         button {
-            background: #c sixteen6;
+            background: #b85a3a;
             color: white;
             border: none;
             cursor: pointer;
-            transition: 0.3s;
-            font-weight: 500;
         }
+        
         button:hover {
-            background: #a0522d;
+            background: #9b4a2e;
         }
+        
         footer {
             text-align: center;
             margin-top: 3rem;
             font-size: 0.8rem;
             color: #b0886a;
-            border-top: 1px solid #e8d5c4;
+            border-top: 1px solid rgba(184, 90, 58, 0.3);
             padding-top: 2rem;
-        }
-        
-        /* Стили для фотогалереи */
-        .photo-gallery {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-        .photo-item {
-            border-radius: 20px;
-	    overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .photo-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-        .photo-item img:hover {
-            transform: scale(1.02);
-        }
-        .photo-caption {
-            padding: 0.8rem;
-            font-size: 0.85rem;
-            color: #a06e52;
-            background: #fef6f0;
-        }
-        
-        /* Стиль для большой фото-истории */
-        .story-photo {
-            border-radius: 30px;
-            overflow: hidden;
-            margin-bottom: 1.5rem;
-        }
-        .story-photo img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        @media (max-width: 600px) {
-            .container { padding: 1rem; }
-            h1 { font-size: 2.2rem; }
-            .names { font-size: 1.5rem; }
-            .card { padding: 1.5rem; }
         }
         
         @keyframes bounce {
@@ -194,179 +346,221 @@
 </head>
 <body>
 
-<!-- ЭКРАН-ЗАСТАВКА -->
-<div id="splashScreen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fef6f0; z-index: 9999; display: flex; align-items: center; justify-content: center; flex-direction: column; cursor: pointer; transition: opacity 0.8s ease; text-align: center;">
-    <div style="padding: 20px;">
-        <div style="font-size: 4rem; margin-bottom: 1rem;">💍</div>
-        <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: #c sixteen6; margin-bottom: 0.5rem;">Алексей & Екатерина</h1>
-        <p style="margin-top: 1rem; font-size: 1.2rem;">Приглашают вас</p>
-        <div style="margin: 2rem auto; width: 60px; height: 2px; background: #c sixteen6;"></div>
-        <p style="font-size: 1rem; color: #a06e52;">на самый важный день в нашей жизни</p>
-        <div style="margin-top: 3rem;">
-            <div class="bounce-arrow" style="font-size: 2rem;">👇</div>
-            <p style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.7;">Нажмите в любом месте, чтобы открыть приглашение</p>
-        </div>
+<div class="floating-threads" id="threadsContainer"></div>
+
+<div id="splashScreen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fdf8f2; z-index: 9999; display: flex; align-items: center; justify-content: center; flex-direction: column; cursor: pointer; transition: opacity 0.8s ease;">
+    <div style="text-align: center;">
+        <div style="font-size: 4rem;">🧶💍🧵</div>
+        <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: #b85a3a;">Никита & Юлия</h1>
+        <p style="margin-top: 1rem;">Две судьбы, связанные в одну нить</p>
+        <div class="bounce-arrow" style="font-size: 2rem; margin-top: 2rem;">👇</div>
+        <p style="font-size: 0.8rem;">Нажмите, чтобы открыть приглашение</p>
     </div>
 </div>
 
-<!-- АУДИОПЛЕЕР -->
 <audio id="bgMusic" loop preload="auto">
-    <source src="T9.mp3" type="audio/mpeg">
-    Ваш браузер не поддерживает аудио.
+    <source src="moya-pesnya.mp3" type="audio/mpeg">
 </audio>
 
-<!-- ОСНОВНОЙ КОНТЕНТ -->
 <div class="main-content" id="mainContent">
     <div class="container">
-        <div class="hero">
-            <div class="date-badge">SAVE THE DATE</div>
+        <div class="hero fade-up">
+            <div class="date-badge">4 СЕНТЯБРЯ 2026</div>
             <h1>Мы женимся!</h1>
-            <div class="names">Алексей & Екатерина</div>
-            <div class="invite-text">Приглашаем вас разделить с нами этот особенный день</div>
+            <div class="names">Никита & Юлия</div>
+            <p>Приглашаем вас стать частью нашей истории</p>
         </div>
 
-        <!-- БЛОК С ФОТОГРАФИЯМИ -->
-        <div class="card">
-            <h2>📸 Наша история</h2>
+        <!-- ТАЙМИНГ НА КРАСНОЙ НИТИ -->
+        <div class="timeline-section fade-up delay-1">
+            <h2>🧵 Ход торжества</h2>
+            <div class="red-thread">
+                <div class="timeline-event">
+                    <div class="timeline-time">14:00</div>
+                    <div class="timeline-desc">Сбор гостей</div>
+                </div>
+                <div class="timeline-event">
+                    <div class="timeline-time">14:30</div>
+                    <div class="timeline-desc">Начало церемонии</div>
+                </div>
+                <div class="timeline-event">
+                    <div class="timeline-time">15:00</div>
+                    <div class="timeline-desc">Трансфер до ресторана</div>
+                </div>
+                <div class="timeline-event">
+                    <div class="timeline-time">15:30</div>
+                    <div class="timeline-desc">Начало банкета</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ОПРОС ПРО НАПИТКИ -->
+        <div class="card fade-up delay-2">
+            <h2>🍷 Что будете пить?</h2>
+            <p>Пожалуйста, выберите варианты, чтобы мы могли подготовить бар</p>
+            <div style="margin: 1rem 0;">
+                <div class="drink-option" data-drink="Вино красное">🍷 Красное вино</div>
+                <div class="drink-option" data-drink="Вино белое">🥂 Белое вино</div>
+                <div class="drink-option" data-drink="Шампанское">🍾 Шампанское</div>
+                <div class="drink-option" data-drink="Безалкогольное">🧃 Безалкогольное</div>
+            </div>
+            <input type="text" id="drinkGuestName" placeholder="Ваше имя" style="width: 100%; padding: 10px; border-radius: 40px; border: 1px solid #e8d5c4;">
+            <button id="saveDrinkChoice">Сохранить выбор</button>
+            <p id="drinkMessage" style="font-size: 0.8rem; margin-top: 0.5rem;"></p>
+        </div>
+
+        <!-- БЛОК ПРО ЛОТЕРЕЙНЫЕ БИЛЕТЫ (вместо цветов) -->
+        <div class="card fade-up delay-3">
+            <h2>🎟️ Вместо цветов — лотерейные билеты</h2>
+            <p>Мы очень трепетно относимся к вашему вниманию, но живые цветы быстро вянут.</p>
+            <p><strong>Подарите нам лотерейный билет</strong> — на обратной стороне напишите свой номер телефона.</p>
+            <p>Эти билеты будут участвовать в нашей <strong>свадебной лотерее</strong>! 🎲</p>
+            <div style="background: #fef6f0; border-radius: 20px; padding: 1rem; margin-top: 1rem;">
+                <p>✨ <strong>Как это работает:</strong> все принесённые билеты собираются в корзину. В конце вечера мы разыгрываем призы среди участников. Чем больше билетов — тем больше шансов выиграть! ✨</p>
+            </div>
+        </div>
+
+        <!-- ДРЕСС-КОД + ПРИМЕРЫ НАРЯДОВ -->
+        <div class="card fade-up delay-1">
+            <h2>👗 Дресс-код</h2>
+            <p>Наша цветовая гамма:</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin: 1rem 0;">
+                <span style="background: #b85a3a; color: white; padding: 0.3rem 1rem; border-radius: 20px;">Терракотовый</span>
+                <span style="background: #8b5a3a; color: white; padding: 0.3rem 1rem; border-radius: 20px;">Коричневый</span>
+                <span style="background: #d9c5a7; padding: 0.3rem 1rem; border-radius: 20px;">Бежевый</span>
+                <span style="background: #6b705c; color: white; padding: 0.3rem 1rem; border-radius: 20px;">Оливковый</span>
+            </div>
             
-            <!-- Главное фото пары (ЗАМЕНИТЕ ССЫЛКУ) -->
-            <div class="story-photo">
-                <img src="фото_пары.jpg" alt="Алексей и Екатерина" onerror="this.src='https://via.placeholder.com/800x600?text=Ваше+фото'">
-            </div>
-            
-            <div class="photo-gallery">
-                <div class="photo-item">
-                    <img src="фото_1.jpg" alt="Фото 1" onerror="this.src='https://via.placeholder.com/800x500?text=Добавьте+фото'">
-                    <div class="photo-caption">💑 Наша первая встреча</div>
+            <h2 style="font-size: 1.4rem; margin-top: 1rem;">📸 Примеры образов</h2>
+            <div class="style-gallery">
+                <div class="style-item">
+                    <img src="https://via.placeholder.com/200x250?text=Терракотовый+образ" alt="Терракотовый">
+                    <p>Терракотовый</p>
                 </div>
-                <div class="photo-item">
-                    <img src="фото_2.jpg" alt="Фото 2" onerror="this.src='https://via.placeholder.com/800x500?text=Добавьте+фото'">
-                    <div class="photo-caption">✨ Предложение руки и сердца</div>
+                <div class="style-item">
+                    <img src="https://via.placeholder.com/200x250?text=Коричневый+образ" alt="Коричневый">
+                    <p>Коричневый</p>
                 </div>
-                <div class="photo-item">
-                    <img src="фото_3.jpg" alt="Фото 3" onerror="this.src='https://via.placeholder.com/800x500?text=Добавьте+фото'">
-                    <div class="photo-caption"
-
-
->💒 Подготовка к свадьбе</div>
+                <div class="style-item">
+                    <img src="https://via.placeholder.com/200x250?text=Оливковый+образ" alt="Оливковый">
+                    <p>Оливковый</p>
                 </div>
             </div>
-            <p style="margin-top: 1rem; font-size: 0.8rem; color: #a06e52;">*наведите на фото для увеличения</p>
+            <p style="font-size: 0.7rem; margin-top: 1rem;">*Вы можете заменить фото-примеры на свои</p>
         </div>
 
-        <div class="card">
-            <h2>🌸 Торжество</h2>
-            <div class="event-detail">
-                <span class="icon">📅</span> 4 сентября 2026 года
-
-  
-          <span class="icon">⏰</span> Сбор гостей в 14:00
-
-  
-          <span class="icon">📍</span> Ресторан «Да Винчи»
-            </div>
-            <div class="address">
-                г. Москва, ул. Цветочная, 10
-
-   
-         <span class="map-link" id="openMap">🗺 Открыть карту</span>
+        <!-- ОСТАЛЬНЫЕ БЛОКИ (место, карта, ответы) -->
+        <div class="card fade-up delay-2">
+            <h2>📍 Место проведения</h2>
+            <p>Ресторан «Усадьба», г. Москва, ул. Цветочная, 10</p>
+            <div class="address" style="background: #fef6f0; padding: 1rem; border-radius: 40px;">
+                <span class="map-link" id="openMap">🗺 Открыть карту</span>
             </div>
         </div>
 
-        <div class="card">
-            <h2>💌 Дресс-код</h2>
-            <p>Пожалуйста, придерживайтесь стиля «элегантный садовый».
-
-     
-   <strong>Главные цвета:</strong> 🧡 терракотовый, 🤍 кремовый, 🤎 бежевый.
-
-        
-Ждём вас красивыми и счастливыми!</p>
-        </div>
-
-        <div class="card">
-            <h2>📝 Пожалуйста, ответьте до 1 мая</h2>
+        <div class="card fade-up delay-3">
+            <h2>📝 Пожалуйста, ответьте до 1 августа</h2>
             <div class="rsvp-form">
-                <input type="text" id="guestName" placeholder="Ваше имя и фамилия" autocomplete="off">
+                <input type="text" id="guestName" placeholder="Ваше имя и фамилия">
                 <select id="attendance">
-                    <option value="yes">✉️ Буду с радостью</option>
+                    <option value="yes">✅ Буду с радостью</option>
                     <option value="no">💔 К сожалению, не смогу</option>
-                    <option value="plus">✨ Буду + гость</option>
+                    <option value="plus">✨ Буду с парой/гостем</option>
                 </select>
                 <button id="sendRsvp">Отправить ответ</button>
-                <p id="rsvpMessage" style="font-size:0.85rem; margin-top:10px;"></p>
+                <p id="rsvpMessage"></p>
             </div>
-            <p style="margin-top: 20px; font-size: 0.85rem;">Если у вас есть пожелания (аллергии, диета) — напишите нам в WhatsApp/Telegram</p>
-        </div>
-
-        <div class="card">
-            <h2>🎁 Пожелания подарков</h2>
-            <p>Ваше присутствие — лучший подарок. Если вы хотите порадовать нас чем-то ещё, 
-мы будем благ
-ны конверту с пожеланиями на мечту.</p>
         </div>
 
         <footer>
-            С любовью и нетерпением, Алексей и Екатерина ❤️
+            С любовью, Никита и Юлия 🧶
         </footer>
     </div>
 </div>
 
 <script>
+    // ПАРЯЩИЕ НИТИ
+    function createThread() {
+        const thread = document.createElement('div');
+        thread.classList.add('thread');
+        thread.innerHTML = ['🧵', '🧶', '🪡', '✨', '💫'][Math.floor(Math.random() * 5)];
+        thread.style.left = Math.random() * 100 + '%';
+        thread.style.fontSize = (Math.random() * 20 + 10) + 'px';
+        thread.style.animationDuration = (Math.random() * 10 + 8) + 's';
+        thread.style.animationDelay = Math.random() * 5 + 's';
+        document.getElementById('threadsContainer').appendChild(thread);
+        setTimeout(() => thread.remove(), 15000);
+    }
+    setInterval(createThread, 2000);
+    
     // ЗАСТАВКА И МУЗЫКА
     const splash = document.getElementById('splashScreen');
     const music = document.getElementById('bgMusic');
     const mainContent = document.getElementById('mainContent');
-    let musicStarted = false;
-
-    function openInvitation() {
-        if (musicStarted) return;
-        musicStarted = true;
-        
-        music.play().catch(e => console.log('Ошибка воспроизведения:', e));
+    let started = false;
+    
+    function openInvite() {
+        if (started) return;
+        started = true;
+        music.play().catch(e => console.log('Авто-плей:', e));
         mainContent.classList.add('visible');
-        
         splash.style.opacity = '0';
-        setTimeout(() => {
-            splash.style.display = 'none';
-        }, 800);
+        setTimeout(() => splash.style.display = 'none', 800);
     }
-
-    splash.addEventListener('click', openInvitation);
-    splash.addEventListener('touchstart', openInvitation);
-
-    // RSVP
-    const sendBtn = document.getElementById('sendRsvp');
-    const messageP = document.getElementById('rsvpMessage');
-
-    sendBtn.addEventListener('click', () => {
-        const name = document.getElementById('guestName').value.trim();
-        const status = document.getElementById('attendance').value;
-
-        if (!name) {
-            messageP.innerText = '❓ Пожалуйста, напишите ваше имя.';
-            messageP.style.color = '#c sixteen6';
+    splash.addEventListener('click', openInvite);
+    splash.addEventListener('touchstart', openInvite);
+    
+    // АНИМАЦИЯ ПРИ СКРОЛЛЕ
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => e.target.classList.add('visible'));
+    }, { threshold: 0.1 });
+    fadeEls.forEach(el => observer.observe(el));
+    
+    // ОПРОС ПРО НАПИТКИ
+    let selectedDrink = null;
+    document.querySelectorAll('.drink-option').forEach(opt => {
+        opt.addEventListener('click', () => {
+            document.querySelectorAll('.drink-option').forEach(o => o.classList.remove('selected'));
+            opt.classList.add('selected');
+            selectedDrink = opt.getAttribute('data-drink');
+        });
+    });
+    
+    document.getElementById('saveDrinkChoice').addEventListener('click', () => {
+        const name = document.getElementById('drinkGuestName').value.trim();
+        if (!name || !selectedDrink) {
+            document.getElementById('drinkMessage').innerText = 'Укажите имя и выберите напиток';
             return;
         }
-
-        let rsvpList = JSON.parse(localStorage.getItem('weddingRSVP') || '[]');
-        rsvpList.push({ name: name, status: status, date: new Date().toLocaleString() });
-        localStorage.setItem('weddingRSVP', JSON.stringify(rsvpList));
-
-        messageP.innerText = `✨ Спасибо, ${name}! Ваш ответ принят. Мы вас ждём! ✨`;
-        messageP.style.color = '#4a7c59';
+        let drinks = JSON.parse(localStorage.getItem('weddingDrinks') || '[]');
+        drinks.push({ name, drink: selectedDrink, date: new Date().toLocaleString() });
+        localStorage.setItem('weddingDrinks', JSON.stringify(drinks));
+        document.getElementById('drinkMessage').innerText = `Спасибо, ${name}! Мы учтём ваш выбор (${selectedDrink}) 🍷`;
+        document.getElementById('drinkGuestName').value = '';
+        selectedDrink = null;
+        document.querySelectorAll('.drink-option').forEach(o => o.classList.remove('selected'));
+    });
+    
+    // RSVP
+    document.getElementById('sendRsvp').addEventListener('click', () => {
+        const name = document.getElementById('guestName').value.trim();
+        const status = document.getElementById('attendance').value;
+        if (!name) {
+            document.getElementById('rsvpMessage').innerText = 'Напишите ваше имя';
+            return;
+        }
+        let rsvp = JSON.parse(localStorage.getItem('weddingRSVP') || '[]');
+        rsvp.push({ name, status, date: new Date().toLocaleString() });
+        localStorage.setItem('weddingRSVP', JSON.stringify(rsvp));
+        document.getElementById('rsvpMessage').innerHTML = `✨ Спасибо, ${name}! Ждём вас ✨`;
         document.getElementById('guestName').value = '';
     });
-
+    
     // КАРТА
-    const mapLink = document.getElementById('openMap');
-    if (mapLink) {
-        mapLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            const address = encodeURIComponent("Москва, ул. Цветочная, 10");
-            window.open(`https://yandex.ru/maps/?text=${address}&z=17`, '_blank');
-        });
-    }
+    document.getElementById('openMap')?.addEventListener('click', () => {
+        window.open('https://yandex.ru/maps/?text=Москва+Цветочная+10&z=17', '_blank');
+    });
 </script>
 </body>
 </html>
