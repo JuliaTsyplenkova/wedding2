@@ -17,34 +17,11 @@
             color: #4a3528;
             line-height: 1.6;
             min-height: 100vh;
-            /* Новый фон: нежные размытые линии, символизирующие нити */
             background: linear-gradient(135deg, #fdf8f2 0%, #f5ebe1 50%, #fdf8f2 100%);
-            position: relative;
+            overflow-x: hidden;
         }
         
-        /* Декоративные нити на фоне */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: repeating-linear-gradient(90deg, 
-                rgba(192, 102, 61, 0.03) 0px, 
-                rgba(192, 102, 61, 0.03) 2px,
-                transparent 2px,
-                transparent 8px),
-                repeating-linear-gradient(0deg, 
-                rgba(192, 102, 61, 0.03) 0px, 
-                rgba(192, 102, 61, 0.03) 2px,
-                transparent 2px,
-                transparent 8px);
-            pointer-events: none;
-            z-index: 0;
-        }
-        
-        /* Парящие нити-сердечки */
+        /* Анимированный фон с нитями */
         .floating-threads {
             position: fixed;
             top: 0;
@@ -64,23 +41,18 @@
         }
         
         @keyframes floatThread {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
             10% { opacity: 0.2; }
             90% { opacity: 0.2; }
-            100% {
-                transform: translateY(-20vh) rotate(360deg);
-                opacity: 0;
-            }
+            100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
         }
         
+        /* Основной контент */
         .main-content {
             position: relative;
             z-index: 2;
             opacity: 0;
-            transition: opacity 1.2s ease;
+            transition: opacity 1s ease;
         }
         .main-content.visible {
             opacity: 1;
@@ -92,19 +64,65 @@
             padding: 2rem 1.5rem;
         }
         
-        .fade-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .delay-1 { transition-delay: 0.1s; }
-        .delay-2 { transition-delay: 0.2s; }
-        .delay-3 { transition-delay: 0.3s; }
+        /* ===== НОВЫЕ АНИМАЦИИ ДЛЯ ЭЛЕМЕНТОВ ===== */
         
+        /* Базовый класс для всех анимируемых элементов */
+        .animate {
+            opacity: 0;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        /* Типы появления */
+        .animate-fade-up {
+            transform: translateY(40px);
+        }
+        .animate-fade-down {
+            transform: translateY(-40px);
+        }
+        .animate-fade-left {
+            transform: translateX(-60px);
+        }
+        .animate-fade-right {
+            transform: translateX(60px);
+        }
+        .animate-scale {
+            transform: scale(0.9);
+        }
+        
+        /* Когда элемент становится видимым */
+        .animate.visible {
+            opacity: 1;
+            transform: translateX(0) translateY(0) scale(1);
+        }
+        
+        /* Задержки для последовательного появления внутри блока */
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+        .delay-400 { transition-delay: 0.4s; }
+        .delay-500 { transition-delay: 0.5s; }
+        
+        /* Эффект для заголовков (печатная машинка) */
+        .hero .names {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #b85a3a;
+            width: 0;
+            animation: typing 2s steps(30, end) forwards, blink 0.75s step-end infinite;
+            display: inline-block;
+        }
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: #b85a3a; }
+        }
+        
+        /* Стили карточек */
         .card {
             background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(2px);
@@ -117,27 +135,42 @@
         }
         
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(192, 102, 61, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 40px rgba(184, 90, 58, 0.15);
         }
         
-        /* ===== ТАЙМИНГ НА КРАСНОЙ НИТИ ===== */
+        /* Анимация для картинок при наведении */
+        img {
+            transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.4s ease;
+            border-radius: 16px;
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .photo-item img, .story-photo img, .style-item img {
+            cursor: pointer;
+        }
+        
+        .photo-item img:hover, .story-photo img:hover, .style-item img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.15);
+        }
+        
+        /* Тайминг на красной нити */
         .timeline-section {
             background: transparent;
             box-shadow: none;
-            padding: 1rem 0;
         }
         
         .red-thread {
             position: relative;
             padding: 2rem 0;
             background: linear-gradient(180deg, 
-                rgba(192, 102, 61, 0) 0%,
-                rgba(192, 102, 61, 0.8) 5%,
+                rgba(184, 90, 58, 0) 0%,
                 #b85a3a 10%,
                 #b85a3a 90%,
-                rgba(192, 102, 61, 0.8) 95%,
-                rgba(192, 102, 61, 0) 100%);
+                rgba(184, 90, 58, 0) 100%);
             width: 3px;
             margin: 0 auto;
             border-radius: 2px;
@@ -152,13 +185,8 @@
             flex-wrap: wrap;
         }
         
-        .timeline-event:nth-child(odd) {
-            flex-direction: row;
-        }
-        
-        .timeline-event:nth-child(even) {
-            flex-direction: row-reverse;
-        }
+        .timeline-event:nth-child(odd) { flex-direction: row; }
+        .timeline-event:nth-child(even) { flex-direction: row-reverse; }
         
         .timeline-time {
             background: #b85a3a;
@@ -166,12 +194,7 @@
             padding: 0.6rem 1.2rem;
             border-radius: 40px;
             font-weight: 600;
-            font-size: 1.1rem;
-            width: 120px;
-            text-align: center;
             box-shadow: 0 4px 12px rgba(184, 90, 58, 0.3);
-            position: relative;
-            z-index: 2;
         }
         
         .timeline-desc {
@@ -180,32 +203,12 @@
             border-radius: 20px;
             margin: 0 1rem;
             flex: 1;
-            min-width: 150px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             border-left: 3px solid #b85a3a;
         }
         
-        .timeline-event::before {
-            content: "🧵";
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 1.2rem;
-            opacity: 0.6;
-        }
-        
         @media (max-width: 600px) {
-            .timeline-event {
-                flex-direction: column !important;
-                gap: 0.5rem;
-                margin: 2rem 0;
-            }
-            .timeline-time {
-                width: auto;
-            }
-            .timeline-event::before {
-                display: none;
-            }
+            .timeline-event { flex-direction: column !important; gap: 0.5rem; }
+            .hero .names { white-space: normal; animation: none; border-right: none; width: auto; }
         }
         
         /* Опрос про напитки */
@@ -223,10 +226,9 @@
         .drink-option.selected {
             background: #b85a3a;
             color: white;
-            border-color: #b85a3a;
+            transform: scale(1.02);
         }
         
-        /* Галерея образов */
         .style-gallery {
             display: flex;
             flex-wrap: wrap;
@@ -245,22 +247,7 @@
             transition: transform 0.3s ease;
         }
         
-        .style-item:hover {
-            transform: scale(1.05);
-        }
-        
-        .style-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        .style-item p {
-            font-size: 0.7rem;
-            padding: 0.5rem;
-            text-align: center;
-            background: #fef6f0;
-        }
+        .style-item:hover { transform: translateY(-5px); }
         
         .hero {
             text-align: center;
@@ -297,14 +284,7 @@
             color: #b85a3a;
         }
         
-        .icon {
-            font-size: 1.5rem;
-            display: inline-block;
-            margin-right: 8px;
-            vertical-align: middle;
-        }
-        
-        .rsvp-form input, .rsvp-form select, button {
+        button, input, select {
             padding: 12px 16px;
             border-radius: 40px;
             border: 1px solid #e8d5c4;
@@ -313,6 +293,7 @@
             background: white;
             width: 100%;
             margin-bottom: 1rem;
+            transition: all 0.2s ease;
         }
         
         button {
@@ -322,9 +303,7 @@
             cursor: pointer;
         }
         
-        button:hover {
-            background: #9b4a2e;
-        }
+        button:active { transform: scale(0.98); }
         
         footer {
             text-align: center;
@@ -339,17 +318,15 @@
             0%, 100% { transform: translateY(0); opacity: 0.6; }
             50% { transform: translateY(10px); opacity: 1; }
         }
-        .bounce-arrow {
-            animation: bounce 1.5s infinite;
-        }
+        .bounce-arrow { animation: bounce 1.5s infinite; }
     </style>
 </head>
 <body>
 
 <div class="floating-threads" id="threadsContainer"></div>
 
-<div id="splashScreen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fdf8f2; z-index: 9999; display: flex; align-items: center; justify-content: center; flex-direction: column; cursor: pointer; transition: opacity 0.8s ease;">
-    <div style="text-align: center;">
+<div id="splashScreen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fdf8f2; z-index: 9999; display: flex; align-items: center; justify-content: center; flex-direction: column; cursor: pointer; transition: opacity 0.8s ease; text-align: center;">
+    <div style="padding: 20px; animation: pulse 2s infinite;">
         <div style="font-size: 4rem;">🧶💍🧵</div>
         <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: #b85a3a;">Никита & Юлия</h1>
         <p style="margin-top: 1rem;">Две судьбы, связанные в одну нить</p>
@@ -364,122 +341,120 @@
 
 <div class="main-content" id="mainContent">
     <div class="container">
-        <div class="hero fade-up">
-            <div class="date-badge">4 СЕНТЯБРЯ 2026</div>
-            <h1>Мы женимся!</h1>
-            <div class="names">Никита & Юлия</div>
-            <p>Приглашаем вас стать частью нашей истории</p>
+        <!-- Hero с анимацией печати -->
+        <div class="hero">
+            <div class="date-badge animate animate-fade-down">4 СЕНТЯБРЯ 2026</div>
+            <h1 class="animate animate-scale delay-100">Мы женимся!</h1>
+            <div class="names animate animate-fade-up delay-200">Никита & Юлия</div>
+            <p class="animate animate-fade-up delay-300" style="margin-top: 1rem;">Приглашаем вас стать частью нашей истории</p>
         </div>
 
-        <!-- ТАЙМИНГ НА КРАСНОЙ НИТИ -->
-        <div class="timeline-section fade-up delay-1">
-            <h2>🧵 Ход торжества</h2>
+        <!-- Тайминг на нити -->
+        <div class="timeline-section">
+            <h2 class="animate animate-fade-up">🧵 Ход торжества</h2>
             <div class="red-thread">
-                <div class="timeline-event">
+                <div class="timeline-event animate animate-fade-left delay-100">
                     <div class="timeline-time">14:00</div>
                     <div class="timeline-desc">Сбор гостей</div>
                 </div>
-                <div class="timeline-event">
+                <div class="timeline-event animate animate-fade-right delay-200">
                     <div class="timeline-time">14:30</div>
                     <div class="timeline-desc">Начало церемонии</div>
                 </div>
-                <div class="timeline-event">
+                <div class="timeline-event animate animate-fade-left delay-300">
                     <div class="timeline-time">15:00</div>
                     <div class="timeline-desc">Трансфер до ресторана</div>
                 </div>
-                <div class="timeline-event">
+                <div class="timeline-event animate animate-fade-right delay-400">
                     <div class="timeline-time">15:30</div>
                     <div class="timeline-desc">Начало банкета</div>
                 </div>
             </div>
         </div>
 
-        <!-- ОПРОС ПРО НАПИТКИ -->
-        <div class="card fade-up delay-2">
-            <h2>🍷 Что будете пить?</h2>
-            <p>Пожалуйста, выберите варианты, чтобы мы могли подготовить бар</p>
-            <div style="margin: 1rem 0;">
+        <!-- Карточка с напитками -->
+        <div class="card">
+            <h2 class="animate animate-fade-up">🍷 Что будете пить?</h2>
+            <p class="animate animate-fade-up delay-100">Выберите варианты, чтобы мы подготовили бар</p>
+            <div class="animate animate-scale delay-200">
                 <div class="drink-option" data-drink="Вино красное">🍷 Красное вино</div>
                 <div class="drink-option" data-drink="Вино белое">🥂 Белое вино</div>
                 <div class="drink-option" data-drink="Шампанское">🍾 Шампанское</div>
                 <div class="drink-option" data-drink="Безалкогольное">🧃 Безалкогольное</div>
             </div>
-            <input type="text" id="drinkGuestName" placeholder="Ваше имя" style="width: 100%; padding: 10px; border-radius: 40px; border: 1px solid #e8d5c4;">
-            <button id="saveDrinkChoice">Сохранить выбор</button>
-            <p id="drinkMessage" style="font-size: 0.8rem; margin-top: 0.5rem;"></p>
+            <input type="text" id="drinkGuestName" placeholder="Ваше имя" class="animate animate-fade-up delay-300">
+            <button id="saveDrinkChoice" class="animate animate-fade-up delay-400">Сохранить выбор</button>
+            <p id="drinkMessage" class="animate animate-fade-up delay-500" style="font-size: 0.8rem;"></p>
         </div>
 
-        <!-- БЛОК ПРО ЛОТЕРЕЙНЫЕ БИЛЕТЫ (вместо цветов) -->
-        <div class="card fade-up delay-3">
-            <h2>🎟️ Вместо цветов — лотерейные билеты</h2>
-            <p>Мы очень трепетно относимся к вашему вниманию, но живые цветы быстро вянут.</p>
-            <p><strong>Подарите нам лотерейный билет</strong> — на обратной стороне напишите свой номер телефона.</p>
-            <p>Эти билеты будут участвовать в нашей <strong>свадебной лотерее</strong>! 🎲</p>
-            <div style="background: #fef6f0; border-radius: 20px; padding: 1rem; margin-top: 1rem;">
-                <p>✨ <strong>Как это работает:</strong> все принесённые билеты собираются в корзину. В конце вечера мы разыгрываем призы среди участников. Чем больше билетов — тем больше шансов выиграть! ✨</p>
+        <!-- Лотерейные билеты -->
+        <div class="card">
+            <h2 class="animate animate-fade-left">🎟️ Вместо цветов — лотерейные билеты</h2>
+            <p class="animate animate-fade-right delay-100">Подарите нам лотерейный билет, на обратной стороне напишите свой номер телефона.</p>
+            <p class="animate animate-scale delay-200">Эти билеты будут участвовать в нашей <strong>свадебной лотерее</strong>! 🎲</p>
+            <div class="animate animate-fade-up delay-300" style="background: #fef6f0; border-radius: 20px; padding: 1rem; margin-top: 1rem;">
+                ✨ <strong>Как это работает:</strong> все принесённые билеты собираются в корзину. В конце вечера мы разыгрываем призы.
             </div>
         </div>
 
-        <!-- ДРЕСС-КОД + ПРИМЕРЫ НАРЯДОВ -->
-        <div class="card fade-up delay-1">
-            <h2>👗 Дресс-код</h2>
-            <p>Наша цветовая гамма:</p>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin: 1rem 0;">
+        <!-- Дресс-код и примеры -->
+        <div class="card">
+            <h2 class="animate animate-fade-up">👗 Дресс-код</h2>
+            <div class="animate animate-fade-up delay-100" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin: 1rem 0;">
                 <span style="background: #b85a3a; color: white; padding: 0.3rem 1rem; border-radius: 20px;">Терракотовый</span>
                 <span style="background: #8b5a3a; color: white; padding: 0.3rem 1rem; border-radius: 20px;">Коричневый</span>
                 <span style="background: #d9c5a7; padding: 0.3rem 1rem; border-radius: 20px;">Бежевый</span>
                 <span style="background: #6b705c; color: white; padding: 0.3rem 1rem; border-radius: 20px;">Оливковый</span>
             </div>
-            
-            <h2 style="font-size: 1.4rem; margin-top: 1rem;">📸 Примеры образов</h2>
+            <h2 style="font-size: 1.4rem;" class="animate animate-fade-up delay-200">📸 Примеры образов</h2>
             <div class="style-gallery">
-                <div class="style-item">
+                <div class="style-item animate animate-fade-left delay-300">
                     <img src="https://via.placeholder.com/200x250?text=Терракотовый+образ" alt="Терракотовый">
                     <p>Терракотовый</p>
                 </div>
-                <div class="style-item">
+                <div class="style-item animate animate-fade-up delay-400">
                     <img src="https://via.placeholder.com/200x250?text=Коричневый+образ" alt="Коричневый">
                     <p>Коричневый</p>
                 </div>
-                <div class="style-item">
+                <div class="style-item animate animate-fade-right delay-500">
                     <img src="https://via.placeholder.com/200x250?text=Оливковый+образ" alt="Оливковый">
                     <p>Оливковый</p>
                 </div>
             </div>
-            <p style="font-size: 0.7rem; margin-top: 1rem;">*Вы можете заменить фото-примеры на свои</p>
         </div>
 
-        <!-- ОСТАЛЬНЫЕ БЛОКИ (место, карта, ответы) -->
-        <div class="card fade-up delay-2">
-            <h2>📍 Место проведения</h2>
-            <p>Ресторан «Усадьба», г. Москва, ул. Цветочная, 10</p>
-            <div class="address" style="background: #fef6f0; padding: 1rem; border-radius: 40px;">
-                <span class="map-link" id="openMap">🗺 Открыть карту</span>
+        <!-- Место проведения -->
+        <div class="card">
+            <h2 class="animate animate-fade-up">📍 Место проведения</h2>
+            <p class="animate animate-fade-up delay-100">Ресторан «Усадьба», г. Москва, ул. Цветочная, 10</p>
+            <div class="animate animate-scale delay-200" style="background: #fef6f0; padding: 1rem; border-radius: 40px;">
+                <span class="map-link" id="openMap" style="cursor:pointer;">🗺 Открыть карту</span>
             </div>
         </div>
 
-        <div class="card fade-up delay-3">
-            <h2>📝 Пожалуйста, ответьте до 1 августа</h2>
+        <!-- RSVP форма -->
+        <div class="card">
+            <h2 class="animate animate-fade-up">📝 Пожалуйста, ответьте до 1 августа</h2>
             <div class="rsvp-form">
-                <input type="text" id="guestName" placeholder="Ваше имя и фамилия">
-                <select id="attendance">
+                <input type="text" id="guestName" placeholder="Ваше имя и фамилия" class="animate animate-fade-up delay-100">
+                <select id="attendance" class="animate animate-fade-up delay-200">
                     <option value="yes">✅ Буду с радостью</option>
                     <option value="no">💔 К сожалению, не смогу</option>
                     <option value="plus">✨ Буду с парой/гостем</option>
                 </select>
-                <button id="sendRsvp">Отправить ответ</button>
-                <p id="rsvpMessage"></p>
+                <button id="sendRsvp" class="animate animate-fade-up delay-300">Отправить ответ</button>
+                <p id="rsvpMessage" class="animate animate-fade-up delay-400"></p>
             </div>
         </div>
 
-        <footer>
+        <footer class="animate animate-fade-up">
             С любовью, Никита и Юлия 🧶
         </footer>
     </div>
 </div>
 
 <script>
-    // ПАРЯЩИЕ НИТИ
+    // Парящие нити
     function createThread() {
         const thread = document.createElement('div');
         thread.classList.add('thread');
@@ -487,13 +462,12 @@
         thread.style.left = Math.random() * 100 + '%';
         thread.style.fontSize = (Math.random() * 20 + 10) + 'px';
         thread.style.animationDuration = (Math.random() * 10 + 8) + 's';
-        thread.style.animationDelay = Math.random() * 5 + 's';
         document.getElementById('threadsContainer').appendChild(thread);
         setTimeout(() => thread.remove(), 15000);
     }
     setInterval(createThread, 2000);
     
-    // ЗАСТАВКА И МУЗЫКА
+    // Заставка и музыка
     const splash = document.getElementById('splashScreen');
     const music = document.getElementById('bgMusic');
     const mainContent = document.getElementById('mainContent');
@@ -510,14 +484,19 @@
     splash.addEventListener('click', openInvite);
     splash.addEventListener('touchstart', openInvite);
     
-    // АНИМАЦИЯ ПРИ СКРОЛЛЕ
-    const fadeEls = document.querySelectorAll('.fade-up');
+    // Анимация появления элементов при скролле
+    const animatedElements = document.querySelectorAll('.animate');
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(e => e.target.classList.add('visible'));
-    }, { threshold: 0.1 });
-    fadeEls.forEach(el => observer.observe(el));
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
     
-    // ОПРОС ПРО НАПИТКИ
+    animatedElements.forEach(el => observer.observe(el));
+    
+    // Опрос про напитки
     let selectedDrink = null;
     document.querySelectorAll('.drink-option').forEach(opt => {
         opt.addEventListener('click', () => {
@@ -538,8 +517,8 @@
         localStorage.setItem('weddingDrinks', JSON.stringify(drinks));
         document.getElementById('drinkMessage').innerText = `Спасибо, ${name}! Мы учтём ваш выбор (${selectedDrink}) 🍷`;
         document.getElementById('drinkGuestName').value = '';
-        selectedDrink = null;
         document.querySelectorAll('.drink-option').forEach(o => o.classList.remove('selected'));
+        selectedDrink = null;
     });
     
     // RSVP
@@ -557,7 +536,7 @@
         document.getElementById('guestName').value = '';
     });
     
-    // КАРТА
+    // Карта
     document.getElementById('openMap')?.addEventListener('click', () => {
         window.open('https://yandex.ru/maps/?text=Москва+Цветочная+10&z=17', '_blank');
     });
