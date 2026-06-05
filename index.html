@@ -62,7 +62,7 @@
             padding: 2rem 1.5rem;
         }
         
-        /* ===== АНИМАЦИИ ===== */
+        /* Анимации */
         .animate {
             opacity: 0;
             transition: opacity 0.6s ease, transform 0.6s ease;
@@ -100,7 +100,7 @@
             box-shadow: 0 25px 40px rgba(184, 90, 58, 0.15);
         }
         
-        /* Извилистая нить */
+        /* Тайминг с извилистой нитью */
         .timeline-section {
             position: relative;
             margin: 3rem 0;
@@ -122,22 +122,21 @@
             margin: 0 auto;
         }
         
-        .timeline-slider {
+        /* Ползунок, движущийся по кривой */
+        .timeline-slider-curvy {
             position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
             width: 30px;
             height: 30px;
             background: #b85a3a;
             border: 3px solid #ffefd6;
             border-radius: 50%;
             box-shadow: 0 0 0 3px #b85a3a, 0 4px 12px rgba(0,0,0,0.2);
-            z-index: 5;
-            transition: top 0.3s ease-out;
+            z-index: 10;
+            transition: left 0.15s ease-out, top 0.15s ease-out;
             pointer-events: none;
         }
         
-        .timeline-slider::after {
+        .timeline-slider-curvy::after {
             content: "🧵";
             position: absolute;
             top: -25px;
@@ -183,8 +182,76 @@
                 width: 160px;
                 font-size: 12px;
             }
-            .timeline-slider::after {
+            .timeline-slider-curvy::after {
                 display: none;
+            }
+        }
+        
+        /* Таймер обратного отсчёта */
+        .countdown-wrapper {
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 60px;
+            backdrop-filter: blur(4px);
+        }
+        
+        .countdown-title {
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            color: #b85a3a;
+            margin-bottom: 0.8rem;
+        }
+        
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .countdown-block {
+            background: #b85a3a;
+            border-radius: 16px;
+            padding: 0.5rem 0.8rem;
+            min-width: 65px;
+            box-shadow: 0 4px 12px rgba(184, 90, 58, 0.3);
+        }
+        
+        .countdown-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            font-family: monospace;
+            letter-spacing: 2px;
+        }
+        
+        .countdown-label {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.8);
+            display: block;
+            margin-top: 4px;
+        }
+        
+        .countdown-separator {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #b85a3a;
+            margin-bottom: 0.5rem;
+        }
+        
+        @media (max-width: 550px) {
+            .countdown-block {
+                padding: 0.3rem 0.5rem;
+                min-width: 55px;
+            }
+            .countdown-number {
+                font-size: 1.3rem;
+            }
+            .countdown-separator {
+                font-size: 1.3rem;
             }
         }
         
@@ -318,7 +385,7 @@
 
 <div class="floating-threads" id="threadsContainer"></div>
 
-<!-- ЗАСТАВКА С ВАШИМ ФОТО (замените "ваше_фото.jpg" на своё) -->
+<!-- ЗАСТАВКА С ВАШИМ ФОТО -->
 <div id="splashScreen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('ваше_фото.jpg'); background-size: cover; background-position: center; z-index: 9999; display: flex; align-items: center; justify-content: center; flex-direction: column; cursor: pointer; transition: opacity 0.8s ease;">
     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4);"></div>
     <div style="position: relative; text-align: center; color: white; padding: 20px; animation: gentlePulse 2s infinite alternate;">
@@ -336,20 +403,47 @@
 
 <div class="main-content" id="mainContent">
     <div class="container">
-        <!-- Hero с анимациями -->
+        <!-- Hero -->
         <div class="hero">
             <div class="date-badge animate animate-fade-down">4 СЕНТЯБРЯ 2026</div>
             <h1 class="animate animate-scale delay-100">Мы женимся!</h1>
             <div class="names animate animate-fade-up delay-200">Никита & Юлия</div>
             <p class="animate animate-fade-up delay-300" style="margin-top: 1rem;">Приглашаем вас стать частью нашей истории</p>
+            
+            <!-- ТАЙМЕР -->
+            <div class="countdown-wrapper animate animate-fade-up delay-300">
+                <div class="countdown-title">До нашей свадьбы осталось:</div>
+                <div class="countdown-timer" id="countdownTimer">
+                    <div class="countdown-block">
+                        <span class="countdown-number" id="days">00</span>
+                        <span class="countdown-label">дней</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-block">
+                        <span class="countdown-number" id="hours">00</span>
+                        <span class="countdown-label">часов</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-block">
+                        <span class="countdown-number" id="minutes">00</span>
+                        <span class="countdown-label">минут</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-block">
+                        <span class="countdown-number" id="seconds">00</span>
+                        <span class="countdown-label">секунд</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- ТАЙМИНГ С ПОЛЗУНКОМ, ОСТАНАВЛИВАЮЩИМСЯ У СОБЫТИЙ -->
+        <!-- ТАЙМИНГ С ИЗВИЛИСТОЙ НИТЬЮ -->
         <div class="timeline-section" id="timelineSection">
             <h2 class="animate animate-fade-up">🧵 Ход торжества</h2>
-            <div class="timeline-wrapper" style="position: relative;">
-                <svg class="timeline-svg animate animate-scale delay-100" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg">
-                    <path id="threadPath" d="M 200 20 
+            <div class="timeline-wrapper">
+                <svg class="timeline-svg animate animate-scale delay-100" id="timelineSVG" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg">
+                    <path id="threadCurve" 
+                          d="M 200 20 
                              C 300 60, 100 120, 200 160 
                              C 300 200, 100 260, 200 300 
                              C 300 340, 100 400, 200 440 
@@ -362,7 +456,7 @@
                     <circle cx="200" cy="560" r="6" fill="#b85a3a" />
                 </svg>
                 
-                <div id="timelineSlider" class="timeline-slider" style="top: 0px;"></div>
+                <div id="curvySlider" class="timeline-slider-curvy"></div>
                 
                 <div class="timeline-events">
                     <div class="event-marker animate animate-fade-right delay-200" style="top: 12px;">
@@ -406,7 +500,7 @@
             </div>
         </div>
 
-        <!-- Дресс-код с примерами -->
+        <!-- Дресс-код -->
         <div class="card animate animate-fade-up">
             <h2>👗 Дресс-код</h2>
             <div class="animate animate-fade-up delay-100" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin: 1rem 0;">
@@ -502,48 +596,74 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
     animatedElements.forEach(el => observer.observe(el));
     
-    // ===== ПОЛЗУНОК С ОСТАНОВКАМИ У СОБЫТИЙ =====
-    const slider = document.getElementById('timelineSlider');
-    const timelineSection = document.getElementById('timelineSection');
-    
-    // Позиции событий (Y-координаты на SVG)
-    const eventPositions = [12, 152, 292, 432];
-    let currentEventIndex = 0;
-    let animationActive = false;
-    
-    function updateSliderPosition() {
-        if (!timelineSection || !slider || animationActive) return;
+    // ТАЙМЕР ОБРАТНОГО ОТСЧЁТА
+    function updateCountdown() {
+        const weddingDate = new Date(2026, 8, 4, 14, 0, 0);
+        const now = new Date();
+        const diff = weddingDate - now;
         
-        const rect = timelineSection.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        const sectionHeight = rect.height;
-        const visibleStart = Math.max(0, windowHeight - rect.top);
-        const visiblePercent = Math.min(1, Math.max(0, visibleStart / (windowHeight + sectionHeight)));
-        
-        // Определяем, к какому событию привязаться
-        let newIndex = 0;
-        if (visiblePercent >= 0.9) newIndex = 3;
-        else if (visiblePercent >= 0.65) newIndex = 2;
-        else if (visiblePercent >= 0.4) newIndex = 1;
-        else newIndex = 0;
-        
-        if (newIndex !== currentEventIndex) {
-            currentEventIndex = newIndex;
-            animationActive = true;
-            slider.style.top = eventPositions[currentEventIndex] + 'px';
-            
-            // Лёгкая вибрация/подсветка при остановке
-            slider.style.transform = 'translateX(-50%) scale(1.1)';
-            setTimeout(() => {
-                slider.style.transform = 'translateX(-50%) scale(1)';
-                animationActive = false;
-            }, 200);
+        if (diff <= 0) {
+            document.getElementById('countdownTimer').innerHTML = '<div style="color: #b85a3a; font-size: 1.2rem;">🎉 Этот день настал! Ждём вас! 🎉</div>';
+            return;
         }
+        
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (86400000)) / (3600000));
+        const minutes = Math.floor((diff % 3600000) / 60000);
+        const seconds = Math.floor((diff % 60000) / 1000);
+        
+        document.getElementById('days').textContent = String(days).padStart(2, '0');
+        document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+        document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+        document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
     }
     
-    window.addEventListener('scroll', updateSliderPosition);
-    window.addEventListener('resize', updateSliderPosition);
-    updateSliderPosition();
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+    
+    // ПОЛЗУНОК, ДВИЖУЩИЙСЯ ПО ИЗВИЛИСТОЙ НИТИ (с остановками у событий)
+    const sliderCurvy = document.getElementById('curvySlider');
+    const svgElement = document.getElementById('timelineSVG');
+    const pathCurve = document.getElementById('threadCurve');
+    const timelineSection2 = document.getElementById('timelineSection');
+    
+    function getPointAtPercent(percent) {
+        if (!pathCurve) return { x: 200, y: 20 };
+        const length = pathCurve.getTotalLength();
+        const point = pathCurve.getPointAtLength(percent * length);
+        return { x: point.x, y: point.y };
+    }
+    
+    function updateCurvySlider() {
+        if (!timelineSection2 || !sliderCurvy || !svgElement) return;
+        
+        const rect = timelineSection2.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        let visiblePercent = 0;
+        
+        if (rect.top < windowHeight && rect.bottom > 0) {
+            const visibleStart = Math.max(0, windowHeight - rect.top);
+            visiblePercent = visibleStart / (windowHeight + rect.height);
+            visiblePercent = Math.min(1, Math.max(0, visiblePercent));
+        }
+        
+        // Привязка к 4 событиям
+        let snapPercent = 0;
+        if (visiblePercent >= 0.9) snapPercent = 1;
+        else if (visiblePercent >= 0.65) snapPercent = 0.66;
+        else if (visiblePercent >= 0.4) snapPercent = 0.33;
+        else snapPercent = 0;
+        
+        const point = getPointAtPercent(snapPercent);
+        const svgRect = svgElement.getBoundingClientRect();
+        
+        sliderCurvy.style.left = (svgRect.left + point.x - 15) + 'px';
+        sliderCurvy.style.top = (svgRect.top + point.y - 15) + 'px';
+    }
+    
+    window.addEventListener('scroll', updateCurvySlider);
+    window.addEventListener('resize', updateCurvySlider);
+    setTimeout(updateCurvySlider, 100);
     
     // Опрос про напитки
     let selectedDrink = null;
