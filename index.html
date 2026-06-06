@@ -20,7 +20,6 @@
             overflow-x: hidden;
         }
         
-        /* Парящие нити */
         .floating-threads {
             position: fixed;
             top: 0;
@@ -62,7 +61,6 @@
             padding: 2rem 1.5rem;
         }
         
-        /* Анимации */
         .animate {
             opacity: 0;
             transition: opacity 0.6s ease, transform 0.6s ease;
@@ -83,7 +81,6 @@
         .delay-400 { transition-delay: 0.4s; }
         .delay-500 { transition-delay: 0.5s; }
         
-        /* Карточки */
         .card {
             background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(2px);
@@ -100,7 +97,6 @@
             box-shadow: 0 25px 40px rgba(184, 90, 58, 0.15);
         }
         
-        /* Простой тайминг (вертикальный) */
         .timeline-section {
             margin: 2rem 0;
             text-align: center;
@@ -135,12 +131,6 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             position: relative;
             z-index: 2;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .timeline-event-simple:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 25px rgba(184, 90, 58, 0.2);
         }
         
         .timeline-event-simple .time {
@@ -149,7 +139,6 @@
             font-size: 1.2rem;
         }
         
-        /* Ползунок */
         .timeline-slider-simple {
             position: fixed;
             right: 20px;
@@ -179,7 +168,6 @@
             }
         }
         
-        /* Таймер */
         .countdown-wrapper {
             text-align: center;
             margin: 1.5rem 0;
@@ -187,13 +175,6 @@
             background: rgba(255, 255, 255, 0.7);
             border-radius: 60px;
             backdrop-filter: blur(4px);
-        }
-        
-        .countdown-title {
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            color: #b85a3a;
-            margin-bottom: 0.8rem;
         }
         
         .countdown-timer {
@@ -209,7 +190,6 @@
             border-radius: 16px;
             padding: 0.5rem 0.8rem;
             min-width: 65px;
-            box-shadow: 0 4px 12px rgba(184, 90, 58, 0.3);
         }
         
         .countdown-number {
@@ -237,13 +217,23 @@
             .countdown-separator { font-size: 1.3rem; }
         }
         
-        /* Опрос с несколькими вариантами */
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #b85a3a;
+        }
+        
         .drink-group {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
             gap: 0.8rem;
-            margin: 1rem 0;
+            margin-top: 0.5rem;
         }
         
         .drink-option {
@@ -260,6 +250,60 @@
             background: #b85a3a;
             color: white;
             transform: scale(1.02);
+        }
+        
+        .preference-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        
+        .pref-option {
+            padding: 0.6rem 1.2rem;
+            background: #fef6f0;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #e8d5c4;
+            user-select: none;
+        }
+        
+        .pref-option.selected {
+            background: #b85a3a;
+            color: white;
+        }
+        
+        input, select, textarea {
+            padding: 12px 16px;
+            border-radius: 40px;
+            border: 1px solid #e8d5c4;
+            font-family: inherit;
+            font-size: 1rem;
+            background: white;
+            width: 100%;
+        }
+        
+        textarea {
+            border-radius: 20px;
+            resize: vertical;
+        }
+        
+        button {
+            padding: 12px 24px;
+            border-radius: 40px;
+            border: none;
+            font-family: inherit;
+            font-size: 1rem;
+            background: #b85a3a;
+            color: white;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s ease;
+        }
+        
+        button:active {
+            transform: scale(0.98);
         }
         
         .hero {
@@ -295,52 +339,6 @@
             font-size: 1.8rem;
             margin-bottom: 1rem;
             color: #b85a3a;
-        }
-        
-        .style-gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 1rem;
-        }
-        
-        .style-item {
-            width: calc(33% - 0.7rem);
-            min-width: 100px;
-            border-radius: 16px;
-            overflow: hidden;
-            background: white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .style-item:hover {
-            transform: translateY(-5px);
-        }
-        
-        .style-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        button, input, select {
-            padding: 12px 16px;
-            border-radius: 40px;
-            border: 1px solid #e8d5c4;
-            font-family: inherit;
-            font-size: 1rem;
-            background: white;
-            width: 100%;
-            margin-bottom: 1rem;
-        }
-        
-        button {
-            background: #b85a3a;
-            color: white;
-            border: none;
-            cursor: pointer;
         }
         
         footer {
@@ -397,19 +395,16 @@
     <source src="moya-pesnya.mp3" type="audio/mpeg">
 </audio>
 
-<!-- ПОЛЗУНОК -->
 <div id="timelineSlider" class="timeline-slider-simple">🧵</div>
 
 <div class="main-content" id="mainContent">
     <div class="container">
-        <!-- Hero -->
         <div class="hero">
             <div class="date-badge animate animate-fade-down">4 СЕНТЯБРЯ 2026</div>
             <h1 class="animate animate-scale delay-100">Мы женимся!</h1>
             <div class="names animate animate-fade-up delay-200">Никита & Юлия</div>
             <p class="animate animate-fade-up delay-300" style="margin-top: 1rem;">Приглашаем вас стать частью нашей истории</p>
             
-            <!-- ТАЙМЕР -->
             <div class="countdown-wrapper animate animate-fade-up delay-300">
                 <div class="countdown-title">До нашей свадьбы осталось:</div>
                 <div class="countdown-timer" id="countdownTimer">
@@ -424,7 +419,7 @@
             </div>
         </div>
 
-        <!-- ТАЙМИНГ (простой вертикальный) -->
+        <!-- ТАЙМИНГ -->
         <div class="timeline-section animate animate-fade-up">
             <h2>🧵 Ход торжества</h2>
             <div class="timeline-simple" id="timelineContainer">
@@ -435,19 +430,68 @@
             </div>
         </div>
 
-        <!-- ОПРОС ПРО НАПИТКИ (несколько вариантов) -->
+        <!-- АНКЕТА ГОСТЯ -->
         <div class="card animate animate-fade-up">
-            <h2>🍷 Что будете пить?</h2>
-            <p>Можно выбрать несколько вариантов</p>
-            <div class="drink-group" id="drinkGroup">
-                <div class="drink-option" data-drink="Красное вино">🍷 Красное вино</div>
-                <div class="drink-option" data-drink="Белое вино">🥂 Белое вино</div>
-                <div class="drink-option" data-drink="Шампанское">🍾 Шампанское</div>
-                <div class="drink-option" data-drink="Безалкогольное">🧃 Безалкогольное</div>
-            </div>
-            <input type="text" id="drinkGuestName" placeholder="Ваше имя" readonly>
-            <button id="saveDrinkChoice">Сохранить выбор</button>
-            <p id="drinkMessage" style="font-size: 0.8rem; margin-top: 0.5rem;"></p>
+            <h2>📝 Пожалуйста, заполните анкету</h2>
+            <p>Это поможет нам подготовиться к вашему приезду</p>
+            
+            <form id="guestForm">
+                <!-- ВАЖНО: ВСЕ ID ПОЛЕЙ ВЗЯТЫ ИЗ ВАШЕЙ ФОРМЫ -->
+                
+                <!-- 1. Имя гостя (скрытое поле, подставится из ссылки) -->
+                <input type="hidden" id="guestNameHidden" name="entry.145767671">
+                
+                <!-- 2. Подтверждение присутствия (обязательное) -->
+                <div class="form-group">
+                    <label>1. Вы сможете быть на нашей свадьбе? <span style="color:#b85a3a;">*</span></label>
+                    <select name="entry.1376278693" required>
+                        <option value="">Выберите вариант</option>
+                        <option value="Обязательно буду!">✅ Обязательно буду!</option>
+                        <option value="К сожалению, не смогу">💔 К сожалению, не смогу</option>
+                    </select>
+                </div>
+                
+                <!-- 3. Напитки (можно несколько) -->
+                <div class="form-group">
+                    <label>2. Какие напитки вы предпочитаете? (можно выбрать несколько)</label>
+                    <div class="drink-group" id="drinkGroup">
+                        <div class="drink-option" data-value="Красное вино">🍷 Красное вино</div>
+                        <div class="drink-option" data-value="Белое вино">🥂 Белое вино</div>
+                        <div class="drink-option" data-value="Шампанское">🍾 Шампанское</div>
+                        <div class="drink-option" data-value="Виски">🥃 Виски</div>
+                        <div class="drink-option" data-value="Водка/самогон">🍸 Водка/самогон</div>
+                        <div class="drink-option" data-value="Безалкогольные">🧃 Безалкогольные</div>
+                    </div>
+                    <div id="hiddenDrinkInputs"></div>
+                </div>
+                
+                <!-- 4. Пищевые предпочтения -->
+                <div class="form-group">
+                    <label>3. Есть ли у вас особые пищевые предпочтения?</label>
+                    <div class="preference-group" id="prefGroup">
+                        <div class="pref-option" data-value="Нет предпочтений">🍽️ Нет предпочтений</div>
+                        <div class="pref-option" data-value="Не ем мясо">🌱 Не ем мясо</div>
+                        <div class="pref-option" data-value="Не ем рыбу">🐟 Не ем рыбу</div>
+                        <div class="pref-option" data-value="Вегетарианец">🥬 Вегетарианец</div>
+                    </div>
+                    <input type="hidden" id="preferenceHidden" name="entry.115264557">
+                </div>
+                
+                <!-- 5. Аллергии -->
+                <div class="form-group">
+                    <label>4. Есть ли у вас аллергии?</label>
+                    <textarea name="entry.1902261658" rows="2" placeholder="Например: аллергия на орехи, цитрусовые, лекарства..."></textarea>
+                </div>
+                
+                <!-- 6. Дополнительные пожелания -->
+                <div class="form-group">
+                    <label>5. Ваши пожелания или комментарии</label>
+                    <textarea name="entry.527867260" rows="2" placeholder="Что вы хотели бы нам сказать? Музыка, рассадка, сюрпризы..."></textarea>
+                </div>
+                
+                <button type="submit">Отправить ответ</button>
+                <div id="formStatus" style="margin-top: 15px; font-weight: 500;"></div>
+            </form>
         </div>
 
         <!-- Лотерейные билеты -->
@@ -477,50 +521,24 @@
             </div>
         </div>
 
-        <!-- RSVP -->
-        <div class="card animate animate-fade-up">
-            <h2>📝 Пожалуйста, ответьте до 1 августа</h2>
-            <input type="text" id="guestName" placeholder="Ваше имя" readonly>
-            <select id="attendance">
-                <option value="yes">✅ Буду с радостью</option>
-                <option value="no">💔 К сожалению, не смогу</option>
-                <option value="plus">✨ Буду с парой/гостем</option>
-            </select>
-            <button id="sendRsvp">Отправить ответ</button>
-            <p id="rsvpMessage" style="font-size: 0.8rem; margin-top: 0.5rem;"></p>
-        </div>
-
         <footer class="animate animate-fade-up">
             С любовью, Никита и Юлия 🧶
         </footer>
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-    // ========== ДАННЫЕ ДЛЯ TELEGRAM (ЗАМЕНИТЕ НА СВОИ) ==========
-    const BOT_TOKEN = '8693569765:AAF0JYrvNDJdKmfE_e5KDmqLlIKuwvUaJzQ';   // Вставьте сюда токен
-    const CHAT_ID = '804001124';          // Вставьте сюда ваш ID
-    
-    // ========== ИМЯ ИЗ ССЫЛКИ (ФИКСИРУЕМ) ==========
+    // ========== ИМЯ ИЗ ССЫЛКИ (ПОДСТАВЛЯЕТСЯ В СКРЫТОЕ ПОЛЕ entry.145767671) ==========
     const urlParams = new URLSearchParams(window.location.search);
     const guestFromLink = urlParams.get('guest');
     let fixedGuestName = '';
     
     if (guestFromLink) {
         fixedGuestName = decodeURIComponent(guestFromLink);
-        // Блокируем поля ввода с именем
-        const guestNameInput = document.getElementById('guestName');
-        if (guestNameInput) {
-            guestNameInput.value = fixedGuestName;
-            guestNameInput.readOnly = true;
-            guestNameInput.classList.add('fixed-field');
-        }
-        const drinkNameInput = document.getElementById('drinkGuestName');
-        if (drinkNameInput) {
-            drinkNameInput.value = fixedGuestName;
-            drinkNameInput.readOnly = true;
-            drinkNameInput.classList.add('fixed-field');
+        // Подставляем имя в скрытое поле формы
+        const hiddenNameInput = document.getElementById('guestNameHidden');
+        if (hiddenNameInput) {
+            hiddenNameInput.value = fixedGuestName;
         }
         
         // Показываем приветствие
@@ -531,57 +549,146 @@
             const hero = document.querySelector('.hero');
             if (hero) hero.insertAdjacentElement('afterbegin', welcomeDiv);
         }, 1000);
-    }
-    
-    // ========== ОТПРАВКА В TELEGRAM ==========
-    async function sendToTelegram(message) {
-        if (!BOT_TOKEN || BOT_TOKEN === 'ВАШ_ТОКЕН_ОТ_BOTFATHER') {
-            console.log('Telegram не настроен. Сообщение:', message);
-            alert('⚠️ Telegram бот не настроен. Сообщение не отправлено.');
-            return false;
-        }
-        const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
-        try {
-            const response = await axios.post(url, {
-                chat_id: CHAT_ID,
-                text: message,
-                parse_mode: 'HTML'
-            });
-            return true;
-        } catch (error) {
-            console.error('Ошибка:', error);
-            return false;
+    } else {
+        // Если гость зашёл без ссылки
+        const hero = document.querySelector('.hero');
+        if (hero) {
+            const warningDiv = document.createElement('div');
+            warningDiv.style.cssText = 'background: #e8d5c4; color: #b85a3a; padding: 12px 20px; border-radius: 60px; margin: 15px 0; text-align: center; font-size: 0.9rem;';
+            warningDiv.innerHTML = `⚠️ Пожалуйста, перейдите по <strong>вашей именной ссылке</strong>, которую вы получили в приглашении.`;
+            hero.insertAdjacentElement('afterbegin', warningDiv);
         }
     }
     
-    // ========== ПРОСТОЙ ПОЛЗУНОК (по событиям) ==========
+    // ========== ВЫБОР НАПИТКОВ (НЕСКОЛЬКО) ==========
+    const drinkOptions = document.querySelectorAll('.drink-option');
+    const hiddenDrinkContainer = document.getElementById('hiddenDrinkInputs');
+    let selectedDrinks = [];
+    
+    drinkOptions.forEach(opt => {
+        opt.addEventListener('click', () => {
+            const drinkValue = opt.getAttribute('data-value');
+            if (opt.classList.contains('selected')) {
+                opt.classList.remove('selected');
+                selectedDrinks = selectedDrinks.filter(d => d !== drinkValue);
+            } else {
+                opt.classList.add('selected');
+                selectedDrinks.push(drinkValue);
+            }
+            updateHiddenDrinkInputs();
+        });
+    });
+    
+    function updateHiddenDrinkInputs() {
+        hiddenDrinkContainer.innerHTML = '';
+        selectedDrinks.forEach(drink => {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'entry.161849685';
+            input.value = drink;
+            hiddenDrinkContainer.appendChild(input);
+        });
+    }
+    
+    // ========== ВЫБОР ПИЩЕВЫХ ПРЕДПОЧТЕНИЙ (ОДИН ВАРИАНТ) ==========
+    const prefOptions = document.querySelectorAll('.pref-option');
+    const preferenceHidden = document.getElementById('preferenceHidden');
+    let selectedPreference = '';
+    
+    prefOptions.forEach(opt => {
+        opt.addEventListener('click', () => {
+            const prefValue = opt.getAttribute('data-value');
+            if (opt.classList.contains('selected')) {
+                opt.classList.remove('selected');
+                selectedPreference = '';
+                preferenceHidden.value = '';
+            } else {
+                prefOptions.forEach(o => o.classList.remove('selected'));
+                opt.classList.add('selected');
+                selectedPreference = prefValue;
+                preferenceHidden.value = prefValue;
+            }
+        });
+    });
+    
+    // ========== ОТПРАВКА ФОРМЫ В GOOGLE ==========
+    const form = document.getElementById('guestForm');
+    const statusDiv = document.getElementById('formStatus');
+    const GOOGLE_FORM_ID = '1FAIpQLSffEuLH9K8qkNw0mgaf7wNna0peQ85CbAnHbh6hdgpKGJ7JGQ';
+    
+    if (form) {
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            if (!fixedGuestName) {
+                statusDiv.innerHTML = '❌ Ошибка: не удалось определить имя гостя. Пожалуйста, перейдите по именной ссылке.';
+                statusDiv.style.color = '#b85a3a';
+                return;
+            }
+            
+            const attendanceSelect = document.querySelector('select[name="entry.1376278693"]');
+            if (!attendanceSelect.value) {
+                statusDiv.innerHTML = '❌ Пожалуйста, выберите, сможете ли вы быть';
+                statusDiv.style.color = '#b85a3a';
+                return;
+            }
+            
+            statusDiv.innerHTML = '⏳ Отправляем...';
+            statusDiv.style.color = '#b85a3a';
+            
+            const formData = new FormData(form);
+            const urlEncodedData = new URLSearchParams(formData).toString();
+            
+            try {
+                await fetch(`https://docs.google.com/forms/d/e/${GOOGLE_FORM_ID}/formResponse`, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: urlEncodedData
+                });
+                
+                statusDiv.innerHTML = '✅ Спасибо! Ваш ответ отправлен. Ждём вас! 🎉';
+                statusDiv.style.color = '#2d6a4f';
+                
+                // Очищаем форму
+                attendanceSelect.value = '';
+                selectedDrinks = [];
+                drinkOptions.forEach(opt => opt.classList.remove('selected'));
+                updateHiddenDrinkInputs();
+                prefOptions.forEach(opt => opt.classList.remove('selected'));
+                preferenceHidden.value = '';
+                document.querySelectorAll('textarea').forEach(t => t.value = '');
+                
+            } catch (error) {
+                console.error('Ошибка:', error);
+                statusDiv.innerHTML = '⚠️ Произошла ошибка. Пожалуйста, попробуйте ещё раз.';
+                statusDiv.style.color = '#b85a3a';
+            }
+        });
+    }
+    
+    // ========== ПОЛЗУНОК ==========
     const timelineContainer = document.getElementById('timelineContainer');
     const slider = document.getElementById('timelineSlider');
     const eventElements = document.querySelectorAll('.timeline-event-simple');
     
     function updateSimpleSlider() {
         if (!timelineContainer || !slider || eventElements.length === 0) return;
-        
-        const containerRect = timelineContainer.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        
         let currentIndex = 0;
+        const windowHeight = window.innerHeight;
         for (let i = 0; i < eventElements.length; i++) {
             const eventRect = eventElements[i].getBoundingClientRect();
             const eventCenter = eventRect.top + eventRect.height / 2;
-            if (eventCenter > 0 && eventCenter < windowHeight) {
-                currentIndex = i;
-            }
+            if (eventCenter > 0 && eventCenter < windowHeight) currentIndex = i;
         }
-        
         const activeEvent = eventElements[currentIndex];
         if (activeEvent) {
             const eventRect = activeEvent.getBoundingClientRect();
             const eventCenterY = eventRect.top + eventRect.height / 2;
-            const maxTop = window.innerHeight - 60;
-            const minTop = 60;
             let sliderTop = eventCenterY - 20;
-            sliderTop = Math.min(maxTop, Math.max(minTop, sliderTop));
+            sliderTop = Math.min(window.innerHeight - 60, Math.max(60, sliderTop));
             slider.style.top = sliderTop + 'px';
         }
     }
@@ -595,17 +702,14 @@
         const weddingDate = new Date(2026, 8, 4, 14, 0, 0);
         const now = new Date();
         const diff = weddingDate - now;
-        
         if (diff <= 0) {
             document.getElementById('countdownTimer').innerHTML = '<div style="color: #b85a3a; font-size: 1.2rem;">🎉 Этот день настал! Ждём вас! 🎉</div>';
             return;
         }
-        
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
         const hours = Math.floor((diff % (86400000)) / (3600000));
         const minutes = Math.floor((diff % 3600000) / 60000);
         const seconds = Math.floor((diff % 60000) / 1000);
-        
         document.getElementById('days').textContent = String(days).padStart(2, '0');
         document.getElementById('hours').textContent = String(hours).padStart(2, '0');
         document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
@@ -613,68 +717,6 @@
     }
     updateCountdown();
     setInterval(updateCountdown, 1000);
-    
-    // ========== ВЫБОР НЕСКОЛЬКИХ НАПИТКОВ ==========
-    let selectedDrinks = [];
-    
-    document.querySelectorAll('.drink-option').forEach(opt => {
-        opt.addEventListener('click', () => {
-            const drink = opt.getAttribute('data-drink');
-            if (opt.classList.contains('selected')) {
-                opt.classList.remove('selected');
-                selectedDrinks = selectedDrinks.filter(d => d !== drink);
-            } else {
-                opt.classList.add('selected');
-                selectedDrinks.push(drink);
-            }
-        });
-    });
-    
-    document.getElementById('saveDrinkChoice').addEventListener('click', async () => {
-        if (!fixedGuestName) {
-            document.getElementById('drinkMessage').innerText = '❌ Не удалось определить имя гостя. Перейдите по ссылке с параметром ?guest=ВашеИмя';
-            return;
-        }
-        
-        if (selectedDrinks.length === 0) {
-            document.getElementById('drinkMessage').innerText = 'Выберите хотя бы один напиток';
-            return;
-        }
-        
-        const message = `🍷 <b>Предпочтения по напиткам</b>\n👤 Гость: ${fixedGuestName}\n🥤 Выбрано: ${selectedDrinks.join(', ')}`;
-        const sent = await sendToTelegram(message);
-        
-        if (sent) {
-            document.getElementById('drinkMessage').innerHTML = `🍷 Спасибо, ${fixedGuestName}! Ваш выбор (${selectedDrinks.join(', ')}) отправлен.`;
-            selectedDrinks = [];
-            document.querySelectorAll('.drink-option').forEach(o => o.classList.remove('selected'));
-        } else {
-            document.getElementById('drinkMessage').innerHTML = '❌ Ошибка отправки. Попробуйте ещё раз.';
-        }
-    });
-    
-    // ========== RSVP С ОТПРАВКОЙ ==========
-    document.getElementById('sendRsvp').addEventListener('click', async () => {
-        if (!fixedGuestName) {
-            document.getElementById('rsvpMessage').innerHTML = '❌ Не удалось определить имя гостя. Перейдите по ссылке с параметром ?guest=ВашеИмя';
-            return;
-        }
-        
-        const status = document.getElementById('attendance').value;
-        let statusText = '';
-        if (status === 'yes') statusText = '✅ Будет';
-        else if (status === 'no') statusText = '❌ Не будет';
-        else statusText = '👥 Будет с парой/гостем';
-        
-        const message = `📋 <b>Ответ на приглашение</b>\n👤 Гость: ${fixedGuestName}\n📌 Статус: ${statusText}`;
-        const sent = await sendToTelegram(message);
-        
-        if (sent) {
-            document.getElementById('rsvpMessage').innerHTML = `✨ Спасибо, ${fixedGuestName}! Ваш ответ получен. Ждём вас! ✨`;
-        } else {
-            document.getElementById('rsvpMessage').innerHTML = '❌ Ошибка отправки. Попробуйте ещё раз.';
-        }
-    });
     
     // ========== ЗАСТАВКА И МУЗЫКА ==========
     const splash = document.getElementById('splashScreen');
