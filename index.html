@@ -580,41 +580,48 @@
         });
     });
 
-    // ========== ОТПРАВКА ФОРМЫ ==========
+// ========== ОТПРАВКА ФОРМЫ В GOOGLE ==========
     const form = document.getElementById('guestForm');
     const statusDiv = document.getElementById('formStatus');
-    const GOOGLE_FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSffEuLH9K8qkNw0mgaf7wNna0peQ85CbAnHbh6hdgpKGJ7JGQ/formResponse';
+    const GOOGLE_FORM_ID = '1FAIpQLSffEuLH9K8qkNw0mgaf7wNna0peQ85CbAnHbh6hdgpKGJ7JGQ';
     
     if (form) {
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
+            
             if (!fixedGuestName) {
-                statusDiv.innerHTML = '❌ Ошибка: перейдите по именной ссылке';
+                statusDiv.innerHTML = '❌ Ошибка: не удалось определить имя гостя. Пожалуйста, перейдите по именной ссылке.';
                 statusDiv.style.color = '#b85a3a';
                 return;
             }
+            
             const attendanceSelect = document.querySelector('select[name="entry.1376278693"]');
             if (!attendanceSelect.value) {
                 statusDiv.innerHTML = '❌ Пожалуйста, выберите, сможете ли вы быть';
                 statusDiv.style.color = '#b85a3a';
                 return;
             }
+            
             statusDiv.innerHTML = '⏳ Отправляем...';
             statusDiv.style.color = '#b85a3a';
             
             const formData = new FormData(form);
-            formData.set('entry.145767671', fixedGuestName);
+            const urlEncodedData = new URLSearchParams(formData).toString();
             
             try {
-                await fetch(GOOGLE_FORM_ACTION, {
+                await fetch(`https://docs.google.com/forms/d/e/${GOOGLE_FORM_ID}/formResponse`, {
                     method: 'POST',
                     mode: 'no-cors',
-                    body: formData
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: urlEncodedData
                 });
                 
                 statusDiv.innerHTML = '✅ Спасибо! Ваш ответ отправлен. Ждём вас! 🎉';
                 statusDiv.style.color = '#2d6a4f';
                 
+                // Очищаем форму
                 attendanceSelect.value = '';
                 selectedDrinks = [];
                 drinkOptions.forEach(opt => opt.classList.remove('selected'));
@@ -625,7 +632,7 @@
                 
             } catch (error) {
                 console.error('Ошибка:', error);
-                statusDiv.innerHTML = '⚠️ Ошибка. Попробуйте ещё раз.';
+                statusDiv.innerHTML = '⚠️ Произошла ошибка. Пожалуйста, попробуйте ещё раз.';
                 statusDiv.style.color = '#b85a3a';
             }
         });
