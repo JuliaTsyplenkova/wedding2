@@ -9,12 +9,10 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Montserrat', sans-serif; color: #2c2418; line-height: 1.5; background: #faf7f2; overflow-x: hidden; }
         
-        /* МЕРЦАЮЩИЕ ИСКРЫ */
         .sparkles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
         .sparkle { position: absolute; width: 2px; height: 2px; background: #ffd700; border-radius: 50%; opacity: 0; animation: twinkle 3s ease-in-out infinite; }
         @keyframes twinkle { 0%, 100% { opacity: 0; } 50% { opacity: 0.8; transform: scale(1.5); } }
         
-        /* ПАРЯЩИЕ ЭЛЕМЕНТЫ */
         .floating-elements { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: hidden; }
         .float-item { position: absolute; font-size: 1rem; opacity: 0.08; animation: floatAround linear infinite; }
         @keyframes floatAround { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 0.08; } 90% { opacity: 0.08; } 100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; } }
@@ -96,9 +94,14 @@
         .timeline-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 0.2rem; color: #2c2418; }
         .timeline-desc { font-size: 0.7rem; color: #8b735a; }
         
+        /* ДРЕСС-КОД */
         .dress-colors { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin: 1.5rem 0; }
         .color-tag { padding: 0.4rem 1rem; border: 1px solid #b85a3a; font-size: 0.8rem; transition: all 0.3s ease; cursor: default; }
         .color-tag:hover { background: #b85a3a; color: white; transform: scale(1.05); }
+        .style-single { margin-top: 1.5rem; border: 1px solid rgba(184, 90, 58, 0.2); transition: all 0.3s ease; }
+        .style-single:hover { transform: translateY(-3px); border-color: #b85a3a; }
+        .style-single img { width: 100%; height: auto; display: block; }
+        .style-caption { padding: 0.5rem; text-align: center; font-size: 0.7rem; color: #b85a3a; background: rgba(184,90,58,0.04); }
         
         .lottery-block { text-align: center; padding: 1.5rem; border: 1px solid rgba(184, 90, 58, 0.2); transition: all 0.3s ease; }
         .lottery-block:hover { border-color: #b85a3a; transform: translateY(-5px); }
@@ -243,6 +246,22 @@
                     <div class="timeline-card-item" data-index="4"><div class="timeline-time">22:00</div><div class="timeline-title">Дискотека</div><div class="timeline-desc">Любимые песни и зажигательные танцы</div></div>
                     <div class="timeline-card-item" data-index="5"><div class="timeline-time">23:00</div><div class="timeline-title">Финал вечера</div><div class="timeline-desc">Осознание, что всё так быстро закончилось</div></div>
                 </div>
+            </div>
+        </div>
+
+        <!-- ДРЕСС-КОД (ВОЗВРАЩЁН) -->
+        <div class="card-luxury fade-up delay-3">
+            <h2 class="section-title">👗 Дресс-код</h2>
+            <div class="dress-colors">
+                <span class="color-tag" style="background: #b85a3a; color: white;">Терракотовый</span>
+                <span class="color-tag" style="background: #8b5a3a; color: white;">Коричневый</span>
+                <span class="color-tag" style="background: #d9c5a7;">Бежевый</span>
+                <span class="color-tag" style="background: #6b705c; color: white;">Оливковый</span>
+            </div>
+            <p style="text-align: center; margin: 1rem 0 0.5rem; font-size: 0.8rem;">Мы будем рады видеть вас в любом наряде, но если при его выборе вы придержитесь нашей цветовой гамме — нам будет очень приятно!</p>
+            <div class="style-single">
+                <img src="dress-examples.jpg" alt="Примеры образов" onerror="this.src='https://via.placeholder.com/600x400?text=Примеры+образов'">
+                <div class="style-caption">Образы в нашей цветовой гамме: терракотовый, коричневый, бежевый, оливковый</div>
             </div>
         </div>
 
