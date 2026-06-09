@@ -126,7 +126,7 @@
             padding: 1.2rem;
             max-width: 500px;
             background: rgba(184, 90, 58, 0.04);
-            border-radius: 60px;
+            border-radius: 0px;
         }
         
         .countdown-title {
@@ -147,7 +147,7 @@
         
         .countdown-block {
             background: #b85a3a;
-            border-radius: 14px;
+            border-radius: 0px;
             padding: 0.5rem 0.8rem;
             min-width: 65px;
             box-shadow: 0 4px 15px rgba(184, 90, 58, 0.2);
@@ -188,7 +188,7 @@
 .calendar-wrapper {
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(4px);
-    border-radius: 28px;
+    border-radius: 0px;
     padding: 1.2rem;
     margin-top: 1rem;
     box-shadow: 0 10px 25px -10px rgba(0,0,0,0.1);
@@ -300,7 +300,7 @@
             position: relative;
             width: 100%;
             overflow: hidden;
-            border-radius: 24px;
+            border-radius: 0px;
             box-shadow: 0 20px 35px -15px rgba(0,0,0,0.15);
             aspect-ratio: 1 / 1;
         }
@@ -336,7 +336,7 @@
             height: 36px;
             background: rgba(255,255,255,0.9);
             border: none;
-            border-radius: 50%;
+            border-radius: 0px;
             cursor: pointer;
             font-size: 1.5rem;
             color: #b85a3a;
@@ -487,7 +487,7 @@
 
 .timeline-card-item {
     background: rgba(255,255,255,0.8);
-    border-radius: 20px;
+    border-radius: 0px;
     padding: 1rem 1.2rem;
     margin-bottom: 1.8rem;
     transition: all 0.3s ease;
@@ -556,7 +556,7 @@
         
         .color-tag {
             padding: 0.5rem 1.2rem;
-            border-radius: 50px;
+            border-radius: 0px;
             font-size: 0.85rem;
             transition: transform 0.2s ease;
         }
@@ -567,7 +567,7 @@
         
         .style-single {
             margin-top: 2rem;
-            border-radius: 24px;
+            border-radius: 0px;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -596,7 +596,7 @@
             text-align: center;
             padding: 2rem 1.5rem;
             background: rgba(184, 90, 58, 0.04);
-            border-radius: 28px;
+            border-radius: 0px;
             transition: all 0.3s ease;
         }
         
@@ -628,7 +628,7 @@
             color: #b85a3a;
             background: white;
             padding: 0.8rem 1.2rem;
-            border-radius: 50px;
+            border-radius: 0px;
             display: inline-block;
             margin-top: 0.5rem;
         }
@@ -656,7 +656,7 @@
         .drink-option, .pref-option {
             padding: 0.6rem 1.2rem;
             background: white;
-            border-radius: 50px;
+            border-radius: 0px;
             cursor: pointer;
             transition: all 0.2s ease;
             border: 1px solid #e8ddd0;
@@ -676,7 +676,7 @@
         
         input, select, textarea {
             padding: 12px 16px;
-            border-radius: 50px;
+            border-radius: 0px;
             border: 1px solid #e8ddd0;
             font-family: inherit;
             font-size: 0.9rem;
@@ -692,13 +692,13 @@
         }
         
         textarea {
-            border-radius: 24px;
+            border-radius: 0px;
             resize: vertical;
         }
         
         button {
             padding: 14px 24px;
-            border-radius: 50px;
+            border-radius: 0px;
             border: none;
             font-family: inherit;
             font-size: 0.95rem;
@@ -721,7 +721,7 @@
         
         /* Карта */
         .map-container {
-            border-radius: 24px;
+            border-radius: 0px;
             overflow: hidden;
             margin: 1rem 0;
             box-shadow: 0 10px 25px -10px rgba(0,0,0,0.1);
@@ -736,7 +736,7 @@
         .transfer-note {
             background: rgba(184, 90, 58, 0.06);
             padding: 1rem;
-            border-radius: 20px;
+            border-radius: 0px;
             text-align: center;
             font-size: 0.85rem;
             color: #b85a3a;
@@ -751,7 +751,7 @@
     background: #b85a3a;
     color: white;
     padding: 12px 24px;
-    border-radius: 50px;
+    border-radius: 0px;
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 500;
@@ -773,7 +773,7 @@
         /* Контакты */
         .contact-card {
             background: rgba(184, 90, 58, 0.04);
-            border-radius: 28px;
+            border-radius: 0px;
             padding: 1.8rem;
             text-align: center;
             transition: all 0.3s ease;
@@ -822,7 +822,7 @@
             background: #0088cc;
             color: white;
             padding: 0.6rem 1.2rem;
-            border-radius: 50px;
+            border-radius: 0px;
             text-decoration: none;
             font-size: 0.85rem;
             transition: all 0.2s ease;
@@ -871,11 +871,13 @@
 <div class="floating-elements" id="floatingElements"></div>
 
 <!-- ЗАСТАВКА (затемнённое фото, светлый текст) -->
-<div id="splashScreen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('ваше_фото.jpg'); background-size: cover; background-position: center; z-index: 9999; display: flex; align-items: center; justify-content: center; flex-direction: column; cursor: pointer; transition: opacity 0.8s ease;">
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.55);"></div>
-    <div style="position: relative; text-align: center; color: white; padding: 20px; animation: gentlePulse 2s infinite alternate; margin-top: -120px;">
+<div id="splashScreen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('ваше_фото.jpg'); background-size: cover; background-position: center; z-index: 9999; display: flex; align-items: center; justify-content: space-between; flex-direction: column; cursor: pointer; transition: opacity 0.8s ease;">
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3);"></div>
+    <div style="position: relative; text-align: center; color: white; padding: 20px; animation: gentlePulse 2s infinite alternate; margin-top: 15vh;">
         <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.3);">Никита 🧶 Юлия</h1>
-        <p style="margin-top: 1rem; color: #f0e6d8;">Любви связующая нить</p>
+        <p style="margin-top: 0.8rem; color: #f0e6d8;">Любви связующая нить</p>
+    </div>
+    <div style="position: relative; text-align: center; color: white; padding: 20px; animation: gentlePulse 2s infinite alternate; margin-top: 10vh;">
         <div class="bounce-arrow" style="font-size: 2rem; margin-top: 2rem;">💌</div>
         <p style="font-size: 0.8rem;">Нажмите, чтобы открыть приглашение</p>
     </div>
@@ -1184,9 +1186,9 @@
         
         setTimeout(() => {
             const welcomeDiv = document.createElement('div');
-            welcomeDiv.style.cssText = 'background: #b85a3a; color: white; padding: 14px 24px; border-radius: 60px; margin: 20px 0; text-align: center; font-weight: 500;';
+            welcomeDiv.style.cssText = 'background: transparent; color: #b85a3a; padding: 14px 0; border-radius: 0; margin: 20px 0; text-align: center; font-weight: 700; font-size: 1.1rem;';
             const greeting = getGreeting(fixedGuestName);
-            welcomeDiv.innerHTML = `🌟 <strong>${greeting} ${fixedGuestName}!</strong> Мы очень рады, что вы разделите с нами этот день! 🌟`;
+            welcomeDiv.innerHTML = ` <strong>${greeting} ${fixedGuestName}!</strong> Мы очень рады, что вы разделите с нами этот день! `;
             const hero = document.querySelector('.hero');
             if (hero) hero.insertAdjacentElement('afterbegin', welcomeDiv);
         }, 1000);
@@ -1381,51 +1383,36 @@ if (form) {
 }
 
     
-    // ========== ПОЛЗУНОК ТОЛЬКО ВНУТРИ ТАЙМЛАЙНА ==========
+  // ========== ПОЛЗУНОК НА НИТИ ==========
 const slider = document.getElementById('timelineSlider');
 const timelineSection = document.getElementById('timelineSection');
-const dots = document.querySelectorAll('.timeline-dot');
 const cards = document.querySelectorAll('.timeline-card-item');
+const dots = document.querySelectorAll('.timeline-dot');
 
-function updateSliderAndActive() {
-    if (!slider || !timelineSection || dots.length === 0) return;
+function updateTimeline() {
+    if (!timelineSection || cards.length === 0) return;
     
     const sectionRect = timelineSection.getBoundingClientRect();
     const windowHeight = window.innerHeight;
-    
-    // Проверяем, видна ли секция с таймингом
-    if (sectionRect.bottom < 0 || sectionRect.top > windowHeight) {
-        slider.style.opacity = '0';
-        return;
-    }
-    
-    slider.style.opacity = '1';
-    
-    // Находим активную точку (ближайшую к центру экрана)
-    let activeIndex = 0;
-    let closestDistance = Infinity;
     const viewportCenter = windowHeight / 2;
     
-    dots.forEach((dot, index) => {
-        const dotRect = dot.getBoundingClientRect();
-        const dotCenter = dotRect.top + dotRect.height / 2;
-        const distance = Math.abs(dotCenter - viewportCenter);
+    // Находим активную карточку (ближайшую к центру экрана)
+    let activeIndex = 0;
+    let closestDistance = Infinity;
+    
+    cards.forEach((card, index) => {
+        const cardRect = card.getBoundingClientRect();
+        const cardCenter = cardRect.top + cardRect.height / 2;
+        const distance = Math.abs(cardCenter - viewportCenter);
         
-        if (distance < closestDistance && dotRect.bottom > 0 && dotRect.top < windowHeight) {
-            closestDistance = distance;
-            activeIndex = index;
+        // Проверяем, что карточка видна на экране
+        if (cardRect.bottom > 0 && cardRect.top < windowHeight) {
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                activeIndex = index;
+            }
         }
     });
-    
-    // Устанавливаем позицию ползунка на активную точку
-    const activeDot = dots[activeIndex];
-    if (activeDot) {
-        const dotRect = activeDot.getBoundingClientRect();
-        const wrapperRect = document.querySelector('.timeline-line-wrapper').getBoundingClientRect();
-        // Вычисляем позицию относительно wrapper'а
-        const relativeTop = dotRect.top - wrapperRect.top + dotRect.height / 2 - 14;
-        slider.style.top = relativeTop + 'px';
-    }
     
     // Подсвечиваем активную карточку
     cards.forEach((card, index) => {
@@ -1435,12 +1422,27 @@ function updateSliderAndActive() {
             card.classList.remove('active');
         }
     });
+    
+    // Двигаем ползунок к активной точке
+    if (dots.length > activeIndex && slider) {
+        const activeDot = dots[activeIndex];
+        const dotRect = activeDot.getBoundingClientRect();
+        const wrapper = document.querySelector('.timeline-line-wrapper');
+        
+        if (wrapper) {
+            const wrapperRect = wrapper.getBoundingClientRect();
+            let relativeTop = dotRect.top - wrapperRect.top + dotRect.height / 2 - 14;
+            relativeTop = Math.max(0, Math.min(relativeTop, wrapper.offsetHeight - 28));
+            slider.style.top = relativeTop + 'px';
+            slider.style.opacity = '1';
+        }
+    }
 }
 
 // Запускаем при скролле и загрузке
-window.addEventListener('scroll', updateSliderAndActive);
-window.addEventListener('resize', updateSliderAndActive);
-setTimeout(updateSliderAndActive, 200);
+window.addEventListener('scroll', updateTimeline);
+window.addEventListener('resize', updateTimeline);
+setTimeout(updateTimeline, 200);
     // ========== ТАЙМЕР ==========
     function updateCountdown() {
         const weddingDate = new Date(2026, 8, 4, 14, 0, 0);
