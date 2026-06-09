@@ -414,39 +414,42 @@
             .about-signature { justify-content: center; }
         }
         
-   /* ТАЙМИНГ С НИТЬЮ СЛЕВА */
-.timeline-wrapper {
-    position: relative;
-    max-width: 650px;
+   /* ТАЙМИНГ — НИТЬ СЛЕВА, КАРТОЧКИ СПРАВА */
+.timeline-container {
+    display: flex;
+    gap: 30px;
+    max-width: 700px;
     margin: 0 auto;
-    padding-left: 30px;
+    position: relative;
+}
+
+/* Блок с нитью */
+.timeline-line-wrapper {
+    position: relative;
+    width: 40px;
+    flex-shrink: 0;
 }
 
 .timeline-line {
     position: absolute;
-    left: 30px;
-    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 3px;
     height: 100%;
     background: linear-gradient(180deg, #b85a3a, #e0c8b0, #b85a3a);
     border-radius: 2px;
 }
 
-.timeline-items {
+/* Точки на нити */
+.timeline-dots {
     position: relative;
-}
-
-.timeline-item {
-    position: relative;
-    display: flex;
-    margin-bottom: 2.5rem;
-    padding-left: 40px;
+    height: 100%;
 }
 
 .timeline-dot {
     position: absolute;
-    left: 23px;
-    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 14px;
     height: 14px;
     background: #b85a3a;
@@ -454,20 +457,52 @@
     border-radius: 50%;
     box-shadow: 0 0 0 2px #b85a3a;
     z-index: 2;
+    transition: all 0.3s ease;
 }
 
-.timeline-card {
-    width: 100%;
-    padding: 1rem 1.2rem;
+/* Ползунок на нити (только внутри таймлайна) */
+.timeline-slider {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28px;
+    height: 28px;
+    background: #b85a3a;
+    border: 2px solid #faf7f2;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px #b85a3a, 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: top 0.3s ease-out;
+    pointer-events: none;
+}
+
+/* Карточки событий */
+.timeline-cards {
+    flex: 1;
+}
+
+.timeline-card-item {
     background: rgba(255,255,255,0.8);
     border-radius: 20px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1.8rem;
     transition: all 0.3s ease;
     cursor: pointer;
 }
 
-.timeline-card:hover {
+.timeline-card-item:hover {
     background: white;
-    transform: translateY(-5px);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.timeline-card-item.active {
+    background: white;
+    border-left: 3px solid #b85a3a;
 }
 
 .timeline-time {
@@ -490,52 +525,22 @@
     line-height: 1.4;
 }
 
+/* Адаптация для телефонов */
 @media (max-width: 700px) {
-    .timeline-wrapper {
-        padding-left: 20px;
+    .timeline-container {
+        gap: 15px;
     }
-    .timeline-line {
-        left: 20px;
+    .timeline-line-wrapper {
+        width: 30px;
     }
-    .timeline-item {
-        padding-left: 30px;
-    }
-    .timeline-dot {
-        left: 13px;
-    }
-}
-
-/* ПОЛЗУНОК НА НИТИ */
-.timeline-slider {
-    position: fixed;
-    left: calc(50% - 350px + 30px);
-    width: 28px;
-    height: 28px;
-    background: #b85a3a;
-    border: 2px solid #faf7f2;
-    border-radius: 50%;
-    box-shadow: 0 0 0 2px #b85a3a, 0 4px 15px rgba(0,0,0,0.1);
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    transition: top 0.3s ease-out;
-    pointer-events: none;
-}
-
-@media (max-width: 900px) {
     .timeline-slider {
-        left: 50px;
-    }
-}
-
-@media (max-width: 700px) {
-    .timeline-slider {
-        left: 35px;
         width: 24px;
         height: 24px;
         font-size: 0.8rem;
+    }
+    .timeline-card-item {
+        padding: 0.8rem 1rem;
+        margin-bottom: 1.5rem;
     }
 }
 
@@ -971,90 +976,66 @@
             </div>
         </div>
 
-        <!-- ТАЙМИНГ -->
-<div class="section fade-up delay-2">
-    <h2 class="section-title">🧵 Ход торжества</h2>
-    <div class="timeline-wrapper" id="timelineWrapper">
-        <!-- Нить (линия слева) -->
-        <div class="timeline-line" id="timelineLine"></div>
+       <!-- ТАЙМИНГ -->
+<div class="section fade-up delay-2" id="timelineSection">
+    <h2 class="section-title">Тайминг мероприятия</h2>
+    <div class="timeline-container">
+        <!-- Нить и точки -->
+        <div class="timeline-line-wrapper">
+            <div class="timeline-line"></div>
+            <div class="timeline-dots">
+                <div class="timeline-dot" data-index="0"></div>
+                <div class="timeline-dot" data-index="1"></div>
+                <div class="timeline-dot" data-index="2"></div>
+                <div class="timeline-dot" data-index="3"></div>
+                <div class="timeline-dot" data-index="4"></div>
+                <div class="timeline-dot" data-index="5"></div>
+            </div>
+            <!-- Ползунок (на нити) -->
+            <div id="timelineSlider" class="timeline-slider">🧶</div>
+        </div>
         
-        <!-- События -->
-        <div class="timeline-items" id="timelineItems">
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card">
-                    <div class="timeline-time">14:00</div>
-                    <div class="timeline-title">Сбор гостей & Welcome-drink</div>
-                    <div class="timeline-desc">Бар, легкие закуски, возможность пообщаться в непринужденной атмосфере и поучаствовать в небольших активностях</div>
-                </div>
+        <!-- Карточки событий (справа от нити) -->
+        <div class="timeline-cards">
+            <div class="timeline-card-item" data-index="0">
+                <div class="timeline-time">14:00</div>
+                <div class="timeline-title">Сбор гостей & Welcome-drink</div>
+                <div class="timeline-desc">Бар, легкие закуски, возможность пообщаться в непринужденной атмосфере и поучаствовать в небольших активностях</div>
             </div>
             
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card">
-                    <div class="timeline-time">14:45</div>
-                    <div class="timeline-title">Церемония бракосочетания</div>
-                    <div class="timeline-desc">Трогательный момент, не забудьте воспользоваться платочками для слез счастья</div>
-                </div>
+            <div class="timeline-card-item" data-index="1">
+                <div class="timeline-time">14:45</div>
+                <div class="timeline-title">Церемония бракосочетания</div>
+                <div class="timeline-desc">Трогательный момент, не забудьте воспользоваться платочками для слез счастья</div>
             </div>
             
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card">
-                    <div class="timeline-time">15:30</div>
-                    <div class="timeline-title">Трансфер до места банкета</div>
-                    <div class="timeline-desc">Комфортабельный трансфер для всех гостей</div>
-                </div>
+            <div class="timeline-card-item" data-index="2">
+                <div class="timeline-time">15:30</div>
+                <div class="timeline-title">Трансфер до места банкета</div>
+                <div class="timeline-desc">Комфортабельный трансфер для всех гостей</div>
             </div>
             
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card">
-                    <div class="timeline-time">16:00</div>
-                    <div class="timeline-title">Начало праздничного банкета</div>
-                    <div class="timeline-desc">Торжественный ужин, поздравления, сюрпризы и море эмоций!</div>
-                </div>
+            <div class="timeline-card-item" data-index="3">
+                <div class="timeline-time">16:00</div>
+                <div class="timeline-title">Начало праздничного банкета</div>
+                <div class="timeline-desc">Торжественный ужин, поздравления, сюрпризы и море эмоций!</div>
             </div>
             
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card">
-                    <div class="timeline-time">22:00</div>
-                    <div class="timeline-title">Дискотека</div>
-                    <div class="timeline-desc">Любимые песни, зажигательные танцы</div>
-                </div>
+            <div class="timeline-card-item" data-index="4">
+                <div class="timeline-time">22:00</div>
+                <div class="timeline-title">Дискотека</div>
+                <div class="timeline-desc">Любимые песни, зажигательные танцы</div>
             </div>
             
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card">
-                    <div class="timeline-time">23:00</div>
-                    <div class="timeline-title">Финал вечера</div>
-                    <div class="timeline-desc">Осознание, что всё, к чему мы так долго готовились, так быстро закончилось</div>
-                </div>
+            <div class="timeline-card-item" data-index="5">
+                <div class="timeline-time">23:00</div>
+                <div class="timeline-title">Финал вечера</div>
+                <div class="timeline-desc">Осознание, что всё, к чему мы так долго готовились, так быстро закончилось</div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Ползунок (будет двигаться по нити) -->
-<div id="timelineSlider" class="timeline-slider">🧵</div>
-
-        <!-- ДРЕСС-КОД -->
-        <div class="section fade-up delay-3">
-            <h2 class="section-title">Дресс-код</h2>
-            <div class="dress-colors">
-                <span class="color-tag" style="background: #b85a3a; color: white;">Терракотовый</span>
-                <span class="color-tag" style="background: #8b5a3a; color: white;">Коричневый</span>
-                <span class="color-tag" style="background: #d9c5a7;">Бежевый</span>
-                <span class="color-tag" style="background: #6b705c; color: white;">Оливковый</span>
-            </div>
-            <p style="text-align: center; margin: 1rem 0 0.5rem; font-size: 0.9rem;">Мы будем рады видеть вас в любом наряде, но если при его выборе вы придержитесь нашей цветовой гаммы — нам будет очень приятно!</p>
-            <div class="style-single">
-                <img src="dress-examples.jpg" alt="Примеры образов" onerror="this.src='https://via.placeholder.com/600x400?text=Примеры+образов'">
-                <div class="style-caption">Примеры  образов в нашей цветовой гамме</div>
-            </div>
-        </div>
 
         <!-- ЛОТЕРЕЙНЫЕ БИЛЕТЫ -->
         <div class="section fade-up delay-4">
@@ -1351,12 +1332,11 @@ if (form) {
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        const guestName = document.getElementById('guestNameHidden').value;
-        if (!guestName) {
-            statusDiv.innerHTML = '❌ Пожалуйста, перейдите по ссылке с параметром ?guest=ВашеИмя';
-            statusDiv.style.color = '#b85a3a';
-            return;
-        }
+      if (!fixedGuestName) {
+                statusDiv.innerHTML = '❌ Ошибка: не удалось определить имя гостя. Пожалуйста, перейдите по именной ссылке.';
+                statusDiv.style.color = '#b85a3a';
+                return;
+            }
         
         const attendanceSelect = document.querySelector('select[name="entry.1376278693"]');
         if (!attendanceSelect.value) {
@@ -1402,42 +1382,66 @@ if (form) {
 }
 
     
-    // ========== ПОЛЗУНОК НА НИТИ (СЛЕВА) ==========
+    // ========== ПОЛЗУНОК ТОЛЬКО ВНУТРИ ТАЙМЛАЙНА ==========
 const slider = document.getElementById('timelineSlider');
+const timelineSection = document.getElementById('timelineSection');
 const dots = document.querySelectorAll('.timeline-dot');
+const cards = document.querySelectorAll('.timeline-card-item');
 
-function updateSliderPosition() {
-    if (!slider || dots.length === 0) return;
+function updateSliderAndActive() {
+    if (!slider || !timelineSection || dots.length === 0) return;
     
+    const sectionRect = timelineSection.getBoundingClientRect();
     const windowHeight = window.innerHeight;
+    
+    // Проверяем, видна ли секция с таймингом
+    if (sectionRect.bottom < 0 || sectionRect.top > windowHeight) {
+        slider.style.opacity = '0';
+        return;
+    }
+    
+    slider.style.opacity = '1';
+    
+    // Находим активную точку (ближайшую к центру экрана)
     let activeIndex = 0;
     let closestDistance = Infinity;
+    const viewportCenter = windowHeight / 2;
     
-    // Находим точку, ближайшую к центру экрана
     dots.forEach((dot, index) => {
-        const rect = dot.getBoundingClientRect();
-        const dotCenter = rect.top + rect.height / 2;
-        const distance = Math.abs(dotCenter - windowHeight / 2);
+        const dotRect = dot.getBoundingClientRect();
+        const dotCenter = dotRect.top + dotRect.height / 2;
+        const distance = Math.abs(dotCenter - viewportCenter);
         
-        if (distance < closestDistance && rect.bottom > 0 && rect.top < windowHeight) {
+        if (distance < closestDistance && dotRect.bottom > 0 && dotRect.top < windowHeight) {
             closestDistance = distance;
             activeIndex = index;
         }
     });
     
+    // Устанавливаем позицию ползунка на активную точку
     const activeDot = dots[activeIndex];
     if (activeDot) {
         const dotRect = activeDot.getBoundingClientRect();
-        let sliderTop = dotRect.top + dotRect.height / 2 - 14;
-        sliderTop = Math.min(window.innerHeight - 50, Math.max(50, sliderTop));
-        slider.style.top = sliderTop + 'px';
+        const wrapperRect = document.querySelector('.timeline-line-wrapper').getBoundingClientRect();
+        // Вычисляем позицию относительно wrapper'а
+        const relativeTop = dotRect.top - wrapperRect.top + dotRect.height / 2 - 14;
+        slider.style.top = relativeTop + 'px';
     }
+    
+    // Подсвечиваем активную карточку
+    cards.forEach((card, index) => {
+        if (index === activeIndex) {
+            card.classList.add('active');
+        } else {
+            card.classList.remove('active');
+        }
+    });
 }
 
-window.addEventListener('scroll', updateSliderPosition);
-window.addEventListener('resize', updateSliderPosition);
-setTimeout(updateSliderPosition, 100);
-    
+// Запускаем при скролле и загрузке
+window.addEventListener('scroll', updateSliderAndActive);
+window.addEventListener('resize', updateSliderAndActive);
+setTimeout(updateSliderAndActive, 200);
     // ========== ТАЙМЕР ==========
     function updateCountdown() {
         const weddingDate = new Date(2026, 8, 4, 14, 0, 0);
