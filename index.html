@@ -31,11 +31,34 @@
         .delay-4 { transition-delay: 0.4s; }
         .delay-5 { transition-delay: 0.5s; }
         
+        /* АНИМАЦИЯ ДЛЯ ТЕКСТА (ТЕЛЕФОНЫ И КОМПЬЮТЕРЫ) */
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes slideInFromLeft {
+            0% { opacity: 0; transform: translateX(-30px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInFromRight {
+            0% { opacity: 0; transform: translateX(30px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+        
+        .animate-title { animation: fadeInScale 0.6s ease-out; }
+        .animate-subtitle { animation: slideInFromLeft 0.6s ease-out; }
+        .animate-text { animation: slideInFromRight 0.6s ease-out; }
+        
+        @media (max-width: 550px) {
+            .hero h1 { animation: fadeInScale 0.5s ease-out; }
+            .date-badge { animation: slideInFromLeft 0.5s ease-out; }
+            .hero p { animation: slideInFromRight 0.5s ease-out; }
+        }
+        
         .card-luxury { background: rgba(255, 255, 255, 0.96); padding: 2rem; margin-bottom: 2rem; transition: all 0.4s ease; position: relative; border: 1px solid rgba(184, 90, 58, 0.15); box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1); }
         .card-luxury::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(180deg, #b85a3a, #e8c4a0, #b85a3a); }
         .card-luxury:hover { transform: translateY(-8px); box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.15); border-color: rgba(184, 90, 58, 0.3); }
         
-        /* ПРЕМИАЛЬНЫЕ ЗАГОЛОВКИ — БЕЗ ЗВЁЗДОЧЕК */
         .section-title {
             font-family: 'Cormorant Garamond', serif;
             font-size: 2rem;
@@ -62,80 +85,66 @@
         .date-badge { font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 6px; color: #b85a3a; margin-bottom: 1rem; text-transform: uppercase; font-weight: 300; }
         .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 600; color: #2c2418; letter-spacing: 2px; margin: 0.5rem 0; }
         
-
-/* ТАЙМЕР — ЯРКИЙ И ВЫДЕЛЯЮЩИЙСЯ */
-.countdown-wrapper {
-    text-align: center;
-    margin: 2rem auto;
-    padding: 1rem;
-    max-width: 100%;
-    border: none;
-    background: rgba(184, 90, 58, 0.08);
-}
-
-.countdown-title {
-    font-size: 0.7rem;
-    letter-spacing: 4px;
-    color: #b85a3a;
-    margin-bottom: 0.8rem;
-    text-transform: uppercase;
-    opacity: 0.8;
-}
-
-.countdown-timer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    flex-wrap: nowrap;
-}
-
-.countdown-block {
-    background: #b85a3a;
-    padding: 0.5rem 0.8rem;
-    min-width: 70px;
-    border-radius: 4px;
-    box-shadow: 0 4px 15px rgba(184, 90, 58, 0.3);
-}
-
-.countdown-number {
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: white;
-    font-family: 'Montserrat', monospace;
-    letter-spacing: 2px;
-}
-
-.countdown-label {
-    font-size: 0.55rem;
-    color: rgba(255, 255, 255, 0.8);
-    display: block;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-.countdown-separator {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #b85a3a;
-}
-
-@media (min-width: 500px) {
-    .countdown-number { font-size: 2rem; }
-    .countdown-block { min-width: 80px; padding: 0.7rem 1rem; }
-    .countdown-separator { font-size: 1.6rem; }
-}
-
-@keyframes timerPulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.02); }
-    100% { transform: scale(1); }
-}
-
-.countdown-block {
-    animation: timerPulse 2s ease-in-out infinite;
-}
-
+        .countdown-wrapper {
+            text-align: center;
+            margin: 2rem auto;
+            padding: 1rem;
+            max-width: 100%;
+            border: none;
+            background: rgba(184, 90, 58, 0.08);
+        }
+        .countdown-title {
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            color: #b85a3a;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: nowrap;
+        }
+        .countdown-block {
+            background: #b85a3a;
+            padding: 0.5rem 0.8rem;
+            min-width: 70px;
+            border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(184, 90, 58, 0.3);
+            animation: timerPulse 2s ease-in-out infinite;
+        }
+        .countdown-number {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: white;
+            font-family: 'Montserrat', monospace;
+            letter-spacing: 2px;
+        }
+        .countdown-label {
+            font-size: 0.55rem;
+            color: rgba(255, 255, 255, 0.8);
+            display: block;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .countdown-separator {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #b85a3a;
+        }
+        @keyframes timerPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        @media (min-width: 500px) {
+            .countdown-number { font-size: 2rem; }
+            .countdown-block { min-width: 80px; padding: 0.7rem 1rem; }
+            .countdown-separator { font-size: 1.6rem; }
+        }
         
         .calendar-wrapper { border: 1px solid rgba(184, 90, 58, 0.2); padding: 1.2rem; margin-top: 1rem; transition: all 0.3s ease; }
         .calendar-month { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: #b85a3a; text-align: center; display: block; margin-bottom: 1rem; }
@@ -147,7 +156,6 @@
         @keyframes weddingPulse { 0% { box-shadow: 0 0 0 0 rgba(184, 90, 58, 0.4); } 70% { box-shadow: 0 0 0 8px rgba(184, 90, 58, 0); } 100% { box-shadow: 0 0 0 0 rgba(184, 90, 58, 0); } }
         .calendar-note { text-align: center; margin-top: 0.8rem; font-size: 0.7rem; color: #b85a3a; }
         
-        /* О НАС — ТЕКСТ ПО ЦЕНТРУ */
         .about-container { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
         .gallery-container { width: 100%; max-width: 350px; margin: 0 auto; }
         .gallery-slider { position: relative; width: 100%; overflow: hidden; border: 1px solid rgba(184, 90, 58, 0.2); aspect-ratio: 3 / 4; margin: 0 auto; }
@@ -163,7 +171,6 @@
         .about-text { text-align: center; }
         .about-text p { margin-bottom: 1rem; color: #4a3b2c; font-size: 0.9rem; line-height: 1.5; }
         .about-signature { text-align: center; margin-top: 1rem; font-size: 1rem; color: #b85a3a; font-family: 'Cormorant Garamond', serif; font-weight: 500; animation: gentlePulseName 2s ease-in-out infinite; display: inline-block; width: auto; padding: 0 1rem; }
-        
         @keyframes gentlePulseName {
             0% { opacity: 0.7; transform: scale(1); text-shadow: 0 0 0 rgba(184, 90, 58, 0); }
             50% { opacity: 1; transform: scale(1.03); text-shadow: 0 0 8px rgba(184, 90, 58, 0.4); }
@@ -183,11 +190,62 @@
         .timeline-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 0.2rem; color: #2c2418; }
         .timeline-desc { font-size: 0.7rem; color: #8b735a; }
         
-        .dress-colors { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin: 1.5rem 0; }
-        .color-tag { padding: 0.4rem 1rem; border: 1px solid #b85a3a; font-size: 0.8rem; transition: all 0.3s ease; cursor: default; background: transparent; }
-        .color-tag:hover { background: #b85a3a; color: white; transform: scale(1.05); }
-        .style-single { margin-top: 1.5rem; border: 1px solid rgba(184, 90, 58, 0.2); transition: all 0.3s ease; }
-        .style-single:hover { transform: translateY(-3px); border-color: #b85a3a; }
+        /* ДРЕСС-КОД — КВАДРАТНЫЕ ИКОНКИ В ОДНУ СТРОКУ */
+        .dress-colors {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+            flex-wrap: nowrap;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+        .color-tag {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding: 0;
+            border: none;
+            background: transparent;
+            font-size: 0.7rem;
+            cursor: default;
+            min-width: 60px;
+        }
+        .color-square {
+            width: 50px;
+            height: 50px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .color-square:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .color-name {
+            font-size: 0.7rem;
+            color: #4a3b2c;
+            letter-spacing: 0.5px;
+        }
+        
+        /* ПУЛЬСИРУЮЩЕЕ ФОТО ПРИМЕРОВ */
+        .style-single {
+            margin-top: 1.5rem;
+            border: 1px solid rgba(184, 90, 58, 0.2);
+            transition: all 0.3s ease;
+            animation: imagePulse 3s ease-in-out infinite;
+        }
+        @keyframes imagePulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(184, 90, 58, 0.2); }
+            50% { transform: scale(1.01); box-shadow: 0 0 0 8px rgba(184, 90, 58, 0.1); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(184, 90, 58, 0); }
+        }
+        .style-single:hover {
+            transform: translateY(-3px);
+            border-color: #b85a3a;
+            animation: none;
+        }
         .style-single img { width: 100%; height: auto; display: block; }
         .style-caption { padding: 0.5rem; text-align: center; font-size: 0.7rem; color: #b85a3a; background: rgba(184,90,58,0.04); }
         
@@ -229,7 +287,6 @@
         .bounce-arrow { animation: bounce 1.5s infinite; display: inline-block; font-size: 1.8rem; }
         @keyframes bounce { 0%, 100% { transform: translateY(0); opacity: 0.6; } 50% { transform: translateY(8px); opacity: 1; } }
         
-        /* ПУЛЬСАЦИЯ ИМЁН НА ЗАСТАВКЕ */
         .splash-names {
             animation: gentlePulseName 2s ease-in-out infinite;
             display: inline-block;
@@ -250,7 +307,7 @@
     </div>
     <div style="position: relative; text-align: center; color: white; padding: 20px; margin-bottom: 12vh;">
         <div class="bounce-arrow">💌</div>
-        <p style="font-size: 0.75rem; letter-spacing: 2px;">Откройте наше приглашение</p>
+        <p style="font-size: 0.75rem; letter-spacing: 2px;">Нажмите, чтобы открыть приглашение</p>
     </div>
 </div>
 
@@ -261,11 +318,11 @@
 <div class="main-content" id="mainContent">
     <div class="container">
         
-        <!-- ПРИВЕТСТВИЕ -->
+        <!-- ПРИВЕТСТВИЕ С АНИМАЦИЕЙ -->
         <div class="hero fade-up">
             <div class="date-badge">4 СЕНТЯБРЯ 2026</div>
-            <h1>Мы женимся!</h1>
-            <p style="margin-top: 0.3rem; font-weight: 300; font-size: 0.9rem;">Приглашаем вас стать частью нашей истории</p>
+            <h1 class="animate-title">Мы женимся!</h1>
+            <p class="animate-subtitle" style="margin-top: 0.3rem; font-weight: 300; font-size: 0.9rem;">Приглашаем вас стать частью нашей истории</p>
         </div>
 
         <!-- ТАЙМЕР И КАЛЕНДАРЬ -->
@@ -287,7 +344,7 @@
                 <div class="calendar-month">Сентябрь 2026</div>
                 <div class="calendar-weekdays"><span>ПН</span><span>ВТ</span><span>СР</span><span>ЧТ</span><span>ПТ</span><span>СБ</span><span>ВС</span></div>
                 <div class="calendar-days" id="calendarDays"></div>
-                <div class="calendar-note">❤️ 4 сентября 2026 — наш особенный день!</div>
+                <div class="calendar-note">4 сентября 2026 — наш особенный день!</div>
             </div>
         </div>
 
@@ -333,29 +390,41 @@
                     <div id="timelineSlider" class="timeline-slider">🧶</div>
                 </div>
                 <div class="timeline-cards">
-                    <div class="timeline-card-item" data-index="0"><div class="timeline-time">14:00</div><div class="timeline-title">Сбор гостей & Welcome-drink</div><div class="timeline-desc">Бар, легкие закуски, возможность пообщаться</div></div>
-                    <div class="timeline-card-item" data-index="1"><div class="timeline-time">14:45</div><div class="timeline-title">Церемония бракосочетания</div><div class="timeline-desc">Трогательный момент, не забудьте платочки</div></div>
+                    <div class="timeline-card-item" data-index="0"><div class="timeline-time">14:00</div><div class="timeline-title">Сбор гостей & Welcome-drink</div><div class="timeline-desc">Бар, легкие закуски, возможность пообщаться в непринужденной атмосфере и поучаствовать в активностях</div></div>
+                    <div class="timeline-card-item" data-index="1"><div class="timeline-time">14:45</div><div class="timeline-title">Церемония бракосочетания</div><div class="timeline-desc">Трогательный момент, не забудьте платочки для слёз счастья</div></div>
                     <div class="timeline-card-item" data-index="2"><div class="timeline-time">15:30</div><div class="timeline-title">Трансфер до места банкета</div><div class="timeline-desc">Комфортабельный трансфер для всех гостей</div></div>
-                    <div class="timeline-card-item" data-index="3"><div class="timeline-time">16:00</div><div class="timeline-title">Начало праздничного банкета</div><div class="timeline-desc">Торжественный ужин, поздравления, сюрпризы</div></div>
+                    <div class="timeline-card-item" data-index="3"><div class="timeline-time">16:00</div><div class="timeline-title">Начало праздничного банкета</div><div class="timeline-desc">Торжественный ужин, поздравления, сюрпризы и море эмоций</div></div>
                     <div class="timeline-card-item" data-index="4"><div class="timeline-time">22:00</div><div class="timeline-title">Дискотека</div><div class="timeline-desc">Любимые песни и зажигательные танцы</div></div>
-                    <div class="timeline-card-item" data-index="5"><div class="timeline-time">23:00</div><div class="timeline-title">Финал вечера</div><div class="timeline-desc">Осознание, что всё так быстро закончилось</div></div>
+                    <div class="timeline-card-item" data-index="5"><div class="timeline-time">23:00</div><div class="timeline-title">Финал вечера</div><div class="timeline-desc">Осознание, что всё, к чему мы так долго готовились, так быстро закончилось</div></div>
                 </div>
             </div>
         </div>
 
-        <!-- ДРЕСС-КОД -->
+        <!-- ДРЕСС-КОД С КВАДРАТНЫМИ ЦВЕТАМИ -->
         <div class="card-luxury fade-up delay-3">
             <h2 class="section-title">Дресс-код</h2>
             <div class="dress-colors">
-                <span class="color-tag" style="background: #b85a3a; color: white;">Терракотовый</span>
-                <span class="color-tag" style="background: #8b5a3a; color: white;">Коричневый</span>
-                <span class="color-tag" style="background: #d9c5a7;">Бежевый</span>
-                <span class="color-tag" style="background: #6b705c; color: white;">Оливковый</span>
+                <div class="color-tag">
+                    <div class="color-square" style="background: #b85a3a;"></div>
+                    <span class="color-name">Терракотовый</span>
+                </div>
+                <div class="color-tag">
+                    <div class="color-square" style="background: #8b5a3a;"></div>
+                    <span class="color-name">Коричневый</span>
+                </div>
+                <div class="color-tag">
+                    <div class="color-square" style="background: #d9c5a7;"></div>
+                    <span class="color-name">Бежевый</span>
+                </div>
+                <div class="color-tag">
+                    <div class="color-square" style="background: #6b705c;"></div>
+                    <span class="color-name">Оливковый</span>
+                </div>
             </div>
-            <p style="text-align: center; margin: 1rem 0 0.5rem; font-size: 0.8rem;">Мы будем рады видеть вас в любом наряде, но если при его выборе вы придержитесь нашей цветовой гамме — нам будет очень приятно!</p>
+            <p style="text-align: center; margin: 1rem 0 0.5rem; font-size: 0.8rem;">Мы будем рады видеть вас в любом наряде, но если при его выборе вы придержитесь нашей цветовой гаммы — нам будет очень приятно!</p>
             <div class="style-single">
                 <img src="dress-examples.jpg" alt="Примеры образов" onerror="this.src='https://via.placeholder.com/600x400?text=Примеры+образов'">
-                <div class="style-caption">Образы в нашей цветовой гамме: терракотовый, коричневый, бежевый, оливковый</div>
+                <div class="style-caption">Примеры образов в нашей цветовой гамме</div>
             </div>
         </div>
 
@@ -422,18 +491,18 @@
         <div class="card-luxury fade-up delay-1">
             <h2 class="section-title">Место церемонии</h2>
             <div class="map-container"><iframe class="map-frame" src="https://yandex.ru/map-widget/v1/?ll=43.812637,55.375875&z=17&pt=43.812637,55.375875,pm2rdm" allowfullscreen></iframe></div>
-            <div class="transfer-note">🚐 Для вашего удобства будет организован общий трансфер, о котором мы сообщим дополнительно</div>
-            <div style="text-align: center;"><a href="https://yandex.ru/maps/?ll=43.812637,55.375875&z=17&pt=43.812637,55.375875" target="_blank" class="map-open-btn">🗺 Открыть на карте</a></div>
+            <div class="transfer-note">Для вашего удобства будет организован общий трансфер, о котором мы сообщим дополнительно</div>
+            <div style="text-align: center;"><a href="https://yandex.ru/maps/?ll=43.812637,55.375875&z=17&pt=43.812637,55.375875" target="_blank" class="map-open-btn">Открыть на карте</a></div>
         </div>
 
         <!-- КОНТАКТЫ -->
         <div class="card-luxury fade-up delay-2">
             <h2 class="section-title">Остались вопросы?</h2>
+            <p style="margin: 0.8rem 0; font-size: 0.8rem;">Если Вы подготовили для нас сюрприз или в случае возникновения вопросов, всегда можно обратиться за помощью к нашему свадебному организатору.</p>
             <div class="contact-card">
                 <div class="contact-icon">👩🏼‍💼</div>
                 <div class="contact-name">Ксения</div>
-                <div style="font-size: 0.85rem;">Наш свадебный организатор</div>
-                <p style="margin: 0.8rem 0; font-size: 0.8rem;">Если Вы подготовили для нас сюрприз или в случае возникновения вопросов, всегда можно обратиться за помощью к нашему свадебному организатору.</p>
+                <div style="font-size: 0.85rem;">Свадебный организатор</div>
                 <div class="contact-phone"><a href="tel:+79200227311">+7 (920) 022-73-11</a></div>
                 <div class="contact-links">
                     <a href="https://t.me/kuligina_kseniia" target="_blank" class="contact-link tg-link">📱 Telegram</a>
@@ -518,7 +587,7 @@
     function createFloatItem() {
         const el = document.createElement('div');
         el.classList.add('float-item');
-        el.innerHTML = ['❤️', '🧶', '🪡', '✨', '💫', '🎈', '⭐'][Math.floor(Math.random() * 7)];
+        el.innerHTML = ['❤️', '🧶', '🪡', '✨', '💫', '💌', '💍', '⭐'][Math.floor(Math.random() * 7)];
         el.style.left = Math.random() * 100 + '%';
         el.style.fontSize = (Math.random() * 20 + 12) + 'px';
         el.style.animationDuration = (Math.random() * 12 + 8) + 's';
