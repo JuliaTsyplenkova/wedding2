@@ -62,20 +62,80 @@
         .date-badge { font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 6px; color: #b85a3a; margin-bottom: 1rem; text-transform: uppercase; font-weight: 300; }
         .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 600; color: #2c2418; letter-spacing: 2px; margin: 0.5rem 0; }
         
-        .countdown-wrapper { text-align: center; margin: 2rem auto; padding: 1rem; max-width: 100%; border: 1px solid rgba(184, 90, 58, 0.2); }
-        .countdown-title { font-size: 0.7rem; letter-spacing: 4px; color: #b85a3a; margin-bottom: 0.8rem; text-transform: uppercase; opacity: 0.7; }
-        .countdown-timer { display: flex; justify-content: center; align-items: center; gap: 0.3rem; flex-wrap: nowrap; }
-        .countdown-block { background: transparent; border-bottom: 1px solid #b85a3a; padding: 0.3rem 0.5rem; min-width: 55px; }
-        .countdown-number { font-size: 1.3rem; font-weight: 400; color: #b85a3a; font-family: 'Cormorant Garamond', serif; }
-        .countdown-label { font-size: 0.5rem; color: #b85a3a; display: block; letter-spacing: 1px; text-transform: uppercase; }
-        .countdown-separator { font-size: 1rem; font-weight: 300; color: #e0c8b0; }
-        
-        @media (min-width: 500px) {
-            .countdown-number { font-size: 1.6rem; }
-            .countdown-block { min-width: 70px; }
-            .countdown-separator { font-size: 1.2rem; }
-            .countdown-label { font-size: 0.55rem; }
-        }
+
+/* ТАЙМЕР — ЯРКИЙ И ВЫДЕЛЯЮЩИЙСЯ */
+.countdown-wrapper {
+    text-align: center;
+    margin: 2rem auto;
+    padding: 1rem;
+    max-width: 100%;
+    border: none;
+    background: rgba(184, 90, 58, 0.08);
+}
+
+.countdown-title {
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    color: #b85a3a;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+}
+
+.countdown-block {
+    background: #b85a3a;
+    padding: 0.5rem 0.8rem;
+    min-width: 70px;
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(184, 90, 58, 0.3);
+}
+
+.countdown-number {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: white;
+    font-family: 'Montserrat', monospace;
+    letter-spacing: 2px;
+}
+
+.countdown-label {
+    font-size: 0.55rem;
+    color: rgba(255, 255, 255, 0.8);
+    display: block;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.countdown-separator {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #b85a3a;
+}
+
+@media (min-width: 500px) {
+    .countdown-number { font-size: 2rem; }
+    .countdown-block { min-width: 80px; padding: 0.7rem 1rem; }
+    .countdown-separator { font-size: 1.6rem; }
+}
+
+@keyframes timerPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+.countdown-block {
+    animation: timerPulse 2s ease-in-out infinite;
+}
+
         
         .calendar-wrapper { border: 1px solid rgba(184, 90, 58, 0.2); padding: 1.2rem; margin-top: 1rem; transition: all 0.3s ease; }
         .calendar-month { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: #b85a3a; text-align: center; display: block; margin-bottom: 1rem; }
