@@ -16,8 +16,50 @@
             font-family: 'Montserrat', sans-serif;
             color: #2c2418;
             line-height: 1.5;
-            background: #faf7f2;
+            background: #1a1a1a;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* РОСКОШНЫЙ ФОН С ТЕКСТУРОЙ */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" opacity="0.03"><path fill="none" d="M400 100 L500 200 L400 300 L300 200 Z" stroke="%23b85a3a" stroke-width="1"/><circle cx="400" cy="400" r="50" stroke="%23b85a3a" stroke-width="1" fill="none"/><path d="M200 600 Q400 500 600 600" stroke="%23b85a3a" stroke-width="1" fill="none"/><path d="M100 200 Q400 100 700 200" stroke="%23b85a3a" stroke-width="1" fill="none"/></svg>');
+            background-repeat: repeat;
+            background-size: 80px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* МЕРЦАЮЩИЕ ИСКРЫ */
+        .sparkles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #ffd700;
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.5); }
         }
 
         /* ПАРЯЩИЕ ЭЛЕМЕНТЫ */
@@ -28,25 +70,24 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 0;
+            z-index: 1;
             overflow: hidden;
         }
 
         .float-item {
             position: absolute;
-            font-size: 1.2rem;
-            opacity: 0.12;
+            font-size: 1rem;
+            opacity: 0.08;
             animation: floatAround linear infinite;
         }
 
         @keyframes floatAround {
             0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.12; }
-            90% { opacity: 0.12; }
+            10% { opacity: 0.08; }
+            90% { opacity: 0.08; }
             100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
         }
 
-        /* ОСНОВНОЙ КОНТЕНТ */
         .main-content {
             position: relative;
             z-index: 2;
@@ -58,207 +99,192 @@
         }
 
         .container {
-            max-width: 750px;
+            max-width: 850px;
             margin: 0 auto;
             padding: 2rem 1.5rem;
         }
 
-        /* АНИМАЦИЯ ПОЯВЛЕНИЯ */
+        /* ПРЕМИАЛЬНЫЕ АНИМАЦИИ */
         .fade-up {
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            transform: translateY(50px) scale(0.96);
+            transition: opacity 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
 
         .fade-up.visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
-        .delay-1 { transition-delay: 0.1s; }
-        .delay-2 { transition-delay: 0.2s; }
-        .delay-3 { transition-delay: 0.3s; }
-        .delay-4 { transition-delay: 0.4s; }
-        .delay-5 { transition-delay: 0.5s; }
+        /* РОСКОШНЫЕ КАРТОЧКИ С ГЛУБИНОЙ */
+        .card-luxury {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(0px);
+            border-radius: 0px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(184, 90, 58, 0.15);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.2);
+        }
 
-        /* ЗАГОЛОВКИ С ПУЛЬСАЦИЕЙ */
+        .card-luxury::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #b85a3a, #e8c4a0, #b85a3a);
+        }
+
+        .card-luxury:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.3);
+            border-color: rgba(184, 90, 58, 0.3);
+        }
+
+        /* ЭЛЕГАНТНЫЕ ЗАГОЛОВКИ */
         .section-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             font-weight: 500;
             color: #b85a3a;
             text-align: center;
             margin-bottom: 2rem;
-            letter-spacing: 1px;
-            text-shadow: 0 0 8px rgba(184, 90, 58, 0.3);
-            animation: gentlePulse 2s ease-in-out infinite;
+            letter-spacing: 2px;
+            position: relative;
             display: inline-block;
             width: 100%;
+            text-transform: uppercase;
         }
 
-        @keyframes gentlePulse {
-            0% {
-                text-shadow: 0 0 0 rgba(184, 90, 58, 0);
-                transform: scale(1);
-            }
-            50% {
-                text-shadow: 0 0 12px rgba(184, 90, 58, 0.5);
-                transform: scale(1.01);
-            }
-            100% {
-                text-shadow: 0 0 0 rgba(184, 90, 58, 0);
-                transform: scale(1);
-            }
-        }
-
-        /* БЛОКИ */
-        .section {
-            margin-bottom: 2rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .section:hover {
-            transform: translateY(-3px);
-        }
-
-        .hero {
-            text-align: center;
-            padding: 1rem 0 2rem;
-        }
-
-        .date-badge {
-            font-family: 'Cormorant Garamond', serif;
+        .section-title::before,
+        .section-title::after {
+            content: "✦";
             font-size: 1rem;
-            letter-spacing: 5px;
             color: #b85a3a;
-            margin-bottom: 1rem;
+            opacity: 0.5;
+            margin: 0 15px;
+            display: inline-block;
         }
 
-        h1 {
+        /* КАЛЛИГРАФИЧЕСКИЙ АКЦЕНТ */
+        .hero h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 600;
             color: #2c2418;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            position: relative;
+            display: inline-block;
         }
 
-        /* ТАЙМЕР И КАЛЕНДАРЬ */
+        .hero h1::before,
+        .hero h1::after {
+            content: "✦";
+            font-size: 1.2rem;
+            color: #b85a3a;
+            opacity: 0.6;
+            margin: 0 15px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        /* ДАТА С СВЕЧЕНИЕМ */
+        .date-badge {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            letter-spacing: 8px;
+            color: #b85a3a;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            font-weight: 300;
+            text-shadow: 0 0 15px rgba(184, 90, 58, 0.3);
+            animation: dateGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes dateGlow {
+            0%, 100% { text-shadow: 0 0 5px rgba(184, 90, 58, 0.3); }
+            50% { text-shadow: 0 0 20px rgba(184, 90, 58, 0.6); }
+        }
+
+        /* ТАЙМЕР */
         .countdown-wrapper {
             text-align: center;
             margin: 2rem auto;
             padding: 1.2rem;
-            max-width: 500px;
+            max-width: 550px;
+            background: transparent;
+            border: 1px solid rgba(184, 90, 58, 0.2);
         }
         
         .countdown-title {
-            font-size: 0.75rem;
-            letter-spacing: 3px;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
             color: #b85a3a;
             margin-bottom: 0.8rem;
             text-transform: uppercase;
+            opacity: 0.7;
         }
         
         .countdown-timer {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 0.5rem;
+            gap: 1rem;
             flex-wrap: wrap;
         }
         
         .countdown-block {
-            background: #b85a3a;
+            background: transparent;
+            border: 1px solid rgba(184, 90, 58, 0.3);
             padding: 0.5rem 0.8rem;
-            min-width: 65px;
-            box-shadow: 0 4px 15px rgba(184, 90, 58, 0.2);
+            min-width: 70px;
+            box-shadow: none;
         }
         
         .countdown-number {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: white;
-            font-family: monospace;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #b85a3a;
+            font-family: 'Cormorant Garamond', serif;
         }
         
         .countdown-label {
-            font-size: 0.6rem;
-            color: rgba(255,255,255,0.8);
+            font-size: 0.55rem;
+            color: #b85a3a;
             display: block;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
         
         .countdown-separator {
             font-size: 1.6rem;
-            font-weight: bold;
+            font-weight: 300;
             color: #b85a3a;
         }
         
         @media (max-width: 550px) {
-            .countdown-block { padding: 0.3rem 0.5rem; min-width: 55px; }
-            .countdown-number { font-size: 1.3rem; }
-            .countdown-separator { font-size: 1.3rem; }
+            .countdown-block { min-width: 55px; }
+            .countdown-number { font-size: 1.4rem; }
+            .countdown-separator { font-size: 1.2rem; }
         }
 
-        .countdown-calendar-wrapper {
-            margin: 2rem auto;
-            max-width: 500px;
-        }
-
+        /* КАЛЕНДАРЬ */
         .calendar-wrapper {
-            backdrop-filter: blur(4px);
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(184, 90, 58, 0.2);
             padding: 1.2rem;
             margin-top: 1rem;
-            box-shadow: 0 10px 25px -10px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .calendar-wrapper:hover {
+            border-color: rgba(184, 90, 58, 0.5);
             transform: translateY(-3px);
-        }
-
-        .calendar-header {
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-
-        .calendar-month {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #b85a3a;
-            letter-spacing: 2px;
-        }
-
-        .calendar-weekdays {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            text-align: center;
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: #b85a3a;
-            margin-bottom: 0.5rem;
-            padding: 0.3rem 0;
-            border-bottom: 1px solid rgba(184, 90, 58, 0.2);
-        }
-
-        .calendar-days {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            text-align: center;
-            gap: 4px;
-        }
-
-        .calendar-day {
-            padding: 8px 4px;
-            font-size: 0.85rem;
-            color: #4a3b2c;
-            border-radius: 50%;
-            transition: all 0.2s ease;
-            cursor: default;
-        }
-
-        .calendar-day.other-month {
-            color: #c0b0a0;
         }
 
         .calendar-day.wedding-day {
@@ -266,585 +292,164 @@
             color: white;
             font-weight: bold;
             position: relative;
-            animation: pulse-glow 2s infinite;
+            animation: weddingPulse 2s infinite;
         }
 
-        @keyframes pulse-glow {
+        @keyframes weddingPulse {
             0% { box-shadow: 0 0 0 0 rgba(184, 90, 58, 0.4); }
-            70% { box-shadow: 0 0 0 8px rgba(184, 90, 58, 0); }
+            70% { box-shadow: 0 0 0 10px rgba(184, 90, 58, 0); }
             100% { box-shadow: 0 0 0 0 rgba(184, 90, 58, 0); }
         }
 
-        .calendar-day.wedding-day::after {
-            content: "❤️";
-            position: absolute;
-            font-size: 0.6rem;
-            margin-left: 2px;
-            color: white;
-        }
-
-        .calendar-note {
-            text-align: center;
-            margin-top: 0.8rem;
-            font-size: 0.7rem;
-            color: #b85a3a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-
-        .calendar-heart {
-            font-size: 0.8rem;
-            animation: heartbeat 1.5s ease infinite;
-        }
-
-        /* О НАС С ГАЛЕРЕЕЙ */
-        .about-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        .gallery-container {
-            flex: 1;
-            min-width: 250px;
-            position: relative;
-        }
-
+        /* ГАЛЕРЕЯ */
         .gallery-slider {
             position: relative;
             width: 100%;
             overflow: hidden;
-            box-shadow: 0 20px 35px -15px rgba(0,0,0,0.15);
+            border: 1px solid rgba(184, 90, 58, 0.2);
             aspect-ratio: 3 / 4;
+            transition: all 0.3s ease;
         }
 
-        .gallery-track {
-            display: flex;
-            transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            height: 100%;
-            cursor: grab;
-        }
-
-        .gallery-track:active {
-            cursor: grabbing;
-        }
-
-        .gallery-slide {
-            flex: 0 0 100%;
-            height: 100%;
-        }
-
-        .gallery-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+        .gallery-slider:hover {
+            border-color: rgba(184, 90, 58, 0.5);
+            transform: scale(1.01);
         }
 
         .gallery-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 36px;
-            height: 36px;
-            background: rgba(255,255,255,0.9);
-            border: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: #b85a3a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-            z-index: 10;
-        }
-
-        .gallery-nav:hover {
-            background: white;
-            transform: translateY(-50%) scale(1.05);
-        }
-
-        .gallery-nav.prev { left: 12px; }
-        .gallery-nav.next { right: 12px; }
-
-        .gallery-dots {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 12px;
-        }
-
-        .gallery-dot {
-            width: 8px;
-            height: 8px;
-            background: #e0c8b0;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .gallery-dot.active {
-            background: #b85a3a;
-            width: 24px;
-            border-radius: 4px;
-        }
-
-        .about-text {
-            flex: 1.5;
-        }
-
-        .about-text p {
-            margin-bottom: 1.2rem;
-            color: #4a3b2c;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .about-signature {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 0.8rem;
-            margin-top: 1.5rem;
-            font-size: 1rem;
-            color: #b85a3a;
-            font-family: 'Cormorant Garamond', serif;
-        }
-
-        .heart-icon {
-            font-size: 1.2rem;
-            animation: heartbeat 1.5s ease infinite;
-        }
-
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-        }
-
-        @media (max-width: 700px) {
-            .about-container { flex-direction: column; text-align: center; }
-            .about-signature { justify-content: center; }
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(184, 90, 58, 0.3);
         }
 
         /* ТАЙМИНГ */
-        .timeline-container {
-            display: flex;
-            gap: 30px;
-            max-width: 700px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .timeline-line-wrapper {
-            position: relative;
-            width: 50px;
-            flex-shrink: 0;
-        }
-
         .timeline-line {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(180deg, #b85a3a, #e0c8b0, #b85a3a);
-            border-radius: 2px;
-        }
-
-        .timeline-dots {
-            position: relative;
-            height: 100%;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 12px;
-            height: 12px;
-            background: #b85a3a;
-            border: 2px solid #faf7f2;
-            border-radius: 50%;
-            box-shadow: 0 0 0 2px #b85a3a;
-            z-index: 2;
-            transition: all 0.3s ease;
+            background: linear-gradient(180deg, #b85a3a, #e8c4a0, #b85a3a);
+            width: 2px;
         }
 
         .timeline-slider {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 32px;
-            height: 32px;
             background: #b85a3a;
             border: 2px solid #faf7f2;
-            border-radius: 50%;
-            box-shadow: 0 0 0 2px #b85a3a, 0 2px 10px rgba(0,0,0,0.15);
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            transition: top 0.4s ease-out;
-            pointer-events: none;
-        }
-
-        .timeline-cards {
-            flex: 1;
-        }
-
-        .timeline-card-item {
-            padding: 1rem 1.2rem;
-            margin-bottom: 1.8rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border-left: 3px solid transparent;
+            box-shadow: 0 0 0 2px #b85a3a, 0 5px 20px rgba(184, 90, 58, 0.4);
         }
 
         .timeline-card-item.active {
             background: white;
-            border-left: 3px solid #b85a3a;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-        }
-
-        .timeline-time {
-            font-weight: 600;
-            color: #b85a3a;
-            font-size: 1rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .timeline-title {
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-bottom: 0.3rem;
-            color: #2c2418;
-        }
-
-        .timeline-desc {
-            font-size: 0.75rem;
-            color: #8b735a;
-            line-height: 1.4;
-        }
-
-        @media (max-width: 700px) {
-            .timeline-container { gap: 15px; }
-            .timeline-line-wrapper { width: 35px; }
-            .timeline-slider { width: 28px; height: 28px; font-size: 1rem; }
-            .timeline-card-item { padding: 0.8rem 1rem; margin-bottom: 1.5rem; }
+            border-left: 4px solid #b85a3a;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
         }
 
         /* ДРЕСС-КОД */
-        .dress-colors {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 1.5rem 0;
-        }
-
         .color-tag {
-            padding: 0.5rem 1.2rem;
-            font-size: 0.85rem;
-            transition: transform 0.2s ease;
+            border: 1px solid #b85a3a;
+            background: transparent;
+            transition: all 0.3s ease;
         }
 
         .color-tag:hover {
+            background: #b85a3a;
+            color: white;
             transform: scale(1.05);
-        }
-
-        .style-single {
-            margin-top: 2rem;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .style-single:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 35px -15px rgba(0,0,0,0.15);
-        }
-
-        .style-single img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .style-caption {
-            padding: 0.8rem;
-            text-align: center;
-            font-size: 0.75rem;
-            color: #b85a3a;
-            background: rgba(184,90,58,0.04);
+            box-shadow: 0 5px 15px rgba(184, 90, 58, 0.3);
         }
 
         /* ЛОТЕРЕЯ */
         .lottery-block {
-            text-align: center;
-            padding: 2rem 1.5rem;
+            border: 1px solid rgba(184, 90, 58, 0.2);
             transition: all 0.3s ease;
         }
 
         .lottery-block:hover {
+            border-color: #b85a3a;
             transform: translateY(-5px);
+            box-shadow: 0 15px 35px -15px rgba(0, 0, 0, 0.2);
         }
 
-        .lottery-icon {
-            font-size: 2.8rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .lottery-title {
-            font-size: 1.3rem;
-            font-weight: 600;
+        /* КНОПКИ */
+        button, .map-open-btn, .contact-link {
+            border: 1px solid #b85a3a;
+            background: transparent;
             color: #b85a3a;
-            margin-bottom: 1rem;
-        }
-
-        .lottery-text {
-            font-size: 0.9rem;
-            color: #4a3b2c;
-            margin-bottom: 1rem;
-            line-height: 1.5;
-        }
-
-        .lottery-note {
-            font-size: 0.8rem;
-            color: #b85a3a;
-            background: white;
-            padding: 0.8rem 1.2rem;
-            display: inline-block;
-            margin-top: 0.5rem;
-        }
-
-        /* АНКЕТА */
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            font-weight: 500;
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #2c2418;
-            font-size: 0.9rem;
-        }
-
-        .drink-group, .preference-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-top: 0.5rem;
-        }
-
-        .drink-option, .pref-option {
-            padding: 0.6rem 1.2rem;
-            background: white;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border: 1px solid #e8ddd0;
-            font-size: 0.85rem;
-        }
-
-        .drink-option:hover, .pref-option:hover {
-            border-color: #b85a3a;
-            transform: scale(1.02);
-        }
-
-        .drink-option.selected, .pref-option.selected {
-            background: #b85a3a;
-            color: white;
-            border-color: #b85a3a;
-        }
-
-        input, select, textarea {
-            padding: 12px 16px;
-            border: 1px solid #e8ddd0;
-            font-family: inherit;
-            font-size: 0.9rem;
-            background: white;
-            width: 100%;
-            margin-bottom: 0.5rem;
-            transition: all 0.2s ease;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #b85a3a;
-        }
-
-        textarea {
-            resize: vertical;
-        }
-
-        button {
-            padding: 14px 24px;
-            border: none;
-            font-family: inherit;
-            font-size: 0.95rem;
-            font-weight: 500;
-            background: #b85a3a;
-            color: white;
-            cursor: pointer;
-            width: 100%;
-            transition: all 0.2s ease;
-        }
-
-        button:hover {
-            background: #9e4a2e;
-            transform: translateY(-2px);
-        }
-
-        /* КАРТА */
-        .map-container {
-            overflow: hidden;
-            margin: 1rem 0;
-            box-shadow: 0 10px 25px -10px rgba(0,0,0,0.1);
-        }
-
-        .map-frame {
-            width: 100%;
-            height: 250px;
-            border: none;
-        }
-
-        .transfer-note {
-            background: rgba(184, 90, 58, 0.06);
-            padding: 1rem;
-            text-align: center;
-            font-size: 0.85rem;
-            color: #b85a3a;
-            margin-top: 1rem;
-        }
-
-        .map-open-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #b85a3a;
-            color: white;
-            padding: 12px 24px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            box-shadow: 0 2px 8px rgba(184, 90, 58, 0.3);
-        }
-
-        .map-open-btn:hover {
-            background: #9e4a2e;
-            transform: translateY(-2px);
-        }
-
-        /* КОНТАКТЫ */
-        .contact-card {
-            padding: 1.8rem;
-            text-align: center;
             transition: all 0.3s ease;
         }
 
-        .contact-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .contact-icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-name {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #b85a3a;
-            margin-top: 0.5rem;
-        }
-
-        .contact-phone {
-            font-size: 1.3rem;
-            font-weight: 500;
-            margin: 0.8rem 0;
-        }
-
-        .contact-phone a {
-            color: #2c2418;
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        .contact-phone a:hover {
-            color: #b85a3a;
-        }
-
-        .contact-links {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 15px;
-            flex-wrap: wrap;
-        }
-
-        .contact-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.6rem 1.2rem;
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: all 0.2s ease;
+        button:hover, .map-open-btn:hover, .contact-link:hover {
+            background: #b85a3a;
             color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(184, 90, 58, 0.3);
         }
-        .tg-link { background: #0088cc; }
-        .tg-link:hover { background: #006699; transform: translateY(-2px); }
-        .vk-link { background: #4c6c8c; }
-        .vk-link:hover { background: #3a5470; transform: translateY(-2px); }
+
+        .tg-link, .vk-link {
+            background: transparent;
+            border: 1px solid;
+        }
+        .tg-link { border-color: #0088cc; color: #0088cc; }
+        .tg-link:hover { background: #0088cc; color: white; }
+        .vk-link { border-color: #4c6c8c; color: #4c6c8c; }
+        .vk-link:hover { background: #4c6c8c; color: white; }
 
         /* ФИНАЛ */
         .final-message {
             text-align: center;
-            padding: 2.5rem 0 1rem;
+            padding: 2rem 0;
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: #b85a3a;
-            border-top: 1px solid rgba(184, 90, 58, 0.15);
+            border-top: 1px solid rgba(184, 90, 58, 0.2);
+            font-weight: 500;
+            letter-spacing: 1px;
         }
 
         footer {
             text-align: center;
             margin-top: 1rem;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: #b0886a;
             padding-bottom: 1rem;
+            opacity: 0.6;
         }
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); opacity: 0.6; }
-            50% { transform: translateY(10px); opacity: 1; }
+            50% { transform: translateY(8px); opacity: 1; }
         }
-        .bounce-arrow { animation: bounce 1.5s infinite; display: inline-block; }
+        .bounce-arrow { animation: bounce 1.5s infinite; display: inline-block; font-size: 2rem; }
         
         @keyframes gentlePulse {
             0% { opacity: 0.7; transform: scale(1); }
-            100% { opacity: 1; transform: scale(1.03); }
+            100% { opacity: 1; transform: scale(1.02); }
+        }
+
+        /* ВИНЬЕТКА НА ЗАСТАВКУ */
+        #splashScreen::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.5);
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
 
+<div class="sparkles" id="sparkles"></div>
 <div class="floating-elements" id="floatingElements"></div>
 
 <!-- ЗАСТАВКА -->
 <div id="splashScreen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('ваше_фото.jpg'); background-size: cover; background-position: center; z-index: 9999; display: flex; align-items: center; justify-content: space-between; flex-direction: column; cursor: pointer; transition: opacity 0.8s ease, transform 6s ease;">
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4);"></div>
-    <div style="position: relative; text-align: center; color: white; padding: 20px; animation: gentlePulse 2s infinite alternate; margin-top: 16vh;">
-        <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.3);">Никита 🧶 Юлия</h1>
-        <p style="margin-top: 0.8rem; color: #f0e6d8;">Любви связующая нить</p>
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.35);"></div>
+    <div style="position: relative; text-align: center; color: white; padding: 20px; margin-top: 15vh;">
+        <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: #ffffff; text-shadow: 0 2px 20px rgba(0,0,0,0.3); letter-spacing: 4px;">Никита 🧶 Юлия</h1>
+        <p style="margin-top: 1rem; font-size: 1rem; letter-spacing: 3px; color: #f0e6d8; opacity: 0.9;">Любви связующая нить</p>
     </div>
-    <div style="position: relative; text-align: center; color: white; padding: 20px; margin-bottom: 10vh;">
-        <div class="bounce-arrow" style="font-size: 2rem;">💌</div>
-        <p style="font-size: 0.8rem;">Нажмите, чтобы открыть приглашение</p>
+    <div style="position: relative; text-align: center; color: white; padding: 20px; margin-bottom: 12vh;">
+        <div class="bounce-arrow">💌</div>
+        <p style="font-size: 0.8rem; letter-spacing: 2px; margin-top: 0.5rem;">Откройте наше приглашение</p>
     </div>
 </div>
 
@@ -855,40 +460,41 @@
 <div class="main-content" id="mainContent">
     <div class="container">
         
-        <!-- ПРИВЕТСТВИЕ И ТАЙМЕР -->
+        <!-- ПРИВЕТСТВИЕ -->
         <div class="hero fade-up">
             <div class="date-badge">4 СЕНТЯБРЯ 2026</div>
             <h1>Мы женимся!</h1>
-            <p style="margin-top: 0.5rem;">Приглашаем вас стать частью нашей истории</p>          
-          
-            <div class="countdown-calendar-wrapper fade-up delay-1">
-                <div class="countdown-wrapper" style="background: rgba(255, 255, 255, 0.9);">
-                    <div class="countdown-title">До нашей свадьбы осталось:</div>
-                    <div class="countdown-timer" id="countdownTimer">
-                        <div class="countdown-block"><span class="countdown-number" id="days">00</span><span class="countdown-label">дней</span></div>
-                        <div class="countdown-separator">:</div>
-                        <div class="countdown-block"><span class="countdown-number" id="hours">00</span><span class="countdown-label">часов</span></div>
-                        <div class="countdown-separator">:</div>
-                        <div class="countdown-block"><span class="countdown-number" id="minutes">00</span><span class="countdown-label">минут</span></div>
-                        <div class="countdown-separator">:</div>
-                        <div class="countdown-block"><span class="countdown-number" id="seconds">00</span><span class="countdown-label">секунд</span></div>
-                    </div>
-                </div>
+            <p style="margin-top: 0.5rem; font-weight: 300; letter-spacing: 1px;">Приглашаем вас стать частью нашей истории</p>          
+        </div>
 
-                <div class="calendar-wrapper" style="background: rgba(255, 255, 255, 0.9);">
-                    <div class="calendar-header"><span class="calendar-month">Сентябрь 2026</span></div>
-                    <div class="calendar-weekdays"><span>ПН</span><span>ВТ</span><span>СР</span><span>ЧТ</span><span>ПТ</span><span>СБ</span><span>ВС</span></div>
-                    <div class="calendar-days" id="calendarDays"></div>
-                    <div class="calendar-note"><span class="calendar-heart">❤️</span> 4 сентября 2026 — наш особенный день!</div>
+        <!-- ТАЙМЕР И КАЛЕНДАРЬ -->
+        <div class="fade-up delay-1">
+            <div class="countdown-wrapper">
+                <div class="countdown-title">До нашей свадьбы осталось:</div>
+                <div class="countdown-timer" id="countdownTimer">
+                    <div class="countdown-block"><span class="countdown-number" id="days">00</span><span class="countdown-label">дней</span></div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-block"><span class="countdown-number" id="hours">00</span><span class="countdown-label">часов</span></div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-block"><span class="countdown-number" id="minutes">00</span><span class="countdown-label">минут</span></div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-block"><span class="countdown-number" id="seconds">00</span><span class="countdown-label">секунд</span></div>
                 </div>
+            </div>
+
+            <div class="calendar-wrapper">
+                <div class="calendar-header"><span class="calendar-month">Сентябрь 2026</span></div>
+                <div class="calendar-weekdays"><span>ПН</span><span>ВТ</span><span>СР</span><span>ЧТ</span><span>ПТ</span><span>СБ</span><span>ВС</span></div>
+                <div class="calendar-days" id="calendarDays"></div>
+                <div class="calendar-note"><span class="calendar-heart">❤️</span> 4 сентября 2026 — наш особенный день!</div>
             </div>
         </div>
 
-        <!-- БЛОК "О НАС" - СВЕТЛЫЙ -->
-        <div class="section fade-up delay-1" style="background: rgba(255, 255, 255, 0.9); padding: 2rem;">
+        <!-- БЛОК "О НАС" -->
+        <div class="card-luxury fade-up delay-1">
             <h2 class="section-title">О нас</h2>
-            <div class="about-container">
-                <div class="gallery-container">
+            <div class="about-container" style="display: flex; flex-wrap: wrap; gap: 2.5rem; align-items: center;">
+                <div class="gallery-container" style="flex: 1; min-width: 250px;">
                     <div class="gallery-slider">
                         <div class="gallery-track" id="galleryTrack">
                             <div class="gallery-slide"><img src="foto-1.JPG" alt="Наше фото 1"></div>
@@ -903,126 +509,128 @@
                     </div>
                     <div class="gallery-dots" id="galleryDots"></div>
                 </div>
-                
-                <div class="about-text">
-                    <p>Мы познакомились <strong>3 сентября 2015 года</strong> с тех пор мы прошли через многое и теперь не представляем жизни друг без друга.</p>
+                <div class="about-text" style="flex: 1.5;">
+                    <p>Мы познакомились <strong>3 сентября 2015 года</strong> — с тех пор мы прошли через многое и теперь не представляем жизни друг без друга.</p>
                     <p>Он сделал предложение в самый неожиданный момент, она сказала «да» не раздумывая.</p>
-                    <p>Спустя 11 лет <strong> в день нашего знакомства мы решили стать семьёй </strong> и хотим разделить наше счастье с вами — самыми близкими и родными людьми.</p>
-                    <div class="about-signature"><span class="heart-icon">🤍</span><span>Никита & Юлия</span><span class="heart-icon">🤍</span></div>
+                    <p>Спустя 11 лет, <strong>в день нашего знакомства</strong>, мы решили стать семьёй и хотим разделить наше счастье с вами — самыми близкими и родными людьми.</p>
+                    <div class="about-signature" style="display: flex; align-items: center; gap: 1rem; margin-top: 1.5rem; font-size: 1rem; color: #b85a3a;"><span>🤍</span><span>Никита & Юлия</span><span>🤍</span></div>
                 </div>
             </div>
         </div>
 
-        <!-- ТАЙМИНГ - ТЕРРАКОТОВЫЙ -->
-        <div class="section fade-up delay-2" id="timelineSection" style="background: rgba(184, 90, 58, 0.06); padding: 2rem;">
+        <!-- ТАЙМИНГ -->
+        <div class="card-luxury fade-up delay-2" id="timelineSection">
             <h2 class="section-title">Тайминг мероприятия</h2>
-            <div class="timeline-container">
-                <div class="timeline-line-wrapper">
-                    <div class="timeline-line"></div>
-                    <div class="timeline-dots">
-                        <div class="timeline-dot" data-index="0"></div><div class="timeline-dot" data-index="1"></div>
-                        <div class="timeline-dot" data-index="2"></div><div class="timeline-dot" data-index="3"></div>
-                        <div class="timeline-dot" data-index="4"></div><div class="timeline-dot" data-index="5"></div>
+            <div class="timeline-container" style="display: flex; gap: 30px; max-width: 700px; margin: 0 auto;">
+                <div class="timeline-line-wrapper" style="position: relative; width: 50px;">
+                    <div class="timeline-line" style="position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: linear-gradient(180deg, #b85a3a, #e0c8b0, #b85a3a);"></div>
+                    <div class="timeline-dots" style="position: relative; height: 100%;">
+                        <div class="timeline-dot" data-index="0" style="position: absolute; left: 50%; transform: translateX(-50%); width: 10px; height: 10px; background: #b85a3a; border-radius: 50%;"></div>
+                        <div class="timeline-dot" data-index="1" style="position: absolute; left: 50%; transform: translateX(-50%); width: 10px; height: 10px; background: #b85a3a; border-radius: 50%;"></div>
+                        <div class="timeline-dot" data-index="2" style="position: absolute; left: 50%; transform: translateX(-50%); width: 10px; height: 10px; background: #b85a3a; border-radius: 50%;"></div>
+                        <div class="timeline-dot" data-index="3" style="position: absolute; left: 50%; transform: translateX(-50%); width: 10px; height: 10px; background: #b85a3a; border-radius: 50%;"></div>
+                        <div class="timeline-dot" data-index="4" style="position: absolute; left: 50%; transform: translateX(-50%); width: 10px; height: 10px; background: #b85a3a; border-radius: 50%;"></div>
+                        <div class="timeline-dot" data-index="5" style="position: absolute; left: 50%; transform: translateX(-50%); width: 10px; height: 10px; background: #b85a3a; border-radius: 50%;"></div>
                     </div>
-                    <div id="timelineSlider" class="timeline-slider">🧶</div>
+                    <div id="timelineSlider" class="timeline-slider" style="position: absolute; left: 50%; transform: translateX(-50%); width: 28px; height: 28px; background: #b85a3a; border-radius: 50%; display: flex; align-items: center; justify-content: center;">🧶</div>
                 </div>
-                <div class="timeline-cards">
-                    <div class="timeline-card-item" data-index="0"><div class="timeline-time">14:00</div><div class="timeline-title">Сбор гостей & Welcome-drink</div><div class="timeline-desc">Бар, легкие закуски, возможность пообщаться в непринужденной атмосфере и поучаствовать в небольших активностях</div></div>
-                    <div class="timeline-card-item" data-index="1"><div class="timeline-time">14:45</div><div class="timeline-title">Церемония бракосочетания</div><div class="timeline-desc">Трогательный момент, не забудьте воспользоваться платочками для слез счастья</div></div>
-                    <div class="timeline-card-item" data-index="2"><div class="timeline-time">15:30</div><div class="timeline-title">Трансфер до места банкета</div><div class="timeline-desc">Комфортабельный трансфер для всех гостей</div></div>
-                    <div class="timeline-card-item" data-index="3"><div class="timeline-time">16:00</div><div class="timeline-title">Начало праздничного банкета</div><div class="timeline-desc">Торжественный ужин, поздравления, сюрпризы и море эмоций</div></div>
-                    <div class="timeline-card-item" data-index="4"><div class="timeline-time">22:00</div><div class="timeline-title">Дискотека</div><div class="timeline-desc">Любимые песни и зажигательные танцы</div></div>
-                    <div class="timeline-card-item" data-index="5"><div class="timeline-time">23:00</div><div class="timeline-title">Финал вечера</div><div class="timeline-desc">Осознание, что всё, к чему мы так долго готовились, так быстро закончилось</div></div>
+                <div class="timeline-cards" style="flex: 1;">
+                    <div class="timeline-card-item" data-index="0" style="padding: 1rem 1.2rem; margin-bottom: 1.8rem; transition: all 0.3s ease;"><div class="timeline-time">14:00</div><div class="timeline-title">Сбор гостей & Welcome-drink</div><div class="timeline-desc">Бар, легкие закуски, возможность пообщаться в непринужденной атмосфере и поучаствовать в небольших активностях</div></div>
+                    <div class="timeline-card-item" data-index="1" style="padding: 1rem 1.2rem; margin-bottom: 1.8rem;"><div class="timeline-time">14:45</div><div class="timeline-title">Церемония бракосочетания</div><div class="timeline-desc">Трогательный момент, не забудьте воспользоваться платочками для слез счастья</div></div>
+                    <div class="timeline-card-item" data-index="2" style="padding: 1rem 1.2rem; margin-bottom: 1.8rem;"><div class="timeline-time">15:30</div><div class="timeline-title">Трансфер до места банкета</div><div class="timeline-desc">Комфортабельный трансфер для всех гостей</div></div>
+                    <div class="timeline-card-item" data-index="3" style="padding: 1rem 1.2rem; margin-bottom: 1.8rem;"><div class="timeline-time">16:00</div><div class="timeline-title">Начало праздничного банкета</div><div class="timeline-desc">Торжественный ужин, поздравления, сюрпризы и море эмоций</div></div>
+                    <div class="timeline-card-item" data-index="4" style="padding: 1rem 1.2rem; margin-bottom: 1.8rem;"><div class="timeline-time">22:00</div><div class="timeline-title">Дискотека</div><div class="timeline-desc">Любимые песни и зажигательные танцы</div></div>
+                    <div class="timeline-card-item" data-index="5" style="padding: 1rem 1.2rem; margin-bottom: 1.8rem;"><div class="timeline-time">23:00</div><div class="timeline-title">Финал вечера</div><div class="timeline-desc">Осознание, что всё, к чему мы так долго готовились, так быстро закончилось</div></div>
                 </div>
             </div>
         </div>
 
-        <!-- ЛОТЕРЕЯ - СВЕТЛЫЙ -->
-        <div class="section fade-up delay-4" style="background: rgba(255, 255, 255, 0.9); padding: 2rem;">
-            <div class="lottery-block" style="background: transparent; padding: 0;">
-                <div class="lottery-icon">🎟️✨</div>
-                <div class="lottery-title">Вместо цветов — лотерейные билеты</div>
-                <div class="lottery-text">Не дарите нам цветы, к сожалению, мы не сможем насладиться ими в полной мере 🥲<br>Мы придумали кое-что поинтереснее!</div>
-                <div class="lottery-text" style="font-weight: 500;">Подарите нам настоящий лотерейный билет, а на обратной стороне напишите свой номер телефона</div>
-                <div class="lottery-note">Эти билеты будут участвовать и в нашей свадебной лотерее!</div>
+        <!-- ЛОТЕРЕЯ -->
+        <div class="card-luxury fade-up delay-4">
+            <div class="lottery-block" style="text-align: center; padding: 2rem 1.5rem;">
+                <div class="lottery-icon" style="font-size: 2.5rem;">🎟️✨</div>
+                <div class="lottery-title" style="font-size: 1.3rem; font-weight: 600; color: #b85a3a; margin-bottom: 1rem;">Вместо цветов — лотерейные билеты</div>
+                <div class="lottery-text" style="margin-bottom: 1rem;">Не дарите нам цветы, к сожалению, мы не сможем насладиться ими в полной мере 🥲<br>Мы придумали кое-что поинтереснее!</div>
+                <div class="lottery-text" style="font-weight: 500; margin-bottom: 1rem;">Подарите нам настоящий лотерейный билет, а на обратной стороне напишите свой номер телефона</div>
+                <div class="lottery-note" style="display: inline-block; padding: 0.5rem 1rem; border: 1px solid #b85a3a;">Эти билеты будут участвовать и в нашей свадебной лотерее!</div>
             </div>
         </div>
 
-        <!-- АНКЕТА - ТЕРРАКОТОВЫЙ -->
-        <div class="section fade-up delay-5" style="background: rgba(184, 90, 58, 0.06); padding: 2rem;">
+        <!-- АНКЕТА -->
+        <div class="card-luxury fade-up delay-5">
             <h2 class="section-title">Анкета гостя</h2>
             <form id="guestForm">
                 <input type="hidden" id="guestNameHidden" name="entry.145767671">
-                <div class="form-group">
-                    <label>1. Вы сможете быть на нашей свадьбе?</label>
-                    <select name="entry.1376278693" required>
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">1. Вы сможете быть на нашей свадьбе?</label>
+                    <select name="entry.1376278693" required style="width: 100%; padding: 12px; border: 1px solid #e8ddd0;">
                         <option value="">Выберите вариант</option>
                         <option value="Обязательно буду!">✅ Конечно да!</option>
                         <option value="К сожалению, не смогу">💔 К сожалению, нет</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label>2. Какие напитки вы предпочитаете? (можно выбрать несколько)</label>
-                    <div class="drink-group" id="drinkGroup">
-                        <div class="drink-option" data-value="Красное вино">🍷 Красное вино</div>
-                        <div class="drink-option" data-value="Белое вино">🥂 Белое вино</div>
-                        <div class="drink-option" data-value="Шампанское">🍾 Шампанское</div>
-                        <div class="drink-option" data-value="Виски">🥃 Виски</div>
-                        <div class="drink-option" data-value="Водка/самогон">🍸 Водка/самогон</div>
-                        <div class="drink-option" data-value="Безалкогольные">🧃 Безалкогольные</div>
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">2. Какие напитки вы предпочитаете? (можно выбрать несколько)</label>
+                    <div class="drink-group" id="drinkGroup" style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
+                        <div class="drink-option" data-value="Красное вино" style="padding: 0.5rem 1rem; border: 1px solid #e8ddd0; cursor: pointer;">🍷 Красное вино</div>
+                        <div class="drink-option" data-value="Белое вино" style="padding: 0.5rem 1rem; border: 1px solid #e8ddd0; cursor: pointer;">🥂 Белое вино</div>
+                        <div class="drink-option" data-value="Шампанское" style="padding: 0.5rem 1rem; border: 1px solid #e8ddd0; cursor: pointer;">🍾 Шампанское</div>
+                        <div class="drink-option" data-value="Виски" style="padding: 0.5rem 1rem; border: 1px solid #e8ddd0; cursor: pointer;">🥃 Виски</div>
+                        <div class="drink-option" data-value="Водка/самогон" style="padding: 0.5rem 1rem; border: 1px solid #e8ddd0; cursor: pointer;">🍸 Водка/самогон</div>
+                        <div class="drink-option" data-value="Безалкогольные" style="padding: 0.5rem 1rem; border: 1px solid #e8ddd0; cursor: pointer;">🧃 Безалкогольные</div>
                     </div>
                     <div id="hiddenDrinkInputs"></div>
                 </div>
-                <div class="form-group">
-                    <label>3. Есть ли у вас особые пищевые предпочтения?</label>
-                    <div class="preference-group" id="prefGroup">
-                        <div class="pref-option" data-value="Нет предпочтений">🍽️ Нет предпочтений</div>
-                        <div class="pref-option" data-value="Не ем мясо">🌱 Не ем мясо</div>
-                        <div class="pref-option" data-value="Не ем рыбу">🐟 Не ем рыбу</div>
-                        <div class="pref-option" data-value="Вегетарианец">🥬 Вегетарианец</div>
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">3. Есть ли у вас особые пищевые предпочтения?</label>
+                    <div class="preference-group" id="prefGroup" style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
+                        <div class="pref-option" data-value="Нет предпочтений" style="padding: 0.5rem 1rem; border: 1px solid #e8ddd0; cursor: pointer;">🍽️ Нет предпочтений</div>
+                        <div class="pref-option" data-value="Не ем мясо" style="padding: 0.5rem 1rem; border: 1px solid #e8ddd0; cursor: pointer;">🌱 Не ем мясо</div>
+                        <div class="pref-option" data-value="Не ем рыбу" style="padding: 0.5rem 1rem; border: 1px solid #e8ddd0; cursor: pointer;">🐟 Не ем рыбу</div>
+                        <div class="pref-option" data-value="Вегетарианец" style="padding: 0.5rem 1rem; border: 1px solid #e8ddd0; cursor: pointer;">🥬 Вегетарианец</div>
                     </div>
                     <input type="hidden" id="preferenceHidden" name="entry.527867260">
                 </div>
-                <div class="form-group">
-                    <label>4. Есть ли у вас аллергии?</label>
-                    <textarea name="entry.115264557" rows="2" placeholder="Например: аллергия на орехи, цитрусовые..."></textarea>
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">4. Есть ли у вас аллергии?</label>
+                    <textarea name="entry.115264557" rows="2" placeholder="Например: аллергия на орехи, цитрусовые..." style="width: 100%; padding: 12px; border: 1px solid #e8ddd0;"></textarea>
                 </div>
-                <div class="form-group">
-                    <label>5. Ваши пожелания или комментарии</label>
-                    <textarea name="entry.1902261658" rows="2" placeholder="Например, ваша любимая песня?"></textarea>
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">5. Ваши пожелания или комментарии</label>
+                    <textarea name="entry.1902261658" rows="2" placeholder="Например, ваша любимая песня?" style="width: 100%; padding: 12px; border: 1px solid #e8ddd0;"></textarea>
                 </div>
-                <button type="submit">Отправить ответ</button>
+                <button type="submit" style="width: 100%; padding: 14px; background: transparent; border: 1px solid #b85a3a; color: #b85a3a; cursor: pointer; transition: all 0.3s;">Отправить ответ</button>
                 <div id="formStatus" style="margin-top: 15px; font-size: 0.85rem; text-align: center;"></div>
             </form>
         </div>
 
-        <!-- КАРТА - СВЕТЛЫЙ -->
-        <div class="section fade-up delay-1" style="background: rgba(255, 255, 255, 0.9); padding: 2rem;">
+        <!-- КАРТА -->
+        <div class="card-luxury fade-up delay-1">
             <h2 class="section-title">📍 Место церемонии</h2>
-            <div class="map-container"><iframe class="map-frame" src="https://yandex.ru/map-widget/v1/?ll=43.812637,55.375875&z=17&pt=43.812637,55.375875,pm2rdm" allowfullscreen></iframe></div>
-            <div class="transfer-note">Для вашего удобства будет организован общий трансфер, о котором мы сообщим дополнительно</div>
+            <div class="map-container"><iframe class="map-frame" src="https://yandex.ru/map-widget/v1/?ll=43.812637,55.375875&z=17&pt=43.812637,55.375875,pm2rdm" style="width: 100%; height: 250px; border: none;"></iframe></div>
+            <div class="transfer-note" style="margin: 1rem 0; text-align: center; font-size: 0.85rem;">🚐 Для вашего удобства будет организован общий трансфер, о котором мы сообщим дополнительно</div>
             <div style="text-align: center; margin-top: 1rem;">
-                <a href="https://yandex.ru/maps/?ll=43.812637,55.375875&z=17&pt=43.812637,55.375875" target="_blank" class="map-open-btn">Открыть на карте</a>
+                <a href="https://yandex.ru/maps/?ll=43.812637,55.375875&z=17&pt=43.812637,55.375875" target="_blank" class="map-open-btn" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: transparent; border: 1px solid #b85a3a; color: #b85a3a; text-decoration: none; transition: all 0.3s;">🗺 Открыть на карте</a>
             </div>
         </div>
 
-        <!-- КОНТАКТЫ - ТЕРРАКОТОВЫЙ -->
-        <div class="section fade-up delay-2" style="background: rgba(184, 90, 58, 0.06); padding: 2rem;">
+        <!-- КОНТАКТЫ -->
+        <div class="card-luxury fade-up delay-2">
             <h2 class="section-title">Остались вопросы?</h2>
-            <div class="contact-card" style="background: transparent; padding: 0;">
-                <div class="contact-icon">👩🏼‍💼</div>
-                <div class="contact-name">Ксения</div>
-                <div>Свадебный организатор</div>
-                <p style="margin: 12px 0; font-size: 0.85rem; color: #4a3b2c;">Если Вы подготовили для нас сюрприз или в случае возникновения вопросов, всегда можно обратиться за помощью к нашему свадебному организатору.</p>
-                <div class="contact-phone"><a href="tel:+79200227311">+7 (920) 022-73-11</a></div>
-                <div class="contact-links">
-                    <a href="https://t.me/kuligina_kseniia" target="_blank" class="contact-link tg-link">📱 Telegram</a>
-                    <a href="https://vk.ru/ks_knv" target="_blank" class="contact-link vk-link">💬 ВКонтакте</a>
+            <div style="text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">👩🏼‍💼</div>
+                <div style="font-size: 1.2rem; font-weight: 600; color: #b85a3a;">Ксения</div>
+                <div style="margin-bottom: 1rem;">Наш свадебный организатор</div>
+                <p style="margin: 1rem 0; font-size: 0.85rem;">Если Вы подготовили для нас сюрприз или в случае возникновения вопросов, всегда можно обратиться за помощью к нашему свадебному организатору.</p>
+                <div class="contact-phone" style="margin: 1rem 0;"><a href="tel:+79200227311" style="color: #2c2418; text-decoration: none; font-size: 1.2rem;">+7 (920) 022-73-11</a></div>
+                <div class="contact-links" style="display: flex; gap: 15px; justify-content: center;">
+                    <a href="https://t.me/kuligina_kseniia" target="_blank" class="contact-link tg-link" style="display: inline-flex; align-items: center; gap: 5px; padding: 10px 20px; text-decoration: none; transition: all 0.3s;">📱 Telegram</a>
+                    <a href="https://vk.ru/ks_knv" target="_blank" class="contact-link vk-link" style="display: inline-flex; align-items: center; gap: 5px; padding: 10px 20px; text-decoration: none; transition: all 0.3s;">💬 ВКонтакте</a>
                 </div>
             </div>
         </div>
 
-        <!-- ФИНАЛЬНОЕ СООБЩЕНИЕ -->
+        <!-- ФИНАЛ -->
         <div class="final-message fade-up delay-3">
             До встречи на нашем празднике! <br>С любовью, Никита и Юля ❤️
         </div>
@@ -1051,7 +659,7 @@
         
         setTimeout(() => {
             const welcomeDiv = document.createElement('div');
-            welcomeDiv.style.cssText = 'background: transparent; color: #b85a3a; padding: 14px 0; margin: 20px 0; text-align: center; font-weight: 700; font-size: 1.1rem;';
+            welcomeDiv.style.cssText = 'border: 1px solid #b85a3a; background: transparent; color: #b85a3a; padding: 14px 20px; margin: 20px 0; text-align: center; font-weight: 600; font-size: 1rem;';
             const greeting = getGreeting(fixedGuestName);
             welcomeDiv.innerHTML = `<strong>${greeting} ${fixedGuestName}!</strong><br>Мы будем счастливы разделить с Вами радость неповторимого для нас дня!`;
             const hero = document.querySelector('.hero');
@@ -1067,11 +675,26 @@
         }
     }
     
+    // ========== МЕРЦАЮЩИЕ ИСКРЫ ==========
+    function createSparkles() {
+        const sparklesContainer = document.getElementById('sparkles');
+        for (let i = 0; i < 60; i++) {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.animationDelay = Math.random() * 5 + 's';
+            sparkle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            sparklesContainer.appendChild(sparkle);
+        }
+    }
+    createSparkles();
+    
     // ========== ПАРЯЩИЕ ЭЛЕМЕНТЫ ==========
     function createFloatItem() {
         const el = document.createElement('div');
         el.classList.add('float-item');
-        el.innerHTML = ['❤️', '🧶', '🪡', '✨', '💫', '💌', '💍', '⭐'][Math.floor(Math.random() * 7)];
+        el.innerHTML = ['❤️', '🧶', '🪡', '✨', '💫', '🎈', '⭐'][Math.floor(Math.random() * 7)];
         el.style.left = Math.random() * 100 + '%';
         el.style.fontSize = (Math.random() * 20 + 12) + 'px';
         el.style.animationDuration = (Math.random() * 12 + 8) + 's';
@@ -1240,7 +863,7 @@
         });
     }
 
-    // ========== ПОЛЗУНОК-КЛУБОЧЕК ==========
+    // ========== ПОЛЗУНОК ==========
     function initTimeline() {
         const slider = document.getElementById('timelineSlider');
         const dots = document.querySelectorAll('.timeline-dot');
@@ -1254,7 +877,7 @@
             dots.forEach((dot, index) => {
                 const dotRect = dot.getBoundingClientRect();
                 const wrapperRect = wrapper.getBoundingClientRect();
-                const relativeTop = dotRect.top - wrapperRect.top + dotRect.height / 2 - 16;
+                const relativeTop = dotRect.top - wrapperRect.top + dotRect.height / 2 - 14;
                 positions.push({ index, top: relativeTop });
             });
             return positions;
