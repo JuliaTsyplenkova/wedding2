@@ -48,7 +48,31 @@
         .animate-title { animation: fadeInScale 0.6s ease-out; }
         .animate-subtitle { animation: slideInFromLeft 0.6s ease-out; }
         .animate-text { animation: slideInFromRight 0.6s ease-out; }
-        
+        /* КИНЕМАТОГРАФИЧНОЕ ПОЯВЛЕНИЕ */
+.main-content {
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    transform: scale(0.97);
+    transition: opacity 1.2s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 1.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+.main-content.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* АНИМАЦИЯ РАЗЛЕТАЮЩИХСЯ СЕРДЕЧЕК */
+@keyframes explodeHeart {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(calc(-50% + var(--x, 0px)), calc(-50% + var(--y, 0px))) scale(0);
+        opacity: 0;
+    }
+}
         @media (max-width: 550px) {
             .hero h1 { animation: fadeInScale 0.5s ease-out; }
             .date-badge { animation: slideInFromLeft 0.5s ease-out; }
@@ -248,6 +272,28 @@
         }
         .style-single img { width: 100%; height: auto; display: block; }
         .style-caption { padding: 0.5rem; text-align: center; font-size: 0.7rem; color: #b85a3a; background: rgba(184,90,58,0.04); }
+
+/* ПУЛЬСАЦИЯ ДЛЯ ЗАГОЛОВКА ЛОТЕРЕИ */
+.pulse-title {
+    animation: lotteryPulse 1.5s ease-in-out infinite;
+    display: inline-block;
+}
+
+@keyframes lotteryPulse {
+    0% {
+        transform: scale(1);
+        text-shadow: 0 0 0 rgba(184, 90, 58, 0);
+    }
+    50% {
+        transform: scale(1.02);
+        text-shadow: 0 0 8px rgba(184, 90, 58, 0.5);
+    }
+    100% {
+        transform: scale(1);
+        text-shadow: 0 0 0 rgba(184, 90, 58, 0);
+    }
+}
+
         
         .lottery-block { text-align: center; padding: 1.5rem; border: 1px solid rgba(184, 90, 58, 0.2); transition: all 0.3s ease; }
         .lottery-block:hover { border-color: #b85a3a; transform: translateY(-5px); }
@@ -322,7 +368,7 @@
         <div class="hero fade-up">
             <div class="date-badge">4 СЕНТЯБРЯ 2026</div>
             <h1 class="animate-title">Мы женимся!</h1>
-            <p class="animate-subtitle" style="margin-top: 0.3rem; font-weight: 300; font-size: 0.9rem;">Приглашаем вас стать частью нашей истории</p>
+            <p class="animate-subtitle" style="margin-top: 0.3rem; font-weight: 300; font-size: 0.9rem;">Приглашаем Вас стать частью нашей истории</p>
         </div>
 
         <!-- ТАЙМЕР И КАЛЕНДАРЬ -->
@@ -368,10 +414,10 @@
                     <div class="gallery-dots" id="galleryDots"></div>
                 </div>
                 <div class="about-text">
-                    <p>Мы познакомились <strong>3 сентября 2015 года</strong> — с тех пор мы прошли через многое и теперь не представляем жизни друг без друга.</p>
+                    <p>Мы познакомились <strong>3 сентября 2015 года</strong> — с тех пор прошли через многое и теперь не представляем жизни друг без друга.</p>
                     <p>Он сделал предложение в самый неожиданный момент, она сказала «да» не раздумывая.</p>
-                    <p>Спустя 11 лет, <strong>в день нашего знакомства</strong>, мы решили стать семьёй и хотим разделить наше счастье с вами — самыми близкими и родными людьми.</p>
-                    <div class="about-signature">Никита & Юлия</div>
+                    <p>Спустя 11 лет, <strong>в день нашего знакомства</strong>, мы решили стать семьёй и хотим разделить наше счастье с Вами — самыми близкими и родными людьми.</p>
+                    <div class="about-signature">Никита 🧶 Юлия</div>
                 </div>
             </div>
         </div>
@@ -406,22 +452,22 @@
             <div class="dress-colors">
                 <div class="color-tag">
                     <div class="color-square" style="background: #b85a3a;"></div>
-                    <span class="color-name">Терракотовый</span>
+                    <span class="color-name"></span>
                 </div>
                 <div class="color-tag">
                     <div class="color-square" style="background: #8b5a3a;"></div>
-                    <span class="color-name">Коричневый</span>
+                    <span class="color-name"></span>
                 </div>
                 <div class="color-tag">
                     <div class="color-square" style="background: #d9c5a7;"></div>
-                    <span class="color-name">Бежевый</span>
+                    <span class="color-name"></span>
                 </div>
                 <div class="color-tag">
                     <div class="color-square" style="background: #6b705c;"></div>
-                    <span class="color-name">Оливковый</span>
+                    <span class="color-name"></span>
                 </div>
             </div>
-            <p style="text-align: center; margin: 1rem 0 0.5rem; font-size: 0.8rem;">Мы будем рады видеть вас в любом наряде, но если при его выборе вы придержитесь нашей цветовой гаммы — нам будет очень приятно!</p>
+            <p style="text-align: center; margin: 1rem 0 0.5rem; font-size: 0.8rem;">Мы будем рады видеть Вас в любом наряде, но если при его выборе Вы придержитесь нашей цветовой гаммы — нам будет очень приятно!</p>
             <div class="style-single">
                 <img src="dress-examples.jpg" alt="Примеры образов" onerror="this.src='https://via.placeholder.com/600x400?text=Примеры+образов'">
                 <div class="style-caption">Примеры образов в нашей цветовой гамме</div>
@@ -431,11 +477,10 @@
         <!-- ЛОТЕРЕЯ -->
         <div class="card-luxury fade-up delay-4">
             <div class="lottery-block">
-                <div class="lottery-icon">🎟️✨</div>
-                <div class="lottery-title">Вместо цветов — лотерейные билеты</div>
+                <div class="lottery-icon">🎟️✨</<div class="lottery-title pulse-title">Вместо цветов — лотерейные билеты</div>
                 <div style="margin-bottom: 0.8rem; font-size: 0.85rem;">Не дарите нам цветы, мы придумали кое-что поинтереснее!</div>
                 <div style="font-weight: 500; margin-bottom: 0.8rem; font-size: 0.85rem;">Подарите нам настоящий лотерейный билет, а на обратной стороне напишите свой номер телефона</div>
-                <div class="lottery-note">🎲 Эти билеты будут участвовать в нашей свадебной лотерее!</div>
+                <div class="lottery-note">🎲 Эти билеты будут участвовать и в нашей свадебной лотерее!</div>
             </div>
         </div>
 
@@ -453,7 +498,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>2. Какие напитки вы предпочитаете? (можно выбрать несколько)</label>
+                    <label>2. Какие напитки Вы предпочитаете? (можно выбрать несколько)</label>
                     <div class="drink-group" id="drinkGroup">
                         <div class="drink-option" data-value="Красное вино">🍷 Красное вино</div>
                         <div class="drink-option" data-value="Белое вино">🥂 Белое вино</div>
@@ -465,7 +510,7 @@
                     <div id="hiddenDrinkInputs"></div>
                 </div>
                 <div class="form-group">
-                    <label>3. Есть ли у вас особые пищевые предпочтения?</label>
+                    <label>3. Есть ли у Вас особые пищевые предпочтения?</label>
                     <div class="preference-group" id="prefGroup">
                         <div class="pref-option" data-value="Нет">🍽️ Нет</div>
                         <div class="pref-option" data-value="Не ем мясо">🌱 Не ем мясо</div>
@@ -475,12 +520,12 @@
                     <input type="hidden" id="preferenceHidden" name="entry.527867260">
                 </div>
                 <div class="form-group">
-                    <label>4. Есть ли у вас аллергии?</label>
+                    <label>4. Есть ли у Вас аллергии?</label>
                     <textarea name="entry.115264557" rows="2" placeholder="Например: аллергия на орехи, цитрусовые..."></textarea>
                 </div>
                 <div class="form-group">
                     <label>5. Ваши пожелания или комментарии</label>
-                    <textarea name="entry.1902261658" rows="2" placeholder="Например, ваша любимая песня?"></textarea>
+                    <textarea name="entry.1902261658" rows="2" placeholder="Например, Ваша любимая песня?"></textarea>
                 </div>
                 <button type="submit">Отправить ответ</button>
                 <div id="formStatus" style="margin-top: 15px; font-size: 0.8rem; text-align: center;"></div>
@@ -491,7 +536,7 @@
         <div class="card-luxury fade-up delay-1">
             <h2 class="section-title">Место церемонии</h2>
             <div class="map-container"><iframe class="map-frame" src="https://yandex.ru/map-widget/v1/?ll=43.812637,55.375875&z=17&pt=43.812637,55.375875,pm2rdm" allowfullscreen></iframe></div>
-            <div class="transfer-note">Для вашего удобства будет организован общий трансфер, о котором мы сообщим дополнительно</div>
+            <div class="transfer-note">Для Вашего удобства будет организован общий трансфер, о котором мы сообщим дополнительно</div>
             <div style="text-align: center;"><a href="https://yandex.ru/maps/?ll=43.812637,55.375875&z=17&pt=43.812637,55.375875" target="_blank" class="map-open-btn">Открыть на карте</a></div>
         </div>
 
@@ -513,13 +558,57 @@
 
         <!-- ФИНАЛ -->
         <div class="final-message fade-up delay-3">
-            До встречи на нашем празднике! <br>С любовью, Никита и Юля ❤️
+            До встречи на нашем празднике! <br>С любовью, Никита и Юля 🧡
         </div>
         <footer class="fade-up delay-4">Связанные одной нитью</footer>
     </div>
 </div>
 
 <script>
+
+// ========== ЭФФЕКТНОЕ ОТКРЫТИЕ ==========
+function openInvite() {
+    if (started) return;
+    started = true;
+    
+    // 1. ВСПЫШКА
+    const flash = document.createElement('div');
+    flash.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:white; z-index:10000; opacity:0; pointer-events:none; transition:opacity 0.3s ease;';
+    document.body.appendChild(flash);
+    setTimeout(() => flash.style.opacity = '0.5', 10);
+    setTimeout(() => flash.style.opacity = '0', 200);
+    setTimeout(() => flash.remove(), 500);
+    
+    // 2. РАЗЛЕТАЮЩИЕСЯ СЕРДЕЧКИ
+    for (let i = 0; i < 25; i++) {
+        const heart = document.createElement('div');
+        heart.innerHTML = ['❤️', '🧡', '💛', '💖', '💗', '💘', '💝'][Math.floor(Math.random() * 7)];
+        heart.style.cssText = `
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            font-size: ${Math.random() * 24 + 16}px;
+            pointer-events: none;
+            z-index: 10001;
+            animation: explodeHeart 0.9s ease-out forwards;
+        `;
+        const angle = Math.random() * Math.PI * 2;
+        const distance = Math.random() * 180 + 40;
+        heart.style.setProperty('--x', Math.cos(angle) * distance + 'px');
+        heart.style.setProperty('--y', Math.sin(angle) * distance + 'px');
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 900);
+    }
+    
+    // 3. МУЗЫКА И ОТКРЫТИЕ
+    music.play().catch(e => console.log('Авто-плей:', e));
+    mainContent.classList.add('visible');
+    splash.style.transition = 'opacity 0.8s ease, transform 6s ease';
+    splash.style.transform = 'scale(1.05)';
+    splash.style.opacity = '0';
+    setTimeout(() => splash.style.display = 'none', 1000);
+}
+
     // ========== ИМЯ ИЗ ССЫЛКИ И ПРИВЕТСТВИЕ ==========
     const urlParams = new URLSearchParams(window.location.search);
     const guestFromLink = urlParams.get('guest');
