@@ -6,7 +6,6 @@
     <title>Приглашение на свадьбу | Никита & Юлия</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* ----- ОСНОВНЫЕ СТИЛИ ----- */
         * {
             margin: 0;
             padding: 0;
@@ -21,7 +20,7 @@
             overflow-x: hidden;
         }
 
-        /* ----- ПАРЯЩИЕ ЭЛЕМЕНТЫ (ФОН) ----- */
+        /* ПАРЯЩИЕ ЭЛЕМЕНТЫ */
         .floating-elements {
             position: fixed;
             top: 0;
@@ -47,7 +46,7 @@
             100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
         }
 
-        /* ----- АНИМАЦИЯ ПОЯВЛЕНИЯ БЛОКОВ ----- */
+        /* ОСНОВНОЙ КОНТЕНТ */
         .main-content {
             position: relative;
             z-index: 2;
@@ -64,6 +63,7 @@
             padding: 2rem 1.5rem;
         }
 
+        /* АНИМАЦИЯ ПОЯВЛЕНИЯ */
         .fade-up {
             opacity: 0;
             transform: translateY(40px);
@@ -81,40 +81,7 @@
         .delay-4 { transition-delay: 0.4s; }
         .delay-5 { transition-delay: 0.5s; }
 
-        /* ----- БЛОКИ И РАЗДЕЛИТЕЛИ ----- */
-        .section {
-            margin: 4rem 0;
-            position: relative;
-        }
-
-        /* Чередование фона блоков */
-        .section:nth-child(odd) .contact-card,
-        .section:nth-child(odd) .lottery-block,
-        .section:nth-child(odd) .timeline-card-item {
-            background: rgba(255, 255, 255, 0.9);
-        }
-        .section:nth-child(even) .contact-card,
-        .section:nth-child(even) .lottery-block,
-        .section:nth-child(even) .timeline-card-item {
-            background: rgba(184, 90, 58, 0.04);
-        }
-
-        /* Красивый разделитель */
-        .section-divider {
-            text-align: center;
-            font-size: 1.5rem;
-            letter-spacing: 15px;
-            color: #b85a3a;
-            opacity: 0.4;
-            margin: 1.5rem 0;
-            position: relative;
-        }
-        .section-divider span {
-            display: inline-block;
-            animation: gentlePulse 2s infinite;
-        }
-
-        /* Заголовки с мягким свечением */
+        /* ЗАГОЛОВКИ С ПУЛЬСАЦИЕЙ */
         .section-title {
             font-family: 'Cormorant Garamond', serif;
             font-size: 2.2rem;
@@ -124,6 +91,34 @@
             margin-bottom: 2rem;
             letter-spacing: 1px;
             text-shadow: 0 0 8px rgba(184, 90, 58, 0.3);
+            animation: gentlePulse 2s ease-in-out infinite;
+            display: inline-block;
+            width: 100%;
+        }
+
+        @keyframes gentlePulse {
+            0% {
+                text-shadow: 0 0 0 rgba(184, 90, 58, 0);
+                transform: scale(1);
+            }
+            50% {
+                text-shadow: 0 0 12px rgba(184, 90, 58, 0.5);
+                transform: scale(1.01);
+            }
+            100% {
+                text-shadow: 0 0 0 rgba(184, 90, 58, 0);
+                transform: scale(1);
+            }
+        }
+
+        /* БЛОКИ */
+        .section {
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-3px);
         }
 
         .hero {
@@ -147,21 +142,12 @@
             letter-spacing: 2px;
         }
 
-        .names {
-            font-size: 1.8rem;
-            font-weight: 400;
-            color: #b85a3a;
-            margin: 0.5rem 0;
-        }
-        
-        /* ----- ТАЙМЕР И КАЛЕНДАРЬ ----- */
+        /* ТАЙМЕР И КАЛЕНДАРЬ */
         .countdown-wrapper {
             text-align: center;
             margin: 2rem auto;
             padding: 1.2rem;
             max-width: 500px;
-            background: rgba(184, 90, 58, 0.04);
-            border-radius: 0px;
         }
         
         .countdown-title {
@@ -182,7 +168,6 @@
         
         .countdown-block {
             background: #b85a3a;
-            border-radius: 0px;
             padding: 0.5rem 0.8rem;
             min-width: 65px;
             box-shadow: 0 4px 15px rgba(184, 90, 58, 0.2);
@@ -220,9 +205,7 @@
         }
 
         .calendar-wrapper {
-            background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(4px);
-            border-radius: 0px;
             padding: 1.2rem;
             margin-top: 1rem;
             box-shadow: 0 10px 25px -10px rgba(0,0,0,0.1);
@@ -316,7 +299,7 @@
             animation: heartbeat 1.5s ease infinite;
         }
 
-        /* ----- БЛОК "О НАС" (ВЕРТИКАЛЬНАЯ ГАЛЕРЕЯ)----- */
+        /* О НАС С ГАЛЕРЕЕЙ */
         .about-container {
             display: flex;
             flex-wrap: wrap;
@@ -334,9 +317,8 @@
             position: relative;
             width: 100%;
             overflow: hidden;
-            border-radius: 0px;
             box-shadow: 0 20px 35px -15px rgba(0,0,0,0.15);
-            aspect-ratio: 3 / 4; /* СДЕЛАНО: Фото теперь вертикальные (3:4) */
+            aspect-ratio: 3 / 4;
         }
 
         .gallery-track {
@@ -370,7 +352,6 @@
             height: 36px;
             background: rgba(255,255,255,0.9);
             border: none;
-            border-radius: 0px;
             cursor: pointer;
             font-size: 1.5rem;
             color: #b85a3a;
@@ -448,7 +429,7 @@
             .about-signature { justify-content: center; }
         }
 
-        /* ----- ТАЙМИНГ С УЗЕЛКАМИ И КЛУБОЧКОМ ----- */
+        /* ТАЙМИНГ */
         .timeline-container {
             display: flex;
             gap: 30px;
@@ -556,7 +537,7 @@
             .timeline-card-item { padding: 0.8rem 1rem; margin-bottom: 1.5rem; }
         }
 
-        /* ----- ДРЕСС-КОД ----- */
+        /* ДРЕСС-КОД */
         .dress-colors {
             display: flex;
             gap: 1rem;
@@ -567,7 +548,6 @@
 
         .color-tag {
             padding: 0.5rem 1.2rem;
-            border-radius: 0px;
             font-size: 0.85rem;
             transition: transform 0.2s ease;
         }
@@ -578,7 +558,6 @@
 
         .style-single {
             margin-top: 2rem;
-            border-radius: 0px;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -602,7 +581,7 @@
             background: rgba(184,90,58,0.04);
         }
 
-        /* ----- ЛОТЕРЕЙНЫЕ БИЛЕТЫ ----- */
+        /* ЛОТЕРЕЯ */
         .lottery-block {
             text-align: center;
             padding: 2rem 1.5rem;
@@ -641,7 +620,7 @@
             margin-top: 0.5rem;
         }
 
-        /* ----- АНКЕТА ----- */
+        /* АНКЕТА */
         .form-group {
             margin-bottom: 1.5rem;
         }
@@ -719,11 +698,7 @@
             transform: translateY(-2px);
         }
 
-        button:active {
-            transform: translateY(0);
-        }
-
-        /* ----- КАРТА ----- */
+        /* КАРТА */
         .map-container {
             overflow: hidden;
             margin: 1rem 0;
@@ -762,10 +737,9 @@
         .map-open-btn:hover {
             background: #9e4a2e;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(184, 90, 58, 0.4);
         }
 
-        /* ----- КОНТАКТЫ ОРГАНИЗАТОРА ----- */
+        /* КОНТАКТЫ */
         .contact-card {
             padding: 1.8rem;
             text-align: center;
@@ -827,7 +801,7 @@
         .vk-link { background: #4c6c8c; }
         .vk-link:hover { background: #3a5470; transform: translateY(-2px); }
 
-        /* ----- ФИНАЛ ----- */
+        /* ФИНАЛ */
         .final-message {
             text-align: center;
             padding: 2.5rem 0 1rem;
@@ -845,7 +819,6 @@
             padding-bottom: 1rem;
         }
 
-        /* ----- АНИМАЦИИ ----- */
         @keyframes bounce {
             0%, 100% { transform: translateY(0); opacity: 0.6; }
             50% { transform: translateY(10px); opacity: 1; }
@@ -862,10 +835,10 @@
 
 <div class="floating-elements" id="floatingElements"></div>
 
-<!-- ЗАСТАВКА С ЭФФЕКТОМ "ZOOM" -->
+<!-- ЗАСТАВКА -->
 <div id="splashScreen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('ваше_фото.jpg'); background-size: cover; background-position: center; z-index: 9999; display: flex; align-items: center; justify-content: space-between; flex-direction: column; cursor: pointer; transition: opacity 0.8s ease, transform 6s ease;">
     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4);"></div>
-    <div style="position: relative; text-align: center; color: white; padding: 20px; animation: gentlePulse 2s infinite alternate; margin-top: 15vh;">
+    <div style="position: relative; text-align: center; color: white; padding: 20px; animation: gentlePulse 2s infinite alternate; margin-top: 16vh;">
         <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.3);">Никита 🧶 Юлия</h1>
         <p style="margin-top: 0.8rem; color: #f0e6d8;">Любви связующая нить</p>
     </div>
@@ -889,7 +862,7 @@
             <p style="margin-top: 0.5rem;">Приглашаем вас стать частью нашей истории</p>          
           
             <div class="countdown-calendar-wrapper fade-up delay-1">
-                <div class="countdown-wrapper">
+                <div class="countdown-wrapper" style="background: rgba(255, 255, 255, 0.9);">
                     <div class="countdown-title">До нашей свадьбы осталось:</div>
                     <div class="countdown-timer" id="countdownTimer">
                         <div class="countdown-block"><span class="countdown-number" id="days">00</span><span class="countdown-label">дней</span></div>
@@ -902,7 +875,7 @@
                     </div>
                 </div>
 
-                <div class="calendar-wrapper">
+                <div class="calendar-wrapper" style="background: rgba(255, 255, 255, 0.9);">
                     <div class="calendar-header"><span class="calendar-month">Сентябрь 2026</span></div>
                     <div class="calendar-weekdays"><span>ПН</span><span>ВТ</span><span>СР</span><span>ЧТ</span><span>ПТ</span><span>СБ</span><span>ВС</span></div>
                     <div class="calendar-days" id="calendarDays"></div>
@@ -911,11 +884,8 @@
             </div>
         </div>
 
-        <!-- РАЗДЕЛИТЕЛЬ -->
-        <div class="section-divider fade-up"><span>🧶</span><span>💍</span><span>🧵</span></div>
-
-        <!-- БЛОК "О НАС" С ВЕРТИКАЛЬНОЙ ГАЛЕРЕЕЙ -->
-        <div class="section fade-up delay-1">
+        <!-- БЛОК "О НАС" - СВЕТЛЫЙ -->
+        <div class="section fade-up delay-1" style="background: rgba(255, 255, 255, 0.9); padding: 2rem;">
             <h2 class="section-title">О нас</h2>
             <div class="about-container">
                 <div class="gallery-container">
@@ -943,11 +913,8 @@
             </div>
         </div>
 
-        <!-- РАЗДЕЛИТЕЛЬ -->
-        <div class="section-divider fade-up"><span>🧵</span><span>✨</span><span>🧶</span></div>
-
-        <!-- ТАЙМИНГ МЕРОПРИЯТИЯ -->
-        <div class="section fade-up delay-2" id="timelineSection">
+        <!-- ТАЙМИНГ - ТЕРРАКОТОВЫЙ -->
+        <div class="section fade-up delay-2" id="timelineSection" style="background: rgba(184, 90, 58, 0.06); padding: 2rem;">
             <h2 class="section-title">Тайминг мероприятия</h2>
             <div class="timeline-container">
                 <div class="timeline-line-wrapper">
@@ -970,12 +937,9 @@
             </div>
         </div>
 
-        <!-- РАЗДЕЛИТЕЛЬ -->
-        <div class="section-divider fade-up"><span>🎟️</span><span>🧶</span><span>✨</span></div>
-
-        <!-- ЛОТЕРЕЙНЫЕ БИЛЕТЫ -->
-        <div class="section fade-up delay-4">
-            <div class="lottery-block">
+        <!-- ЛОТЕРЕЯ - СВЕТЛЫЙ -->
+        <div class="section fade-up delay-4" style="background: rgba(255, 255, 255, 0.9); padding: 2rem;">
+            <div class="lottery-block" style="background: transparent; padding: 0;">
                 <div class="lottery-icon">🎟️✨</div>
                 <div class="lottery-title">Вместо цветов — лотерейные билеты</div>
                 <div class="lottery-text">Не дарите нам цветы, к сожалению, мы не сможем насладиться ими в полной мере 🥲<br>Мы придумали кое-что поинтереснее!</div>
@@ -984,8 +948,8 @@
             </div>
         </div>
 
-        <!-- АНКЕТА ГОСТЯ -->
-        <div class="section fade-up delay-5">
+        <!-- АНКЕТА - ТЕРРАКОТОВЫЙ -->
+        <div class="section fade-up delay-5" style="background: rgba(184, 90, 58, 0.06); padding: 2rem;">
             <h2 class="section-title">Анкета гостя</h2>
             <form id="guestForm">
                 <input type="hidden" id="guestNameHidden" name="entry.145767671">
@@ -1032,21 +996,23 @@
             </form>
         </div>
 
-        <!-- КАРТА МЕСТА ЦЕРЕМОНИИ -->
-        <div class="section fade-up delay-1">
+        <!-- КАРТА - СВЕТЛЫЙ -->
+        <div class="section fade-up delay-1" style="background: rgba(255, 255, 255, 0.9); padding: 2rem;">
             <h2 class="section-title">📍 Место церемонии</h2>
             <div class="map-container"><iframe class="map-frame" src="https://yandex.ru/map-widget/v1/?ll=43.812637,55.375875&z=17&pt=43.812637,55.375875,pm2rdm" allowfullscreen></iframe></div>
             <div class="transfer-note">Для вашего удобства будет организован общий трансфер, о котором мы сообщим дополнительно</div>
-            <div style="text-align: center; margin-top: 1rem;"><a href="https://yandex.ru/maps/?ll=43.812637,55.375875&z=17&pt=43.812637,55.375875&whatshere%5Bpoint%5D=43.812637,55.375875&whatshere%5Bzoom%5D=17" target="_blank" class="map-open-btn">Открыть на карте</a></div>
+            <div style="text-align: center; margin-top: 1rem;">
+                <a href="https://yandex.ru/maps/?ll=43.812637,55.375875&z=17&pt=43.812637,55.375875" target="_blank" class="map-open-btn">Открыть на карте</a>
+            </div>
         </div>
 
-        <!-- КОНТАКТЫ ОРГАНИЗАТОРА -->
-        <div class="section fade-up delay-2">
+        <!-- КОНТАКТЫ - ТЕРРАКОТОВЫЙ -->
+        <div class="section fade-up delay-2" style="background: rgba(184, 90, 58, 0.06); padding: 2rem;">
             <h2 class="section-title">Остались вопросы?</h2>
-            <div class="contact-card">
+            <div class="contact-card" style="background: transparent; padding: 0;">
                 <div class="contact-icon">👩🏼‍💼</div>
                 <div class="contact-name">Ксения</div>
-                <div>Наш свадебный организатор</div>
+                <div>Свадебный организатор</div>
                 <p style="margin: 12px 0; font-size: 0.85rem; color: #4a3b2c;">Если Вы подготовили для нас сюрприз или в случае возникновения вопросов, всегда можно обратиться за помощью к нашему свадебному организатору.</p>
                 <div class="contact-phone"><a href="tel:+79200227311">+7 (920) 022-73-11</a></div>
                 <div class="contact-links">
@@ -1105,7 +1071,7 @@
     function createFloatItem() {
         const el = document.createElement('div');
         el.classList.add('float-item');
-        el.innerHTML = ['❤️', '🧶', '🪡', '✨', '💫', '🎈', '⭐'][Math.floor(Math.random() * 7)];
+        el.innerHTML = ['❤️', '🧶', '🪡', '✨', '💫', '💌', '💍', '⭐'][Math.floor(Math.random() * 7)];
         el.style.left = Math.random() * 100 + '%';
         el.style.fontSize = (Math.random() * 20 + 12) + 'px';
         el.style.animationDuration = (Math.random() * 12 + 8) + 's';
@@ -1165,7 +1131,7 @@
     }
     createDots();
 
-    // УВЕЛИЧЕНИЕ ФОТО ПРИ КЛИКЕ
+    // Увеличение фото при клике
     document.querySelectorAll('.gallery-slide img').forEach(img => {
         img.style.cursor = 'pointer';
         img.addEventListener('click', (e) => {
@@ -1400,7 +1366,7 @@
     }
     generateCalendar();
 
-    // ========== ЗАСТАВКА С ЭФФЕКТОМ ZOOM ==========
+    // ========== ЗАСТАВКА ==========
     const splash = document.getElementById('splashScreen');
     const music = document.getElementById('bgMusic');
     const mainContent = document.getElementById('mainContent');
