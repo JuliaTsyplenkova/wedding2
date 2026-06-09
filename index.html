@@ -311,114 +311,127 @@
             .about-signature { justify-content: center; }
         }
         
-        /* ТАЙМИНГ */
-        .timeline-vertical {
-            position: relative;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 1rem 0;
-        }
+        /* ТАЙМИНГ С НИТЬЮ */
+.timeline-wrapper {
+    position: relative;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.timeline-vertical {
+    position: relative;
+    padding: 1rem 0;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, #b85a3a, #e0c8b0, #b85a3a);
+}
+
+.timeline-item {
+    position: relative;
+    display: flex;
+    margin-bottom: 2.5rem;
+    width: 100%;
+}
+
+.timeline-item.left { justify-content: flex-start; }
+.timeline-item.right { justify-content: flex-end; }
+
+.timeline-dot {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 14px;
+    background: #b85a3a;
+    border: 2px solid #faf7f2;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px #b85a3a;
+    z-index: 2;
+}
+
+.timeline-card {
+    width: calc(50% - 40px);
+    padding: 1rem 1.2rem;
+    background: rgba(255,255,255,0.8);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.timeline-card:hover {
+    background: white;
+    transform: translateY(-5px);
+}
+
+.timeline-time {
+    font-weight: 600;
+    color: #b85a3a;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+}
+
+.timeline-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+    color: #2c2418;
+}
+
+.timeline-desc {
+    font-size: 0.75rem;
+    color: #8b735a;
+    line-height: 1.4;
+}
+
+@media (max-width: 700px) {
+    .timeline-line { left: 30px; transform: none; }
+    .timeline-item { justify-content: flex-start !important; padding-left: 60px; }
+    .timeline-dot { left: 30px; transform: none; }
+    .timeline-card { width: calc(100% - 40px); }
+}
         
-        .timeline-line {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(180deg, #b85a3a, #e0c8b0, #b85a3a);
-        }
-        
-        .timeline-item {
-            position: relative;
-            display: flex;
-            margin-bottom: 2.5rem;
-            width: 100%;
-        }
-        
-        .timeline-item.left { justify-content: flex-start; }
-        .timeline-item.right { justify-content: flex-end; }
-        
-        .timeline-dot {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 12px;
-            height: 12px;
-            background: #b85a3a;
-            border: 2px solid #faf7f2;
-            border-radius: 50%;
-            box-shadow: 0 0 0 2px #b85a3a;
-            z-index: 2;
-        }
-        
-        .timeline-card {
-            width: calc(50% - 40px);
-            padding: 1rem 1.2rem;
-            background: rgba(255,255,255,0.7);
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .timeline-card:hover {
-            background: white;
-            transform: translateY(-5px);
-        }
-        
-        .timeline-time {
-            font-weight: 600;
-            color: #b85a3a;
-            font-size: 1rem;
-            margin-bottom: 0.3rem;
-        }
-        
-        .timeline-title {
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-bottom: 0.3rem;
-            color: #2c2418;
-        }
-        
-        .timeline-desc {
-            font-size: 0.75rem;
-            color: #8b735a;
-            line-height: 1.4;
-        }
-        
-        @media (max-width: 700px) {
-            .timeline-line { left: 20px; transform: none; }
-            .timeline-item { justify-content: flex-start !important; padding-left: 45px; }
-            .timeline-dot { left: 20px; transform: none; }
-            .timeline-card { width: calc(100% - 30px); }
-        }
-        
-        /* Ползунок */
-        .simple-slider {
-            position: fixed;
-            right: 15px;
-            width: 44px;
-            height: 44px;
-            background: #b85a3a;
-            border: 2px solid #faf7f2;
-            border-radius: 50%;
-            box-shadow: 0 0 0 2px #b85a3a, 0 4px 15px rgba(0,0,0,0.1);
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            transition: top 0.2s ease-out;
-            pointer-events: none;
-        }
-        
-        @media (max-width: 700px) {
-            .simple-slider {
-                width: 36px;
-                height: 36px;
-                right: 8px;
-                font-size: 0.9rem;
-            }
-        }
+ 
+
+/* Ползунок — теперь привязан к wrapper */
+.timeline-slider {
+    position: fixed;
+    right: calc(50% - 300px);
+    width: 40px;
+    height: 40px;
+    background: #b85a3a;
+    border: 2px solid #faf7f2;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px #b85a3a, 0 4px 15px rgba(0,0,0,0.1);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: top 0.2s ease-out;
+    pointer-events: none;
+}
+
+@media (max-width: 700px) {
+    .timeline-slider {
+        right: 15px;
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (min-width: 701px) and (max-width: 900px) {
+    .timeline-slider {
+        right: 20px;
+    }
+}
+
         
         /* Дресс-код */
         .dress-colors {
@@ -722,8 +735,7 @@
 <div id="splashScreen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('ваше_фото.jpg'); background-size: cover; background-position: center; z-index: 9999; display: flex; align-items: center; justify-content: center; flex-direction: column; cursor: pointer; transition: opacity 0.8s ease;">
     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.55);"></div>
     <div style="position: relative; text-align: center; color: white; padding: 20px; animation: gentlePulse 2s infinite alternate;">
-        <div style="font-size: 4rem;">🧶</div>
-        <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.3);">Никита & Юлия</h1>
+        <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.3);">Никита 🧶 Юлия</h1>
         <p style="margin-top: 1rem; color: #f0e6d8;">Любви связующая нить</p>
         <div class="bounce-arrow" style="font-size: 2rem; margin-top: 2rem;">💌</div>
         <p style="font-size: 0.8rem;">Нажмите, чтобы открыть приглашение</p>
@@ -734,7 +746,7 @@
     <source src="moya-pesnya.mp3" type="audio/mpeg">
 </audio>
 
-<div class="simple-slider" id="simpleSlider">🧶</div>
+<div class="timeline-slider" id="timelineSlider">🧶</div>
 
 <div class="main-content" id="mainContent">
     <div class="container">
@@ -800,66 +812,68 @@
         </div>
 
         <!-- ТАЙМИНГ -->
-        <div class="section fade-up delay-2">
-            <h2 class="section-title">Ход торжества</h2>
-            <div class="timeline-vertical" id="timelineContainer">
-                <div class="timeline-line"></div>
-                
-                <div class="timeline-item left">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-card">
-                        <div class="timeline-time">14:00</div>
-                        <div class="timeline-title">Сбор гостей & Welcome-drink</div>
-                        <div class="timeline-desc">Бар, легкие закуски, возможность пообщаться в непринужденной атмосфере и поучаствовать в небольших активностях</div>
-                    </div>
+<div class="section fade-up delay-2">
+    <h2 class="section-title">Тайминг мероприятия</h2>
+    <div class="timeline-wrapper" id="timelineWrapper">
+        <div class="timeline-vertical" id="timelineContainer">
+            <div class="timeline-line"></div>
+            
+            <div class="timeline-item left">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-time">14:00</div>
+                    <div class="timeline-title">Сбор гостей & Welcome-drink</div>
+                    <div class="timeline-desc">Бар, легкие закуски, возможность пообщаться в непринужденной атмосфере и поучаствовать в небольших активностях</div>
                 </div>
-                
-                <div class="timeline-item right">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-card">
-                        <div class="timeline-time">14:45</div>
-                        <div class="timeline-title">Церемония бракосочетания</div>
-                        <div class="timeline-desc">Трогательный момент, не забудьте воспользоваться платочками для слез счастья</div>
-                    </div>
+            </div>
+            
+            <div class="timeline-item right">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-time">14:45</div>
+                    <div class="timeline-title">Церемония бракосочетания</div>
+                    <div class="timeline-desc">Трогательный момент, не забудьте воспользоваться платочками для слез счастья</div>
                 </div>
-                
-                <div class="timeline-item left">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-card">
-                        <div class="timeline-time">15:30</div>
-                        <div class="timeline-title">Трансфер до места банкета</div>
-                        <div class="timeline-desc">Комфортабельный трансфер для всех гостей</div>
-                    </div>
+            </div>
+            
+            <div class="timeline-item left">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-time">15:30</div>
+                    <div class="timeline-title">Трансфер до места банкета</div>
+                    <div class="timeline-desc">Комфортабельный трансфер для всех гостей</div>
                 </div>
-                
-                <div class="timeline-item right">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-card">
-                        <div class="timeline-time">16:00</div>
-                        <div class="timeline-title">Начало праздничного банкета</div>
-                        <div class="timeline-desc">Торжественный ужин, поздравления, сюрпризы и море эмоций!</div>
-                    </div>
+            </div>
+            
+            <div class="timeline-item right">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-time">16:00</div>
+                    <div class="timeline-title">Начало праздничного банкета</div>
+                    <div class="timeline-desc">Торжественный ужин, поздравления, сюрпризы и море эмоций!</div>
                 </div>
-                
-                <div class="timeline-item left">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-card">
-                        <div class="timeline-time">22:00</div>
-                        <div class="timeline-title">Дискотека</div>
-                        <div class="timeline-desc">Любимые песни и зажигательные танцы</div>
-                    </div>
+            </div>
+            
+            <div class="timeline-item left">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-time">22:00</div>
+                    <div class="timeline-title">Дискотека</div>
+                    <div class="timeline-desc">Любимые песни, зажигательные танцы</div>
                 </div>
-                
-                <div class="timeline-item right">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-card">
-                        <div class="timeline-time">23:00</div>
-                        <div class="timeline-title">Финал вечера</div>
-                        <div class="timeline-desc">Осознание, что всё, к чему мы так долго готовились, так быстро закончилось</div>
-                    </div>
+            </div>
+            
+            <div class="timeline-item right">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-time">23:00</div>
+                    <div class="timeline-title">Финал вечера</div>
+                    <div class="timeline-desc">Осознание, что всё, к чему мы так долго готовились, так быстро закончилось</div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
         <!-- ДРЕСС-КОД -->
         <div class="section fade-up delay-3">
@@ -896,58 +910,59 @@
         </div>
 
         <!-- АНКЕТА ГОСТЯ -->
-        <div class="section fade-up delay-5">
-            <h2 class="section-title">📝 Подтвердите присутствие</h2>
-            <form id="guestForm">
-                <input type="hidden" id="guestNameHidden" name="entry.145767671">
-                
-                <div class="form-group">
-                    <label>1. Вы сможете быть на нашей свадьбе?</label>
-                    <select name="entry.1376278693" required>
-                        <option value="">Выберите вариант</option>
-                        <option value="Обязательно буду!">✅ Конечно да!</option>
-                        <option value="К сожалению, не смогу">💔 К сожалению, нет</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label>2. Какие напитки вы предпочитаете? (можно выбрать несколько)</label>
-                    <div class="drink-group" id="drinkGroup">
-                        <div class="drink-option" data-value="Красное вино">🍷 Красное вино</div>
-                        <div class="drink-option" data-value="Белое вино">🥂 Белое вино</div>
-                        <div class="drink-option" data-value="Шампанское">🍾 Шампанское</div>
-                        <div class="drink-option" data-value="Виски">🥃 Виски</div>
-                        <div class="drink-option" data-value="Водка/самогон">🍸 Водка/самогон</div>
-                        <div class="drink-option" data-value="Безалкогольные">🧃 Безалкогольные</div>
-                    </div>
-                    <div id="hiddenDrinkInputs"></div>
-                </div>
-                
-                <div class="form-group">
-                    <label>3. Есть ли у вас особые пищевые предпочтения?</label>
-                    <div class="preference-group" id="prefGroup">
-                        <div class="pref-option" data-value="Нет предпочтений">🍽️ Нет предпочтений</div>
-                        <div class="pref-option" data-value="Не ем мясо">🌱 Не ем мясо</div>
-                        <div class="pref-option" data-value="Не ем рыбу">🐟 Не ем рыбу</div>
-                        <div class="pref-option" data-value="Вегетарианец">🥬 Вегетарианец</div>
-                    </div>
-                    <input type="hidden" id="preferenceHidden" name="entry.527867260">
-                </div>
-                
-                <div class="form-group">
-                    <label>4. Есть ли у вас аллергии?</label>
-                    <textarea name="entry.115264557" rows="2" placeholder="Например: аллергия на орехи, цитрусовые,..."></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label>5. Ваши пожелания или комментарии</label>
-                    <textarea name="entry.1902261658" rows="2" placeholder="Например, ваша любимая песня?"></textarea>
-                </div>
-                
-                <button type="submit">Отправить ответ</button>
-                <div id="formStatus" style="margin-top: 15px; font-size: 0.85rem; text-align: center;"></div>
-            </form>
+<div class="section fade-up delay-5">
+    <h2 class="section-title"> Анкета гостя</h2>
+    <form id="guestForm">
+        <!-- Скрытое поле для имени (подставляется из ссылки) -->
+        <input type="hidden" id="guestNameHidden" name="entry.145767671">
+        
+        <div class="form-group">
+            <label>1. Вы сможете быть на нашей свадьбе?</label>
+            <select name="entry.1376278693" required>
+                <option value="">Выберите вариант</option>
+                <option value="Обязательно буду!">✅ Конечно да!</option>
+                <option value="К сожалению, не смогу">💔 К сожалению, нет</option>
+            </select>
         </div>
+        
+        <div class="form-group">
+            <label>2. Какие напитки вы предпочитаете? (можно выбрать несколько)</label>
+            <div class="drink-group" id="drinkGroup">
+                <div class="drink-option" data-value="Красное вино">🍷 Красное вино</div>
+                <div class="drink-option" data-value="Белое вино">🥂 Белое вино</div>
+                <div class="drink-option" data-value="Шампанское">🍾 Шампанское</div>
+                <div class="drink-option" data-value="Виски">🥃 Виски</div>
+                <div class="drink-option" data-value="Водка/самогон">🍸 Водка/самогон</div>
+                <div class="drink-option" data-value="Безалкогольные">🧃 Безалкогольные</div>
+            </div>
+            <div id="hiddenDrinkInputs"></div>
+        </div>
+        
+        <div class="form-group">
+            <label>3. Есть ли у вас особые пищевые предпочтения?</label>
+            <div class="preference-group" id="prefGroup">
+                <div class="pref-option" data-value="Нет предпочтений">🍽️ Нет предпочтений</div>
+                <div class="pref-option" data-value="Не ем мясо">🌱 Не ем мясо</div>
+                <div class="pref-option" data-value="Не ем рыбу">🐟 Не ем рыбу</div>
+                <div class="pref-option" data-value="Вегетарианец">🥬 Вегетарианец</div>
+            </div>
+            <input type="hidden" id="preferenceHidden" name="entry.527867260">
+        </div>
+        
+        <div class="form-group">
+            <label>4. Есть ли у вас аллергии?</label>
+            <textarea name="entry.115264557" rows="2" placeholder="Например: аллергия на орехи, цитрусовые..."></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label>5. Ваши пожелания или комментарии</label>
+            <textarea name="entry.1902261658" rows="2" placeholder="Например, ваша любимая песня?"></textarea>
+        </div>
+        
+        <button type="submit">Отправить ответ</button>
+        <div id="formStatus" style="margin-top: 15px; font-size: 0.85rem; text-align: center;"></div>
+    </form>
+</div>
 
         <!-- КАРТА -->
         <div class="section fade-up delay-1">
@@ -978,7 +993,7 @@
 
         <!-- ФИНАЛЬНОЕ СООБЩЕНИЕ -->
         <div class="final-message fade-up delay-3">
-            До встречи на празднике <br>
+            До встречи на нашем празднике! <br>
 с любовью Никита и Юля ❤️
         </div>
 
@@ -1101,127 +1116,159 @@
     createDots();
     
     // ========== ВЫБОР НАПИТКОВ ==========
-    const drinkOptions = document.querySelectorAll('.drink-option');
-    const hiddenDrinkContainer = document.getElementById('hiddenDrinkInputs');
-    let selectedDrinks = [];
-    
-    drinkOptions.forEach(opt => {
-        opt.addEventListener('click', () => {
-            const drinkValue = opt.getAttribute('data-value');
-            if (opt.classList.contains('selected')) {
-                opt.classList.remove('selected');
-                selectedDrinks = selectedDrinks.filter(d => d !== drinkValue);
-            } else {
-                opt.classList.add('selected');
-                selectedDrinks.push(drinkValue);
-            }
+const drinkOptions = document.querySelectorAll('.drink-option');
+const hiddenDrinkContainer = document.getElementById('hiddenDrinkInputs');
+let selectedDrinks = [];
+
+drinkOptions.forEach(opt => {
+    opt.addEventListener('click', () => {
+        const drinkValue = opt.getAttribute('data-value');
+        if (opt.classList.contains('selected')) {
+            opt.classList.remove('selected');
+            selectedDrinks = selectedDrinks.filter(d => d !== drinkValue);
+        } else {
+            opt.classList.add('selected');
+            selectedDrinks.push(drinkValue);
+        }
+        updateHiddenDrinkInputs();
+    });
+});
+
+function updateHiddenDrinkInputs() {
+    hiddenDrinkContainer.innerHTML = '';
+    selectedDrinks.forEach(drink => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'entry.161849685';
+        input.value = drink;
+        hiddenDrinkContainer.appendChild(input);
+    });
+}
+
+// ========== ПИЩЕВЫЕ ПРЕДПОЧТЕНИЯ ==========
+const prefOptions = document.querySelectorAll('.pref-option');
+const preferenceHidden = document.getElementById('preferenceHidden');
+
+prefOptions.forEach(opt => {
+    opt.addEventListener('click', () => {
+        const prefValue = opt.getAttribute('data-value');
+        if (opt.classList.contains('selected')) {
+            opt.classList.remove('selected');
+            preferenceHidden.value = '';
+        } else {
+            prefOptions.forEach(o => o.classList.remove('selected'));
+            opt.classList.add('selected');
+            preferenceHidden.value = prefValue;
+        }
+    });
+});
+
+// ========== ОТПРАВКА ФОРМЫ ==========
+const form = document.getElementById('guestForm');
+const statusDiv = document.getElementById('formStatus');
+const GOOGLE_FORM_ID = '1FAIpQLSffEuLH9K8qkNw0mgaf7wNna0peQ85CbAnHbh6hdgpKGJ7JGQ';
+
+if (form) {
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const guestName = document.getElementById('guestNameHidden').value;
+        if (!guestName) {
+            statusDiv.innerHTML = '❌ Пожалуйста, перейдите по именной ссылке с параметром ?guest=ВашеИмя';
+            statusDiv.style.color = '#b85a3a';
+            return;
+        }
+        
+        const attendanceSelect = document.querySelector('select[name="entry.1376278693"]');
+        if (!attendanceSelect.value) {
+            statusDiv.innerHTML = '❌ Пожалуйста, выберите, сможете ли вы быть';
+            statusDiv.style.color = '#b85a3a';
+            return;
+        }
+        
+        statusDiv.innerHTML = '⏳ Отправляем...';
+        statusDiv.style.color = '#b85a3a';
+        
+        const formData = new FormData(form);
+        const urlEncodedData = new URLSearchParams(formData).toString();
+        
+        try {
+            await fetch(`https://docs.google.com/forms/d/e/${GOOGLE_FORM_ID}/formResponse`, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: urlEncodedData
+            });
+            
+            statusDiv.innerHTML = '✅ Спасибо! Ваш ответ отправлен. Ждём вас! 🎉';
+            statusDiv.style.color = '#2d6a4f';
+            
+            // Очищаем форму
+            attendanceSelect.value = '';
+            selectedDrinks = [];
+            drinkOptions.forEach(opt => opt.classList.remove('selected'));
             updateHiddenDrinkInputs();
-        });
+            prefOptions.forEach(opt => opt.classList.remove('selected'));
+            preferenceHidden.value = '';
+            document.querySelectorAll('textarea').forEach(t => t.value = '');
+            
+        } catch (error) {
+            console.error('Ошибка:', error);
+            statusDiv.innerHTML = '⚠️ Произошла ошибка. Попробуйте ещё раз.';
+            statusDiv.style.color = '#b85a3a';
+        }
+    });
+}
+    
+    // ========== ПОЛЗУНОК (ПРИВЯЗАН К НИТИ) ==========
+const timelineSlider = document.getElementById('timelineSlider');
+const timelineContainer = document.getElementById('timelineContainer');
+const timelineDots = document.querySelectorAll('.timeline-dot');
+
+function updateTimelineSlider() {
+    if (!timelineSlider || !timelineContainer || timelineDots.length === 0) return;
+    
+    const containerRect = timelineContainer.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    
+    // Проверяем, виден ли контейнер на экране
+    if (containerRect.bottom < 0 || containerRect.top > windowHeight) {
+        // Если контейнер не виден — скрываем ползунок
+        timelineSlider.style.opacity = '0';
+        return;
+    }
+    
+    timelineSlider.style.opacity = '1';
+    
+    // Находим ближайшую точку (timeline-dot) в поле зрения
+    let closestDot = null;
+    let closestDistance = Infinity;
+    const viewportCenter = windowHeight / 2;
+    
+    timelineDots.forEach(dot => {
+        const dotRect = dot.getBoundingClientRect();
+        const dotCenter = dotRect.top + dotRect.height / 2;
+        const distance = Math.abs(dotCenter - viewportCenter);
+        
+        if (distance < closestDistance && dotRect.bottom > 0 && dotRect.top < windowHeight) {
+            closestDistance = distance;
+            closestDot = dot;
+        }
     });
     
-    function updateHiddenDrinkInputs() {
-        hiddenDrinkContainer.innerHTML = '';
-        selectedDrinks.forEach(drink => {
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = 'entry.161849685';
-            input.value = drink;
-            hiddenDrinkContainer.appendChild(input);
-        });
+    if (closestDot) {
+        const dotRect = closestDot.getBoundingClientRect();
+        let sliderTop = dotRect.top + dotRect.height / 2 - 20;
+        sliderTop = Math.min(window.innerHeight - 60, Math.max(60, sliderTop));
+        timelineSlider.style.top = sliderTop + 'px';
     }
-    
-    // ========== ПИЩЕВЫЕ ПРЕДПОЧТЕНИЯ ==========
-    const prefOptions = document.querySelectorAll('.pref-option');
-    const preferenceHidden = document.getElementById('preferenceHidden');
-    
-    prefOptions.forEach(opt => {
-        opt.addEventListener('click', () => {
-            const prefValue = opt.getAttribute('data-value');
-            if (opt.classList.contains('selected')) {
-                opt.classList.remove('selected');
-                preferenceHidden.value = '';
-            } else {
-                prefOptions.forEach(o => o.classList.remove('selected'));
-                opt.classList.add('selected');
-                preferenceHidden.value = prefValue;
-            }
-        });
-    });
-    
-    // ========== ОТПРАВКА ФОРМЫ ==========
-    const form = document.getElementById('guestForm');
-    const statusDiv = document.getElementById('formStatus');
-    const GOOGLE_FORM_ID = '1FAIpQLSffEuLH9K8qkNw0mgaf7wNna0peQ85CbAnHbh6hdgpKGJ7JGQ';
-    
-    if (form) {
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            if (!fixedGuestName) {
-                statusDiv.innerHTML = '❌ Ошибка: перейдите по именной ссылке (?guest=ВашеИмя)';
-                return;
-            }
-            const attendanceSelect = document.querySelector('select[name="entry.1376278693"]');
-            if (!attendanceSelect.value) {
-                statusDiv.innerHTML = '❌ Пожалуйста, выберите, сможете ли вы быть';
-                return;
-            }
-            statusDiv.innerHTML = '⏳ Отправляем...';
-            const formData = new FormData(form);
-            const urlEncodedData = new URLSearchParams(formData).toString();
-            try {
-                await fetch(`https://docs.google.com/forms/d/e/${GOOGLE_FORM_ID}/formResponse`, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: urlEncodedData
-                });
-                statusDiv.innerHTML = '✅ Спасибо! Ваш ответ отправлен. Ждём вас! 🎉';
-                attendanceSelect.value = '';
-                selectedDrinks = [];
-                drinkOptions.forEach(opt => opt.classList.remove('selected'));
-                updateHiddenDrinkInputs();
-                prefOptions.forEach(opt => opt.classList.remove('selected'));
-                preferenceHidden.value = '';
-                document.querySelectorAll('textarea').forEach(t => t.value = '');
-            } catch (error) {
-                statusDiv.innerHTML = '⚠️ Ошибка. Попробуйте ещё раз';
-            }
-        });
-    }
-    
-    // ========== ПОЛЗУНОК (ПРАВИЛЬНО ПРИВЯЗАН К НИТИ) ==========
-    const slider = document.getElementById('simpleSlider');
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    
-    function updateSlider() {
-        if (!slider || timelineItems.length === 0) return;
-        
-        let currentIndex = 0;
-        const windowHeight = window.innerHeight;
-        
-        for (let i = 0; i < timelineItems.length; i++) {
-            const itemRect = timelineItems[i].getBoundingClientRect();
-            const itemCenter = itemRect.top + itemRect.height / 2;
-            if (itemCenter > 0 && itemCenter < windowHeight) {
-                currentIndex = i;
-            }
-        }
-        
-        const activeItem = timelineItems[currentIndex];
-        if (activeItem) {
-            const dot = activeItem.querySelector('.timeline-dot');
-            if (dot) {
-                const dotRect = dot.getBoundingClientRect();
-                let sliderTop = dotRect.top + dotRect.height / 2 - 22;
-                sliderTop = Math.min(window.innerHeight - 70, Math.max(70, sliderTop));
-                slider.style.top = sliderTop + 'px';
-            }
-        }
-    }
-    
-    window.addEventListener('scroll', updateSlider);
-    window.addEventListener('resize', updateSlider);
-    setTimeout(updateSlider, 200);
+}
+
+window.addEventListener('scroll', updateTimelineSlider);
+window.addEventListener('resize', updateTimelineSlider);
+setTimeout(updateTimelineSlider, 200);
     
     // ========== ТАЙМЕР ==========
     function updateCountdown() {
