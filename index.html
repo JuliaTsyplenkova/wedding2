@@ -6,751 +6,137 @@
     <title>Приглашение на свадьбу | Никита & Юлия</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            color: #2c2418;
-            line-height: 1.5;
-            background: #faf7f2;
-            overflow-x: hidden;
-            position: relative;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; color: #2c2418; line-height: 1.5; background: #faf7f2; overflow-x: hidden; }
+        
         /* МЕРЦАЮЩИЕ ИСКРЫ */
-        .sparkles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .sparkle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #ffd700;
-            border-radius: 50%;
-            opacity: 0;
-            animation: twinkle 3s ease-in-out infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.5); }
-        }
-
+        .sparkles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+        .sparkle { position: absolute; width: 2px; height: 2px; background: #ffd700; border-radius: 50%; opacity: 0; animation: twinkle 3s ease-in-out infinite; }
+        @keyframes twinkle { 0%, 100% { opacity: 0; } 50% { opacity: 0.8; transform: scale(1.5); } }
+        
         /* ПАРЯЩИЕ ЭЛЕМЕНТЫ */
-        .floating-elements {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        .float-item {
-            position: absolute;
-            font-size: 1rem;
-            opacity: 0.08;
-            animation: floatAround linear infinite;
-        }
-
-        @keyframes floatAround {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.08; }
-            90% { opacity: 0.08; }
-            100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
-        }
-
-        .main-content {
-            position: relative;
-            z-index: 2;
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-        .main-content.visible {
-            opacity: 1;
-        }
-
-        .container {
-            max-width: 850px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
-        }
-
-        /* ПРЕМИАЛЬНЫЕ АНИМАЦИИ */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(50px) scale(0.96);
-            transition: opacity 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-        }
-
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
+        .floating-elements { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: hidden; }
+        .float-item { position: absolute; font-size: 1rem; opacity: 0.08; animation: floatAround linear infinite; }
+        @keyframes floatAround { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 0.08; } 90% { opacity: 0.08; } 100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; } }
+        
+        .main-content { position: relative; z-index: 2; opacity: 0; transition: opacity 1s ease; }
+        .main-content.visible { opacity: 1; }
+        .container { max-width: 850px; margin: 0 auto; padding: 2rem 1.5rem; }
+        
+        .fade-up { opacity: 0; transform: translateY(50px) scale(0.96); transition: opacity 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
+        .fade-up.visible { opacity: 1; transform: translateY(0) scale(1); }
         .delay-1 { transition-delay: 0.1s; }
         .delay-2 { transition-delay: 0.2s; }
         .delay-3 { transition-delay: 0.3s; }
         .delay-4 { transition-delay: 0.4s; }
         .delay-5 { transition-delay: 0.5s; }
-
-        /* РОСКОШНЫЕ КАРТОЧКИ */
-        .card-luxury {
-            background: rgba(255, 255, 255, 0.96);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            transition: all 0.4s ease;
-            position: relative;
-            border: 1px solid rgba(184, 90, 58, 0.15);
-            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
-        }
-
-        .card-luxury::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(180deg, #b85a3a, #e8c4a0, #b85a3a);
-        }
-
-        .card-luxury:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.15);
-            border-color: rgba(184, 90, 58, 0.3);
-        }
-
-        /* ЗАГОЛОВКИ */
-        .section-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.5rem;
-            font-weight: 500;
-            color: #b85a3a;
-            text-align: center;
-            margin-bottom: 2rem;
-            letter-spacing: 2px;
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
-
-        .section-title::before,
-        .section-title::after {
-            content: "✦";
-            font-size: 1rem;
-            color: #b85a3a;
-            opacity: 0.5;
-            margin: 0 15px;
-            display: inline-block;
-        }
-
-        /* ПРИВЕТСТВИЕ */
-        .hero {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .date-badge {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
-            letter-spacing: 8px;
-            color: #b85a3a;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            font-weight: 300;
-        }
-
-        .hero h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3.5rem;
-            font-weight: 600;
-            color: #2c2418;
-            letter-spacing: 3px;
-            margin: 0.5rem 0;
-        }
-
-        /* ТАЙМЕР */
-        .countdown-wrapper {
-            text-align: center;
-            margin: 2rem auto;
-            padding: 1.2rem;
-            max-width: 550px;
-            border: 1px solid rgba(184, 90, 58, 0.2);
+        
+        .card-luxury { background: rgba(255, 255, 255, 0.96); padding: 2rem; margin-bottom: 2rem; transition: all 0.4s ease; position: relative; border: 1px solid rgba(184, 90, 58, 0.15); box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1); }
+        .card-luxury::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(180deg, #b85a3a, #e8c4a0, #b85a3a); }
+        .card-luxury:hover { transform: translateY(-8px); box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.15); border-color: rgba(184, 90, 58, 0.3); }
+        
+        .section-title { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 500; color: #b85a3a; text-align: center; margin-bottom: 2rem; letter-spacing: 2px; position: relative; display: inline-block; width: 100%; }
+        .section-title::before, .section-title::after { content: "✦"; font-size: 1rem; color: #b85a3a; opacity: 0.5; margin: 0 15px; display: inline-block; }
+        
+        .hero { text-align: center; margin-bottom: 2rem; }
+        .date-badge { font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 6px; color: #b85a3a; margin-bottom: 1rem; text-transform: uppercase; font-weight: 300; }
+        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 600; color: #2c2418; letter-spacing: 2px; margin: 0.5rem 0; }
+        
+        .countdown-wrapper { text-align: center; margin: 2rem auto; padding: 1rem; max-width: 100%; border: 1px solid rgba(184, 90, 58, 0.2); }
+        .countdown-title { font-size: 0.7rem; letter-spacing: 4px; color: #b85a3a; margin-bottom: 0.8rem; text-transform: uppercase; opacity: 0.7; }
+        .countdown-timer { display: flex; justify-content: center; align-items: center; gap: 0.3rem; flex-wrap: nowrap; }
+        .countdown-block { background: transparent; border: 1px solid rgba(184, 90, 58, 0.3); padding: 0.3rem 0.5rem; min-width: 55px; }
+        .countdown-number { font-size: 1.3rem; font-weight: 600; color: #b85a3a; font-family: 'Cormorant Garamond', serif; }
+        .countdown-label { font-size: 0.5rem; color: #b85a3a; display: block; letter-spacing: 1px; text-transform: uppercase; }
+        .countdown-separator { font-size: 1rem; font-weight: 300; color: #b85a3a; }
+        
+        @media (min-width: 500px) {
+            .countdown-number { font-size: 1.8rem; }
+            .countdown-block { min-width: 70px; padding: 0.5rem 0.8rem; }
+            .countdown-separator { font-size: 1.4rem; }
+            .countdown-label { font-size: 0.55rem; }
         }
         
-        .countdown-title {
-            font-size: 0.7rem;
-            letter-spacing: 4px;
-            color: #b85a3a;
-            margin-bottom: 0.8rem;
-            text-transform: uppercase;
-            opacity: 0.7;
-        }
+        .calendar-wrapper { border: 1px solid rgba(184, 90, 58, 0.2); padding: 1.2rem; margin-top: 1rem; transition: all 0.3s ease; }
+        .calendar-month { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: #b85a3a; text-align: center; display: block; margin-bottom: 1rem; }
+        .calendar-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 0.7rem; font-weight: 600; color: #b85a3a; margin-bottom: 0.5rem; padding: 0.3rem 0; border-bottom: 1px solid rgba(184, 90, 58, 0.2); }
+        .calendar-days { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; gap: 4px; }
+        .calendar-day { padding: 6px 4px; font-size: 0.8rem; color: #4a3b2c; cursor: default; }
+        .calendar-day.other-month { color: #c0b0a0; }
+        .calendar-day.wedding-day { background: #b85a3a; color: white; font-weight: bold; animation: weddingPulse 2s infinite; border-radius: 50%; }
+        @keyframes weddingPulse { 0% { box-shadow: 0 0 0 0 rgba(184, 90, 58, 0.4); } 70% { box-shadow: 0 0 0 8px rgba(184, 90, 58, 0); } 100% { box-shadow: 0 0 0 0 rgba(184, 90, 58, 0); } }
+        .calendar-note { text-align: center; margin-top: 0.8rem; font-size: 0.7rem; color: #b85a3a; }
         
-        .countdown-timer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
+        .about-container { display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; }
+        .gallery-container { flex: 1; min-width: 250px; position: relative; }
+        .gallery-slider { position: relative; width: 100%; overflow: hidden; border: 1px solid rgba(184, 90, 58, 0.2); aspect-ratio: 3 / 4; }
+        .gallery-track { display: flex; transition: transform 0.4s ease; height: 100%; cursor: grab; }
+        .gallery-slide { flex: 0 0 100%; height: 100%; }
+        .gallery-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .gallery-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; background: rgba(255,255,255,0.9); border: 1px solid rgba(184, 90, 58, 0.3); cursor: pointer; font-size: 1.2rem; color: #b85a3a; display: flex; align-items: center; justify-content: center; z-index: 10; }
+        .gallery-nav.prev { left: 8px; }
+        .gallery-nav.next { right: 8px; }
+        .gallery-dots { display: flex; justify-content: center; gap: 8px; margin-top: 12px; }
+        .gallery-dot { width: 8px; height: 8px; background: #e0c8b0; border-radius: 50%; cursor: pointer; }
+        .gallery-dot.active { background: #b85a3a; width: 24px; border-radius: 4px; }
+        .about-text { flex: 1.5; }
+        .about-text p { margin-bottom: 1rem; color: #4a3b2c; font-size: 0.9rem; line-height: 1.5; }
+        .about-signature { display: flex; align-items: center; justify-content: flex-start; gap: 0.8rem; margin-top: 1rem; font-size: 1rem; color: #b85a3a; font-family: 'Cormorant Garamond', serif; }
         
-        .countdown-block {
-            background: transparent;
-            border: 1px solid rgba(184, 90, 58, 0.3);
-            padding: 0.5rem 0.8rem;
-            min-width: 70px;
-        }
+        .timeline-container { display: flex; gap: 20px; max-width: 700px; margin: 0 auto; }
+        .timeline-line-wrapper { position: relative; width: 40px; flex-shrink: 0; }
+        .timeline-line { position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: linear-gradient(180deg, #b85a3a, #e0c8b0, #b85a3a); }
+        .timeline-dots { position: relative; height: 100%; }
+        .timeline-dot { position: absolute; left: 50%; transform: translateX(-50%); width: 10px; height: 10px; background: #b85a3a; border: 2px solid #faf7f2; border-radius: 50%; box-shadow: 0 0 0 2px #b85a3a; z-index: 2; }
+        .timeline-slider { position: absolute; left: 50%; transform: translateX(-50%); width: 26px; height: 26px; background: #b85a3a; border: 2px solid #faf7f2; border-radius: 50%; box-shadow: 0 0 0 2px #b85a3a; z-index: 10; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; transition: top 0.4s ease-out; pointer-events: none; }
+        .timeline-cards { flex: 1; }
+        .timeline-card-item { padding: 0.8rem 1rem; margin-bottom: 1.5rem; transition: all 0.3s ease; cursor: pointer; border-left: 3px solid transparent; }
+        .timeline-card-item.active { background: white; border-left: 3px solid #b85a3a; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+        .timeline-time { font-weight: 600; color: #b85a3a; font-size: 0.9rem; margin-bottom: 0.2rem; }
+        .timeline-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 0.2rem; color: #2c2418; }
+        .timeline-desc { font-size: 0.7rem; color: #8b735a; }
         
-        .countdown-number {
-            font-size: 2rem;
-            font-weight: 600;
-            color: #b85a3a;
-            font-family: 'Cormorant Garamond', serif;
-        }
+        .dress-colors { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin: 1.5rem 0; }
+        .color-tag { padding: 0.4rem 1rem; border: 1px solid #b85a3a; font-size: 0.8rem; transition: all 0.3s ease; cursor: default; }
+        .color-tag:hover { background: #b85a3a; color: white; transform: scale(1.05); }
         
-        .countdown-label {
-            font-size: 0.55rem;
-            color: #b85a3a;
-            display: block;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
+        .lottery-block { text-align: center; padding: 1.5rem; border: 1px solid rgba(184, 90, 58, 0.2); transition: all 0.3s ease; }
+        .lottery-block:hover { border-color: #b85a3a; transform: translateY(-5px); }
+        .lottery-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .lottery-title { font-size: 1.1rem; font-weight: 600; color: #b85a3a; margin-bottom: 0.8rem; }
+        .lottery-note { display: inline-block; padding: 0.4rem 0.8rem; border: 1px solid #b85a3a; margin-top: 0.5rem; font-size: 0.8rem; }
         
-        .countdown-separator {
-            font-size: 1.6rem;
-            font-weight: 300;
-            color: #b85a3a;
-        }
-
-        /* КАЛЕНДАРЬ */
-        .calendar-wrapper {
-            border: 1px solid rgba(184, 90, 58, 0.2);
-            padding: 1.2rem;
-            margin-top: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .calendar-month {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #b85a3a;
-            text-align: center;
-            display: block;
-            margin-bottom: 1rem;
-        }
-
-        .calendar-weekdays {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            text-align: center;
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: #b85a3a;
-            margin-bottom: 0.5rem;
-            padding: 0.3rem 0;
-            border-bottom: 1px solid rgba(184, 90, 58, 0.2);
-        }
-
-        .calendar-days {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            text-align: center;
-            gap: 4px;
-        }
-
-        .calendar-day {
-            padding: 8px 4px;
-            font-size: 0.85rem;
-            color: #4a3b2c;
-            border-radius: 50%;
-            transition: all 0.2s ease;
-            cursor: default;
-        }
-
-        .calendar-day.other-month {
-            color: #c0b0a0;
-        }
-
-        .calendar-day.wedding-day {
-            background: #b85a3a;
-            color: white;
-            font-weight: bold;
-            animation: weddingPulse 2s infinite;
-        }
-
-        @keyframes weddingPulse {
-            0% { box-shadow: 0 0 0 0 rgba(184, 90, 58, 0.4); }
-            70% { box-shadow: 0 0 0 8px rgba(184, 90, 58, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(184, 90, 58, 0); }
-        }
-
-        .calendar-note {
-            text-align: center;
-            margin-top: 0.8rem;
-            font-size: 0.7rem;
-            color: #b85a3a;
-        }
-
-        /* ГАЛЕРЕЯ */
-        .about-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        .gallery-container {
-            flex: 1;
-            min-width: 250px;
-            position: relative;
-        }
-
-        .gallery-slider {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            border: 1px solid rgba(184, 90, 58, 0.2);
-            aspect-ratio: 3 / 4;
-        }
-
-        .gallery-track {
-            display: flex;
-            transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            height: 100%;
-            cursor: grab;
-        }
-
-        .gallery-slide {
-            flex: 0 0 100%;
-            height: 100%;
-        }
-
-        .gallery-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .gallery-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 36px;
-            height: 36px;
-            background: rgba(255,255,255,0.9);
-            border: 1px solid rgba(184, 90, 58, 0.3);
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: #b85a3a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-            z-index: 10;
-        }
-
-        .gallery-nav.prev { left: 12px; }
-        .gallery-nav.next { right: 12px; }
-
-        .gallery-dots {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 12px;
-        }
-
-        .gallery-dot {
-            width: 8px;
-            height: 8px;
-            background: #e0c8b0;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .gallery-dot.active {
-            background: #b85a3a;
-            width: 24px;
-            border-radius: 4px;
-        }
-
-        .about-text {
-            flex: 1.5;
-        }
-
-        .about-text p {
-            margin-bottom: 1.2rem;
-            color: #4a3b2c;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .about-signature {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 0.8rem;
-            margin-top: 1.5rem;
-            font-size: 1rem;
-            color: #b85a3a;
-            font-family: 'Cormorant Garamond', serif;
-        }
-
-        /* ТАЙМИНГ */
-        .timeline-container {
-            display: flex;
-            gap: 30px;
-            max-width: 700px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .timeline-line-wrapper {
-            position: relative;
-            width: 50px;
-            flex-shrink: 0;
-        }
-
-        .timeline-line {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(180deg, #b85a3a, #e0c8b0, #b85a3a);
-        }
-
-        .timeline-dots {
-            position: relative;
-            height: 100%;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 10px;
-            height: 10px;
-            background: #b85a3a;
-            border: 2px solid #faf7f2;
-            border-radius: 50%;
-            box-shadow: 0 0 0 2px #b85a3a;
-            z-index: 2;
-        }
-
-        .timeline-slider {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 28px;
-            height: 28px;
-            background: #b85a3a;
-            border: 2px solid #faf7f2;
-            border-radius: 50%;
-            box-shadow: 0 0 0 2px #b85a3a;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            transition: top 0.4s ease-out;
-            pointer-events: none;
-        }
-
-        .timeline-cards {
-            flex: 1;
-        }
-
-        .timeline-card-item {
-            padding: 1rem 1.2rem;
-            margin-bottom: 1.8rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border-left: 3px solid transparent;
-        }
-
-        .timeline-card-item.active {
-            background: white;
-            border-left: 3px solid #b85a3a;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-        }
-
-        .timeline-time {
-            font-weight: 600;
-            color: #b85a3a;
-            font-size: 1rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .timeline-title {
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-bottom: 0.3rem;
-            color: #2c2418;
-        }
-
-        .timeline-desc {
-            font-size: 0.75rem;
-            color: #8b735a;
-            line-height: 1.4;
-        }
-
-        @media (max-width: 700px) {
-            .timeline-container { gap: 15px; }
-            .timeline-line-wrapper { width: 35px; }
-            .timeline-card-item { padding: 0.8rem 1rem; margin-bottom: 1.5rem; }
-        }
-
-        /* ДРЕСС-КОД */
-        .dress-colors {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 1.5rem 0;
-        }
-
-        .color-tag {
-            padding: 0.5rem 1.2rem;
-            border: 1px solid #b85a3a;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            cursor: default;
-        }
-
-        .color-tag:hover {
-            background: #b85a3a;
-            color: white;
-            transform: scale(1.05);
-        }
-
-        /* ЛОТЕРЕЯ */
-        .lottery-block {
-            text-align: center;
-            padding: 2rem 1.5rem;
-            border: 1px solid rgba(184, 90, 58, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .lottery-block:hover {
-            border-color: #b85a3a;
-            transform: translateY(-5px);
-        }
-
-        .lottery-icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .lottery-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #b85a3a;
-            margin-bottom: 1rem;
-        }
-
-        .lottery-note {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            border: 1px solid #b85a3a;
-            margin-top: 0.5rem;
-        }
-
-        /* АНКЕТА */
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            font-weight: 500;
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #2c2418;
-            font-size: 0.9rem;
-        }
-
-        .drink-group, .preference-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-top: 0.5rem;
-        }
-
-        .drink-option, .pref-option {
-            padding: 0.5rem 1rem;
-            background: white;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border: 1px solid #e8ddd0;
-            font-size: 0.85rem;
-        }
-
-        .drink-option.selected, .pref-option.selected {
-            background: #b85a3a;
-            color: white;
-            border-color: #b85a3a;
-        }
-
-        input, select, textarea {
-            padding: 12px 16px;
-            border: 1px solid #e8ddd0;
-            font-family: inherit;
-            font-size: 0.9rem;
-            background: white;
-            width: 100%;
-            margin-bottom: 0.5rem;
-            transition: all 0.2s ease;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #b85a3a;
-        }
-
-        button {
-            padding: 14px 24px;
-            border: 1px solid #b85a3a;
-            font-family: inherit;
-            font-size: 0.95rem;
-            font-weight: 500;
-            background: transparent;
-            color: #b85a3a;
-            cursor: pointer;
-            width: 100%;
-            transition: all 0.2s ease;
-        }
-
-        button:hover {
-            background: #b85a3a;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* КАРТА */
-        .map-container {
-            margin: 1rem 0;
-        }
-
-        .map-frame {
-            width: 100%;
-            height: 250px;
-            border: 1px solid rgba(184, 90, 58, 0.2);
-        }
-
-        .transfer-note {
-            text-align: center;
-            font-size: 0.85rem;
-            margin: 1rem 0;
-        }
-
-        .map-open-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            border: 1px solid #b85a3a;
-            background: transparent;
-            color: #b85a3a;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .map-open-btn:hover {
-            background: #b85a3a;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* КОНТАКТЫ */
-        .contact-card {
-            text-align: center;
-        }
-
-        .contact-icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-name {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #b85a3a;
-            margin-top: 0.5rem;
-        }
-
-        .contact-phone {
-            font-size: 1.2rem;
-            margin: 0.8rem 0;
-        }
-
-        .contact-phone a {
-            color: #2c2418;
-            text-decoration: none;
-        }
-
-        .contact-links {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 15px;
-            flex-wrap: wrap;
-        }
-
-        .contact-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            padding: 10px 20px;
-            text-decoration: none;
-            transition: all 0.3s;
-            border: 1px solid;
-        }
-
+        .form-group { margin-bottom: 1.2rem; }
+        .form-group label { font-weight: 500; display: block; margin-bottom: 0.4rem; font-size: 0.85rem; }
+        .drink-group, .preference-group { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+        .drink-option, .pref-option { padding: 0.4rem 0.8rem; background: white; cursor: pointer; border: 1px solid #e8ddd0; font-size: 0.8rem; }
+        .drink-option.selected, .pref-option.selected { background: #b85a3a; color: white; border-color: #b85a3a; }
+        input, select, textarea { padding: 10px 14px; border: 1px solid #e8ddd0; font-family: inherit; font-size: 0.85rem; background: white; width: 100%; margin-bottom: 0.5rem; }
+        button { padding: 12px 20px; border: 1px solid #b85a3a; font-family: inherit; font-size: 0.9rem; font-weight: 500; background: transparent; color: #b85a3a; cursor: pointer; width: 100%; transition: all 0.2s ease; }
+        button:hover { background: #b85a3a; color: white; transform: translateY(-2px); }
+        
+        .map-frame { width: 100%; height: 220px; border: 1px solid rgba(184, 90, 58, 0.2); }
+        .transfer-note { text-align: center; font-size: 0.8rem; margin: 0.8rem 0; }
+        .map-open-btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border: 1px solid #b85a3a; background: transparent; color: #b85a3a; text-decoration: none; transition: all 0.3s; font-size: 0.85rem; }
+        .map-open-btn:hover { background: #b85a3a; color: white; }
+        
+        .contact-card { text-align: center; }
+        .contact-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .contact-name { font-size: 1.1rem; font-weight: 600; color: #b85a3a; margin-top: 0.5rem; }
+        .contact-phone { font-size: 1.1rem; margin: 0.8rem 0; }
+        .contact-phone a { color: #2c2418; text-decoration: none; }
+        .contact-links { display: flex; gap: 12px; justify-content: center; margin-top: 12px; flex-wrap: wrap; }
+        .contact-link { display: inline-flex; align-items: center; gap: 5px; padding: 8px 16px; text-decoration: none; transition: all 0.3s; border: 1px solid; font-size: 0.8rem; }
         .tg-link { border-color: #0088cc; color: #0088cc; background: transparent; }
         .tg-link:hover { background: #0088cc; color: white; }
         .vk-link { border-color: #4c6c8c; color: #4c6c8c; background: transparent; }
         .vk-link:hover { background: #4c6c8c; color: white; }
-
-        /* ФИНАЛ */
-        .final-message {
-            text-align: center;
-            padding: 2rem 0;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem;
-            color: #b85a3a;
-            border-top: 1px solid rgba(184, 90, 58, 0.2);
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 1rem;
-            font-size: 0.65rem;
-            color: #b0886a;
-            padding-bottom: 1rem;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); opacity: 0.6; }
-            50% { transform: translateY(8px); opacity: 1; }
-        }
-        .bounce-arrow { animation: bounce 1.5s infinite; display: inline-block; font-size: 2rem; }
+        
+        .final-message { text-align: center; padding: 1.5rem 0; font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: #b85a3a; border-top: 1px solid rgba(184, 90, 58, 0.2); }
+        footer { text-align: center; margin-top: 1rem; font-size: 0.6rem; color: #b0886a; padding-bottom: 1rem; }
+        
+        .bounce-arrow { animation: bounce 1.5s infinite; display: inline-block; font-size: 1.8rem; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); opacity: 0.6; } 50% { transform: translateY(8px); opacity: 1; } }
     </style>
 </head>
 <body>
@@ -762,12 +148,12 @@
 <div id="splashScreen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('ваше_фото.jpg'); background-size: cover; background-position: center; z-index: 9999; display: flex; align-items: center; justify-content: space-between; flex-direction: column; cursor: pointer; transition: opacity 0.8s ease, transform 6s ease;">
     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.35);"></div>
     <div style="position: relative; text-align: center; color: white; padding: 20px; margin-top: 15vh;">
-        <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: #ffffff; text-shadow: 0 2px 20px rgba(0,0,0,0.3);">Никита 🧶 Юлия</h1>
-        <p style="margin-top: 1rem; font-size: 1rem; letter-spacing: 3px; color: #f0e6d8;">Любви связующая нить</p>
+        <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: #ffffff; text-shadow: 0 2px 20px rgba(0,0,0,0.3);">Никита 🧶 Юлия</h1>
+        <p style="margin-top: 0.8rem; font-size: 0.9rem; letter-spacing: 3px; color: #f0e6d8;">Любви связующая нить</p>
     </div>
     <div style="position: relative; text-align: center; color: white; padding: 20px; margin-bottom: 12vh;">
         <div class="bounce-arrow">💌</div>
-        <p style="font-size: 0.8rem; letter-spacing: 2px;">Откройте наше приглашение</p>
+        <p style="font-size: 0.75rem; letter-spacing: 2px;">Откройте наше приглашение</p>
     </div>
 </div>
 
@@ -782,7 +168,7 @@
         <div class="hero fade-up">
             <div class="date-badge">4 СЕНТЯБРЯ 2026</div>
             <h1>Мы женимся!</h1>
-            <p style="margin-top: 0.5rem; font-weight: 300;">Приглашаем вас стать частью нашей истории</p>
+            <p style="margin-top: 0.3rem; font-weight: 300; font-size: 0.9rem;">Приглашаем вас стать частью нашей истории</p>
         </div>
 
         <!-- ТАЙМЕР И КАЛЕНДАРЬ -->
@@ -815,12 +201,12 @@
                 <div class="gallery-container">
                     <div class="gallery-slider">
                         <div class="gallery-track" id="galleryTrack">
-                            <div class="gallery-slide"><img src="foto-1.JPG" alt="Фото 1"></div>
-                            <div class="gallery-slide"><img src="foto-2.JPG" alt="Фото 2"></div>
-                            <div class="gallery-slide"><img src="foto-3.JPG" alt="Фото 3"></div>
-                            <div class="gallery-slide"><img src="foto-4.jpg" alt="Фото 4"></div>
-                            <div class="gallery-slide"><img src="foto-5.jpg" alt="Фото 5"></div>
-                            <div class="gallery-slide"><img src="foto-6.jpg" alt="Фото 6"></div>
+                            <div class="gallery-slide"><img src="foto-1.JPG" alt="Фото"></div>
+                            <div class="gallery-slide"><img src="foto-2.JPG" alt="Фото"></div>
+                            <div class="gallery-slide"><img src="foto-3.JPG" alt="Фото"></div>
+                            <div class="gallery-slide"><img src="foto-4.jpg" alt="Фото"></div>
+                            <div class="gallery-slide"><img src="foto-5.jpg" alt="Фото"></div>
+                            <div class="gallery-slide"><img src="foto-6.jpg" alt="Фото"></div>
                         </div>
                         <button class="gallery-nav prev" id="galleryPrev">‹</button>
                         <button class="gallery-nav next" id="galleryNext">›</button>
@@ -865,8 +251,8 @@
             <div class="lottery-block">
                 <div class="lottery-icon">🎟️✨</div>
                 <div class="lottery-title">Вместо цветов — лотерейные билеты</div>
-                <div class="lottery-text" style="margin-bottom: 1rem;">Не дарите нам цветы, мы придумали кое-что поинтереснее!</div>
-                <div class="lottery-text" style="font-weight: 500; margin-bottom: 1rem;">Подарите нам настоящий лотерейный билет, а на обратной стороне напишите свой номер телефона</div>
+                <div style="margin-bottom: 0.8rem; font-size: 0.85rem;">Не дарите нам цветы, мы придумали кое-что поинтереснее!</div>
+                <div style="font-weight: 500; margin-bottom: 0.8rem; font-size: 0.85rem;">Подарите нам настоящий лотерейный билет, а на обратной стороне напишите свой номер телефона</div>
                 <div class="lottery-note">🎲 Эти билеты будут участвовать в нашей свадебной лотерее!</div>
             </div>
         </div>
@@ -915,7 +301,7 @@
                     <textarea name="entry.1902261658" rows="2" placeholder="Например, ваша любимая песня?"></textarea>
                 </div>
                 <button type="submit">Отправить ответ</button>
-                <div id="formStatus" style="margin-top: 15px; font-size: 0.85rem; text-align: center;"></div>
+                <div id="formStatus" style="margin-top: 15px; font-size: 0.8rem; text-align: center;"></div>
             </form>
         </div>
 
@@ -933,8 +319,8 @@
             <div class="contact-card">
                 <div class="contact-icon">👩🏼‍💼</div>
                 <div class="contact-name">Ксения</div>
-                <div>Наш свадебный организатор</div>
-                <p style="margin: 1rem 0; font-size: 0.85rem;">Если Вы подготовили для нас сюрприз или в случае возникновения вопросов, всегда можно обратиться за помощью к нашему свадебному организатору.</p>
+                <div style="font-size: 0.85rem;">Наш свадебный организатор</div>
+                <p style="margin: 0.8rem 0; font-size: 0.8rem;">Если Вы подготовили для нас сюрприз или в случае возникновения вопросов, всегда можно обратиться за помощью к нашему свадебному организатору.</p>
                 <div class="contact-phone"><a href="tel:+79200227311">+7 (920) 022-73-11</a></div>
                 <div class="contact-links">
                     <a href="https://t.me/kuligina_kseniia" target="_blank" class="contact-link tg-link">📱 Telegram</a>
@@ -972,9 +358,20 @@
         
         setTimeout(() => {
             const welcomeDiv = document.createElement('div');
-            welcomeDiv.style.cssText = 'border: 1px solid #b85a3a; background: transparent; color: #b85a3a; padding: 14px 20px; margin: 20px 0; text-align: center; font-weight: 600; font-size: 1rem;';
+            welcomeDiv.style.cssText = 'border: 1px solid #b85a3a; background: transparent; padding: 14px 20px; margin: 20px 0; text-align: center;';
+            
+            const nameSpan = document.createElement('div');
+            nameSpan.style.cssText = 'font-weight: 700; font-size: 1.1rem; color: #b85a3a; margin-bottom: 6px;';
             const greeting = getGreeting(fixedGuestName);
-            welcomeDiv.innerHTML = `<strong>${greeting} ${fixedGuestName}!</strong><br>Мы будем счастливы разделить с Вами радость неповторимого для нас дня!`;
+            nameSpan.innerHTML = `${greeting} ${fixedGuestName}!`;
+            
+            const textSpan = document.createElement('div');
+            textSpan.style.cssText = 'font-weight: 400; font-size: 0.85rem; color: #4a3b2c;';
+            textSpan.innerHTML = 'Мы будем счастливы разделить с Вами радость неповторимого для нас дня!';
+            
+            welcomeDiv.appendChild(nameSpan);
+            welcomeDiv.appendChild(textSpan);
+            
             const hero = document.querySelector('.hero');
             if (hero) hero.insertAdjacentElement('afterbegin', welcomeDiv);
         }, 1000);
@@ -982,7 +379,7 @@
         const hero = document.querySelector('.hero');
         if (hero) {
             const warningDiv = document.createElement('div');
-            warningDiv.style.cssText = 'border: 1px solid #b85a3a; color: #b85a3a; padding: 12px 20px; margin: 15px 0; text-align: center; font-size: 0.85rem; background: transparent;';
+            warningDiv.style.cssText = 'border: 1px solid #b85a3a; color: #b85a3a; padding: 10px 16px; margin: 15px 0; text-align: center; font-size: 0.8rem; background: transparent;';
             warningDiv.innerHTML = `⚠️ Пожалуйста, перейдите по <strong>вашей именной ссылке</strong> (параметр ?guest=ВашеИмя)`;
             hero.insertAdjacentElement('afterbegin', warningDiv);
         }
@@ -1068,7 +465,6 @@
     }
     createDots();
 
-    // Увеличение фото при клике
     document.querySelectorAll('.gallery-slide img').forEach(img => {
         img.style.cursor = 'pointer';
         img.addEventListener('click', (e) => {
@@ -1190,7 +586,7 @@
             dots.forEach((dot, index) => {
                 const dotRect = dot.getBoundingClientRect();
                 const wrapperRect = wrapper.getBoundingClientRect();
-                const relativeTop = dotRect.top - wrapperRect.top + dotRect.height / 2 - 14;
+                const relativeTop = dotRect.top - wrapperRect.top + dotRect.height / 2 - 13;
                 positions.push({ index, top: relativeTop });
             });
             return positions;
@@ -1231,7 +627,7 @@
             cardItems.forEach((card, index) => {
                 if (dots[index]) {
                     const percent = (index + 0.5) / cardItems.length;
-                    const topPosition = percent * totalHeight - 6;
+                    const topPosition = percent * totalHeight - 5;
                     dots[index].style.top = topPosition + 'px';
                 }
             });
