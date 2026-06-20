@@ -77,21 +77,9 @@
             .hero p { animation: slideInFromRight 0.5s ease-out; }
         }
         
-        .card-luxury {background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(184, 90, 58, 0.1);
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
-    padding: 2rem;
-    margin-bottom: 2rem;
-    transition: all 0.4s ease;
-    position: relative;
-}
-
+        .card-luxury { background: rgba(255, 255, 255, 0.96); padding: 2rem; margin-bottom: 2rem; transition: all 0.4s ease; position: relative; border: 1px solid rgba(184, 90, 58, 0.15); box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1); }
         .card-luxury::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(180deg, #b85a3a, #e8c4a0, #b85a3a); }
-        .card-luxury:hover {background: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 20px 40px -15px rgba(184, 90, 58, 0.1);
-
+        .card-luxury:hover { transform: translateY(-8px); box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.15); border-color: rgba(184, 90, 58, 0.3); }
         
         .section-title {
             font-family: 'Cormorant Garamond', serif;
