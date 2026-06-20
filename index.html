@@ -22,10 +22,10 @@
         .sparkle { position: absolute; width: 2px; height: 2px; background: #ffd700; border-radius: 50%; opacity: 0; animation: twinkle 3s ease-in-out infinite; }
         @keyframes twinkle { 0%, 100% { opacity: 0; } 50% { opacity: 0.8; transform: scale(1.5); } }
         
-        /* ПАРЯЩИЕ ЭЛЕМЕНТЫ */
+        /* ПАРЯЩИЕ ЭЛЕМЕНТЫ (СМАЙЛЫ) */
         .floating-elements { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: hidden; }
-        .float-item { position: absolute; font-size: 1rem; opacity: 0.08; animation: floatAround linear infinite; }
-        @keyframes floatAround { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 0.08; } 90% { opacity: 0.08; } 100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; } }
+        .float-item { position: absolute; font-size: 1rem; opacity: 0.1; animation: floatAround linear infinite; }
+        @keyframes floatAround { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 0.12; } 90% { opacity: 0.12; } 100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; } }
         
         /* КИНЕМАТОГРАФИЧНОЕ ПОЯВЛЕНИЕ КОНТЕНТА */
         .main-content {
@@ -43,14 +43,8 @@
         
         /* АНИМАЦИЯ РАЗЛЕТАЮЩИХСЯ СЕРДЕЧЕК */
         @keyframes explodeHeart {
-            0% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(calc(-50% + var(--x, 0px)), calc(-50% + var(--y, 0px))) scale(0);
-                opacity: 0;
-            }
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            100% { transform: translate(calc(-50% + var(--x, 0px)), calc(-50% + var(--y, 0px))) scale(0); opacity: 0; }
         }
         
         .fade-up { opacity: 0; transform: translateY(50px) scale(0.96); transition: opacity 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
@@ -61,7 +55,7 @@
         .delay-4 { transition-delay: 0.4s; }
         .delay-5 { transition-delay: 0.5s; }
         
-        /* АНИМАЦИЯ ДЛЯ ТЕКСТА (ТЕЛЕФОНЫ И КОМПЬЮТЕРЫ) */
+        /* АНИМАЦИЯ ДЛЯ ТЕКСТА */
         @keyframes fadeInScale {
             0% { opacity: 0; transform: scale(0.95); }
             100% { opacity: 1; transform: scale(1); }
@@ -85,17 +79,16 @@
             .hero p { animation: slideInFromRight 0.5s ease-out; }
         }
         
-        /* ===== ПРОЗРАЧНЫЕ БЛОКИ СО СТЕКЛЯННЫМ ЭФФЕКТОМ ===== */
+        /* ===== ПРОЗРАЧНЫЕ БЛОКИ ===== */
         .card-luxury {
-            background: rgba(255, 255, 255, 0.35);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 2rem;
             margin-bottom: 2rem;
             transition: all 0.4s ease;
             position: relative;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
         }
         
         .card-luxury::before {
@@ -109,76 +102,70 @@
         }
         
         .card-luxury:hover {
-            background: rgba(255, 255, 255, 0.55);
+            background: rgba(255, 255, 255, 0.35);
             transform: translateY(-4px);
-            box-shadow: 0 15px 40px rgba(184, 90, 58, 0.06);
         }
         
-        /* Календарь — прозрачный */
+        /* Календарь */
         .calendar-wrapper {
-            background: rgba(255, 255, 255, 0.35);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 1.2rem;
             margin-top: 1rem;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.03);
         }
         
         .calendar-wrapper:hover {
-            background: rgba(255, 255, 255, 0.55);
+            background: rgba(255, 255, 255, 0.35);
             transform: translateY(-3px);
         }
         
-        /* Таймер — прозрачный */
+        /* Таймер */
         .countdown-wrapper {
-            background: rgba(255, 255, 255, 0.35);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             text-align: center;
             margin: 2rem auto;
             padding: 1rem;
             max-width: 100%;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.03);
         }
         
-        /* Лотерейный блок — прозрачный */
+        /* Лотерея */
         .lottery-block {
             text-align: center;
             padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.35);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.03);
         }
         
         .lottery-block:hover {
-            background: rgba(255, 255, 255, 0.55);
+            background: rgba(255, 255, 255, 0.35);
             transform: translateY(-4px);
-            border-color: rgba(184, 90, 58, 0.15);
         }
         
-        /* Карточки тайминга — прозрачные */
+        /* Карточки тайминга */
         .timeline-card-item {
             padding: 0.8rem 1rem;
             margin-bottom: 1.5rem;
             transition: all 0.3s ease;
             cursor: pointer;
             border-left: 3px solid transparent;
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
         
         .timeline-card-item.active {
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.4);
             border-left: 3px solid #b85a3a;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
         }
         
         .section-title {
@@ -272,7 +259,7 @@
         
         .about-container { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
         .gallery-container { width: 100%; max-width: 350px; margin: 0 auto; }
-        .gallery-slider { position: relative; width: 100%; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.3); aspect-ratio: 3 / 4; margin: 0 auto; background: rgba(255, 255, 255, 0.2); }
+        .gallery-slider { position: relative; width: 100%; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.3); aspect-ratio: 3 / 4; margin: 0 auto; background: rgba(255, 255, 255, 0.15); }
         .gallery-track { display: flex; transition: transform 0.4s ease; height: 100%; cursor: grab; }
         .gallery-slide { flex: 0 0 100%; height: 100%; }
         .gallery-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -303,7 +290,6 @@
         .timeline-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 0.2rem; color: #2c2418; }
         .timeline-desc { font-size: 0.7rem; color: #8b735a; }
         
-        /* ДРЕСС-КОД — КВАДРАТНЫЕ ИКОНКИ В ОДНУ СТРОКУ */
         .dress-colors {
             display: flex;
             gap: 0.8rem;
@@ -342,13 +328,12 @@
             letter-spacing: 0.5px;
         }
         
-        /* ПУЛЬСИРУЮЩЕЕ ФОТО ПРИМЕРОВ */
         .style-single {
             margin-top: 1.5rem;
             border: 1px solid rgba(255, 255, 255, 0.3);
             transition: all 0.3s ease;
             animation: imagePulse 3s ease-in-out infinite;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(5px);
         }
         @keyframes imagePulse {
@@ -364,24 +349,14 @@
         .style-single img { width: 100%; height: auto; display: block; }
         .style-caption { padding: 0.5rem; text-align: center; font-size: 0.7rem; color: #b85a3a; background: rgba(255,255,255,0.3); }
         
-        /* ПУЛЬСАЦИЯ ДЛЯ ЗАГОЛОВКА ЛОТЕРЕИ */
         .pulse-title {
             animation: lotteryPulse 1.5s ease-in-out infinite;
             display: inline-block;
         }
         @keyframes lotteryPulse {
-            0% {
-                transform: scale(1);
-                text-shadow: 0 0 0 rgba(184, 90, 58, 0);
-            }
-            50% {
-                transform: scale(1.02);
-                text-shadow: 0 0 8px rgba(184, 90, 58, 0.5);
-            }
-            100% {
-                transform: scale(1);
-                text-shadow: 0 0 0 rgba(184, 90, 58, 0);
-            }
+            0% { transform: scale(1); text-shadow: 0 0 0 rgba(184, 90, 58, 0); }
+            50% { transform: scale(1.02); text-shadow: 0 0 8px rgba(184, 90, 58, 0.5); }
+            100% { transform: scale(1); text-shadow: 0 0 0 rgba(184, 90, 58, 0); }
         }
         
         .lottery-icon { font-size: 2rem; margin-bottom: 0.5rem; }
@@ -397,8 +372,8 @@
         button { padding: 12px 20px; border: 1px solid #b85a3a; font-family: inherit; font-size: 0.9rem; font-weight: 500; background: rgba(255,255,255,0.6); color: #b85a3a; cursor: pointer; width: 100%; transition: all 0.2s ease; }
         button:hover { background: #b85a3a; color: white; transform: translateY(-2px); }
         
-        .map-frame { width: 100%; height: 220px; border: 1px solid rgba(255, 255, 255, 0.3); background: rgba(255,255,255,0.2); }
-        .transfer-note { text-align: center; font-size: 0.8rem; margin: 0.8rem 0; background: rgba(255,255,255,0.3); padding: 0.8rem; border-radius: 8px; backdrop-filter: blur(5px); }
+        .map-frame { width: 100%; height: 220px; border: 1px solid rgba(255, 255, 255, 0.3); background: rgba(255,255,255,0.15); }
+        .transfer-note { text-align: center; font-size: 0.8rem; margin: 0.8rem 0; background: rgba(255,255,255,0.2); padding: 0.8rem; backdrop-filter: blur(5px); }
         .map-open-btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border: 1px solid #b85a3a; background: rgba(255,255,255,0.6); color: #b85a3a; text-decoration: none; transition: all 0.3s; font-size: 0.85rem; }
         .map-open-btn:hover { background: #b85a3a; color: white; }
         
@@ -451,7 +426,7 @@
 <div class="main-content" id="mainContent">
     <div class="container">
         
-        <!-- ПРИВЕТСТВИЕ С АНИМАЦИЕЙ -->
+        <!-- ПРИВЕТСТВИЕ -->
         <div class="hero fade-up">
             <div class="date-badge">4 СЕНТЯБРЯ 2026</div>
             <h1 class="animate-title">Мы женимся!</h1>
@@ -691,7 +666,7 @@
         
         setTimeout(() => {
             const welcomeDiv = document.createElement('div');
-            welcomeDiv.style.cssText = 'border: 1px solid #b85a3a; background: rgba(255,255,255,0.25); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 14px 20px; margin: 20px 0; text-align: center;';
+            welcomeDiv.style.cssText = 'border: 1px solid #b85a3a; background: rgba(255,255,255,0.2); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 14px 20px; margin: 20px 0; text-align: center;';
             
             const nameSpan = document.createElement('div');
             nameSpan.style.cssText = 'font-weight: 700; font-size: 1.1rem; color: #b85a3a; margin-bottom: 6px;';
@@ -720,7 +695,7 @@
         const hero = document.querySelector('.hero');
         if (hero) {
             const warningDiv = document.createElement('div');
-            warningDiv.style.cssText = 'border: 1px solid #b85a3a; background: rgba(255,255,255,0.25); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: #b85a3a; padding: 10px 16px; margin: 15px 0; text-align: center; font-size: 0.8rem;';
+            warningDiv.style.cssText = 'border: 1px solid #b85a3a; background: rgba(255,255,255,0.2); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: #b85a3a; padding: 10px 16px; margin: 15px 0; text-align: center; font-size: 0.8rem;';
             warningDiv.innerHTML = `⚠️ Пожалуйста, перейдите по <strong>вашей именной ссылке</strong> (параметр ?guest=ВашеИмя)`;
             hero.insertAdjacentElement('afterbegin', warningDiv);
         }
@@ -742,7 +717,7 @@
     }
     createSparkles();
     
-    // ========== ПАРЯЩИЕ ЭЛЕМЕНТЫ ==========
+    // ========== ПАРЯЩИЕ ЭЛЕМЕНТЫ (СМАЙЛЫ) ==========
     function createFloatItem() {
         const el = document.createElement('div');
         el.classList.add('float-item');
@@ -1045,7 +1020,7 @@
     }
     generateCalendar();
 
-    // ========== ЭФФЕКТНОЕ ОТКРЫТИЕ (ВСПЫШКА + СЕРДЕЧКИ + ПОЯВЛЕНИЕ) ==========
+    // ========== ЭФФЕКТНОЕ ОТКРЫТИЕ ==========
     const splash = document.getElementById('splashScreen');
     const music = document.getElementById('bgMusic');
     const mainContent = document.getElementById('mainContent');
