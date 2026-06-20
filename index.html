@@ -7,7 +7,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Montserrat', sans-serif; color: #2c2418; line-height: 1.5; background: #faf7f2; overflow-x: hidden; }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #2c2418;
+            line-height: 1.5;
+            background: linear-gradient(135deg, #f5ebe1 0%, #fdf8f2 40%, #f5ebe1 100%);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
         
         /* МЕРЦАЮЩИЕ ИСКРЫ */
         .sparkles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
@@ -16,10 +24,9 @@
         
         /* ПАРЯЩИЕ ЭЛЕМЕНТЫ */
         .floating-elements { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: hidden; }
-        .float-item { position: absolute; font-size: 1rem; opacity: 0.08; animation: floatAround linear infinite; }
-        @keyframes floatAround { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 0.08; } 90% { opacity: 0.08; } 100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; } }
+        .float-item { position: absolute; font-size: 1rem; opacity: 0.1; animation: floatAround linear infinite; }
+        @keyframes floatAround { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 0.12; } 90% { opacity: 0.12; } 100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; } }
         
-        /* КИНЕМАТОГРАФИЧНОЕ ПОЯВЛЕНИЕ КОНТЕНТА */
         .main-content {
             position: relative;
             z-index: 2;
@@ -33,16 +40,9 @@
         }
         .container { max-width: 850px; margin: 0 auto; padding: 2rem 1.5rem; }
         
-        /* АНИМАЦИЯ РАЗЛЕТАЮЩИХСЯ СЕРДЕЧЕК */
         @keyframes explodeHeart {
-            0% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(calc(-50% + var(--x, 0px)), calc(-50% + var(--y, 0px))) scale(0);
-                opacity: 0;
-            }
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            100% { transform: translate(calc(-50% + var(--x, 0px)), calc(-50% + var(--y, 0px))) scale(0); opacity: 0; }
         }
         
         .fade-up { opacity: 0; transform: translateY(50px) scale(0.96); transition: opacity 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
@@ -53,7 +53,6 @@
         .delay-4 { transition-delay: 0.4s; }
         .delay-5 { transition-delay: 0.5s; }
         
-        /* АНИМАЦИЯ ДЛЯ ТЕКСТА (ТЕЛЕФОНЫ И КОМПЬЮТЕРЫ) */
         @keyframes fadeInScale {
             0% { opacity: 0; transform: scale(0.95); }
             100% { opacity: 1; transform: scale(1); }
@@ -77,10 +76,96 @@
             .hero p { animation: slideInFromRight 0.5s ease-out; }
         }
         
-        .card-luxury { background: rgba(255, 255, 255, 0.96); padding: 2rem; margin-bottom: 2rem; transition: all 0.4s ease; position: relative; border: 1px solid rgba(184, 90, 58, 0.15); box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1); }
-        .card-luxury::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(180deg, #b85a3a, #e8c4a0, #b85a3a); }
-        .card-luxury:hover { transform: translateY(-8px); box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.15); border-color: rgba(184, 90, 58, 0.3); }
+        /* ===== МИНИМАЛИСТИЧНЫЙ СТИЛЬ — КВАДРАТНЫЙ, БЕЗ ПОЛОСОК ===== */
+        .card-luxury {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            border: none;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border-radius: 0px;
+        }
         
+        .card-luxury:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+        }
+        
+        /* Календарь */
+        .calendar-wrapper {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            padding: 1.2rem;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border-radius: 0px;
+        }
+        
+        .calendar-wrapper:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        /* Таймер */
+        .countdown-wrapper {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            text-align: center;
+            margin: 2rem auto;
+            padding: 1rem;
+            max-width: 100%;
+            border: none;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border-radius: 0px;
+        }
+        
+        /* Лотерея */
+        .lottery-block {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border-radius: 0px;
+        }
+        
+        .lottery-block:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-4px);
+        }
+        
+        /* Карточки тайминга — КВАДРАТНЫЕ */
+        .timeline-card-item {
+            padding: 0.8rem 1.2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: none;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+            border-radius: 0px;
+        }
+        
+        .timeline-card-item.active {
+            background: rgba(255, 255, 255, 0.35);
+            box-shadow: 0 8px 25px rgba(184, 90, 58, 0.06);
+        }
+        
+        /* ЗАГОЛОВКИ — БЕЗ ПОДЧЁРКИВАНИЙ */
         .section-title {
             font-family: 'Cormorant Garamond', serif;
             font-size: 2rem;
@@ -88,40 +173,28 @@
             color: #b85a3a;
             text-align: center;
             margin-bottom: 2rem;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             position: relative;
             display: inline-block;
             width: 100%;
             text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
         }
         .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #b85a3a, #e8c4a0, #b85a3a, transparent);
-            margin: 0.8rem auto 0;
+            display: none;
         }
         
         .hero { text-align: center; margin-bottom: 2rem; }
-        .date-badge { font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 6px; color: #b85a3a; margin-bottom: 1rem; text-transform: uppercase; font-weight: 300; }
+        .date-badge { font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 8px; color: #b85a3a; margin-bottom: 1rem; text-transform: uppercase; font-weight: 300; }
         .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 600; color: #2c2418; letter-spacing: 2px; margin: 0.5rem 0; }
         
-        .countdown-wrapper {
-            text-align: center;
-            margin: 2rem auto;
-            padding: 1rem;
-            max-width: 100%;
-            border: none;
-            background: rgba(184, 90, 58, 0.08);
-        }
         .countdown-title {
             font-size: 0.7rem;
             letter-spacing: 4px;
             color: #b85a3a;
             margin-bottom: 0.8rem;
             text-transform: uppercase;
-            opacity: 0.8;
+            opacity: 0.7;
         }
         .countdown-timer {
             display: flex;
@@ -131,31 +204,32 @@
             flex-wrap: nowrap;
         }
         .countdown-block {
-            background: #b85a3a;
+            background: rgba(184, 90, 58, 0.15);
             padding: 0.5rem 0.8rem;
             min-width: 70px;
-            border-radius: 4px;
-            box-shadow: 0 4px 15px rgba(184, 90, 58, 0.3);
+            box-shadow: none;
             animation: timerPulse 2s ease-in-out infinite;
+            border-radius: 0px;
         }
         .countdown-number {
             font-size: 1.6rem;
             font-weight: 700;
-            color: white;
+            color: #b85a3a;
             font-family: 'Montserrat', monospace;
             letter-spacing: 2px;
         }
         .countdown-label {
             font-size: 0.55rem;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(184, 90, 58, 0.7);
             display: block;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
         .countdown-separator {
             font-size: 1.4rem;
-            font-weight: 700;
+            font-weight: 300;
             color: #b85a3a;
+            opacity: 0.4;
         }
         @keyframes timerPulse {
             0% { transform: scale(1); }
@@ -168,51 +242,49 @@
             .countdown-separator { font-size: 1.6rem; }
         }
         
-        .calendar-wrapper { border: 1px solid rgba(184, 90, 58, 0.2); padding: 1.2rem; margin-top: 1rem; transition: all 0.3s ease; }
         .calendar-month { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: #b85a3a; text-align: center; display: block; margin-bottom: 1rem; }
-        .calendar-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 0.7rem; font-weight: 600; color: #b85a3a; margin-bottom: 0.5rem; padding: 0.3rem 0; border-bottom: 1px solid rgba(184, 90, 58, 0.2); }
+        .calendar-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 0.7rem; font-weight: 600; color: #b85a3a; margin-bottom: 0.5rem; padding: 0.3rem 0; border-bottom: 1px solid rgba(184, 90, 58, 0.08); }
         .calendar-days { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; gap: 4px; }
-        .calendar-day { padding: 6px 4px; font-size: 0.8rem; color: #4a3b2c; cursor: default; }
+        .calendar-day { padding: 6px 4px; font-size: 0.8rem; color: #4a3b2c; cursor: default; border-radius: 0px; }
         .calendar-day.other-month { color: #c0b0a0; }
-        .calendar-day.wedding-day { background: #b85a3a; color: white; font-weight: bold; animation: weddingPulse 2s infinite; border-radius: 50%; }
-        @keyframes weddingPulse { 0% { box-shadow: 0 0 0 0 rgba(184, 90, 58, 0.4); } 70% { box-shadow: 0 0 0 8px rgba(184, 90, 58, 0); } 100% { box-shadow: 0 0 0 0 rgba(184, 90, 58, 0); } }
+        .calendar-day.wedding-day { background: #b85a3a; color: white; font-weight: bold; animation: weddingPulse 2s infinite; border-radius: 0px; }
+        @keyframes weddingPulse { 0% { box-shadow: 0 0 0 0 rgba(184, 90, 58, 0.3); } 70% { box-shadow: 0 0 0 10px rgba(184, 90, 58, 0); } 100% { box-shadow: 0 0 0 0 rgba(184, 90, 58, 0); } }
         .calendar-note { text-align: center; margin-top: 0.8rem; font-size: 0.7rem; color: #b85a3a; }
         
         .about-container { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
         .gallery-container { width: 100%; max-width: 350px; margin: 0 auto; }
-        .gallery-slider { position: relative; width: 100%; overflow: hidden; border: 1px solid rgba(184, 90, 58, 0.2); aspect-ratio: 3 / 4; margin: 0 auto; }
+        .gallery-slider { position: relative; width: 100%; overflow: hidden; border: none; aspect-ratio: 3 / 4; margin: 0 auto; background: rgba(255, 255, 255, 0.1); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04); border-radius: 0px; }
         .gallery-track { display: flex; transition: transform 0.4s ease; height: 100%; cursor: grab; }
         .gallery-slide { flex: 0 0 100%; height: 100%; }
         .gallery-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .gallery-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; background: rgba(255,255,255,0.9); border: 1px solid rgba(184, 90, 58, 0.3); cursor: pointer; font-size: 1.2rem; color: #b85a3a; display: flex; align-items: center; justify-content: center; z-index: 10; }
+        .gallery-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; background: rgba(255,255,255,0.7); border: none; cursor: pointer; font-size: 1.2rem; color: #b85a3a; display: flex; align-items: center; justify-content: center; z-index: 10; backdrop-filter: blur(5px); border-radius: 0px; }
         .gallery-nav.prev { left: 8px; }
         .gallery-nav.next { right: 8px; }
         .gallery-dots { display: flex; justify-content: center; gap: 8px; margin-top: 12px; }
-        .gallery-dot { width: 8px; height: 8px; background: #e0c8b0; border-radius: 50%; cursor: pointer; }
-        .gallery-dot.active { background: #b85a3a; width: 24px; border-radius: 4px; }
+        .gallery-dot { width: 8px; height: 8px; background: rgba(184, 90, 58, 0.2); cursor: pointer; transition: all 0.2s ease; border-radius: 0px; }
+        .gallery-dot.active { background: #b85a3a; width: 24px; border-radius: 0px; }
+        
         .about-text { text-align: center; }
-        .about-text p { margin-bottom: 1rem; color: #4a3b2c; font-size: 0.9rem; line-height: 1.5; }
+        .about-text p { margin-bottom: 1rem; color: #2c2418; font-size: 0.9rem; line-height: 1.6; }
         .about-signature { text-align: center; margin-top: 1rem; font-size: 1rem; color: #b85a3a; font-family: 'Cormorant Garamond', serif; font-weight: 500; animation: gentlePulseName 2s ease-in-out infinite; display: inline-block; width: auto; padding: 0 1rem; }
         @keyframes gentlePulseName {
             0% { opacity: 0.7; transform: scale(1); text-shadow: 0 0 0 rgba(184, 90, 58, 0); }
-            50% { opacity: 1; transform: scale(1.03); text-shadow: 0 0 8px rgba(184, 90, 58, 0.4); }
+            50% { opacity: 1; transform: scale(1.03); text-shadow: 0 0 8px rgba(184, 90, 58, 0.3); }
             100% { opacity: 0.7; transform: scale(1); text-shadow: 0 0 0 rgba(184, 90, 58, 0); }
         }
         
         .timeline-container { display: flex; gap: 20px; max-width: 700px; margin: 0 auto; }
         .timeline-line-wrapper { position: relative; width: 40px; flex-shrink: 0; }
-        .timeline-line { position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: linear-gradient(180deg, #b85a3a, #e0c8b0, #b85a3a); }
+        .timeline-line { position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: linear-gradient(180deg, #b85a3a, #e0c8b0, #b85a3a); opacity: 0.4; }
         .timeline-dots { position: relative; height: 100%; }
-        .timeline-dot { position: absolute; left: 50%; transform: translateX(-50%); width: 10px; height: 10px; background: #b85a3a; border: 2px solid #faf7f2; border-radius: 50%; box-shadow: 0 0 0 2px #b85a3a; z-index: 2; }
-        .timeline-slider { position: absolute; left: 50%; transform: translateX(-50%); width: 26px; height: 26px; background: #b85a3a; border: 2px solid #faf7f2; border-radius: 50%; box-shadow: 0 0 0 2px #b85a3a; z-index: 10; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; transition: top 0.4s ease-out; pointer-events: none; }
+        .timeline-dot { position: absolute; left: 50%; transform: translateX(-50%); width: 10px; height: 10px; background: #b85a3a; border: 2px solid rgba(255,255,255,0.8); box-shadow: 0 0 0 2px rgba(184, 90, 58, 0.2); z-index: 2; border-radius: 0px; }
+        .timeline-slider { position: absolute; left: 50%; transform: translateX(-50%); width: 28px; height: 28px; background: #b85a3a; border: 2px solid rgba(255,255,255,0.8); box-shadow: 0 0 0 2px #b85a3a, 0 4px 15px rgba(184, 90, 58, 0.15); z-index: 10; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; transition: top 0.4s ease-out; pointer-events: none; border-radius: 0px; }
         .timeline-cards { flex: 1; }
-        .timeline-card-item { padding: 0.8rem 1rem; margin-bottom: 1.5rem; transition: all 0.3s ease; cursor: pointer; border-left: 3px solid transparent; }
-        .timeline-card-item.active { background: white; border-left: 3px solid #b85a3a; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
         .timeline-time { font-weight: 600; color: #b85a3a; font-size: 0.9rem; margin-bottom: 0.2rem; }
         .timeline-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 0.2rem; color: #2c2418; }
         .timeline-desc { font-size: 0.7rem; color: #8b735a; }
         
-        /* ДРЕСС-КОД — КВАДРАТНЫЕ ИКОНКИ В ОДНУ СТРОКУ */
+        /* ДРЕСС-КОД — КВАДРАТНЫЕ */
         .dress-colors {
             display: flex;
             gap: 0.8rem;
@@ -237,78 +309,64 @@
         .color-square {
             width: 50px;
             height: 50px;
-            border-radius: 4px;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-radius: 0px;
         }
         .color-square:hover {
             transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
-        .color-name {
-            font-size: 0.7rem;
-            color: #4a3b2c;
-            letter-spacing: 0.5px;
-        }
+        .color-name { font-size: 0.7rem; color: #4a3b2c; letter-spacing: 0.5px; }
         
-        /* ПУЛЬСИРУЮЩЕЕ ФОТО ПРИМЕРОВ */
         .style-single {
             margin-top: 1.5rem;
-            border: 1px solid rgba(184, 90, 58, 0.2);
+            border: none;
             transition: all 0.3s ease;
             animation: imagePulse 3s ease-in-out infinite;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+            overflow: hidden;
+            border-radius: 0px;
         }
         @keyframes imagePulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(184, 90, 58, 0.2); }
-            50% { transform: scale(1.01); box-shadow: 0 0 0 8px rgba(184, 90, 58, 0.1); }
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(184, 90, 58, 0.1); }
+            50% { transform: scale(1.01); box-shadow: 0 0 0 10px rgba(184, 90, 58, 0); }
             100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(184, 90, 58, 0); }
         }
         .style-single:hover {
             transform: translateY(-3px);
-            border-color: #b85a3a;
             animation: none;
         }
         .style-single img { width: 100%; height: auto; display: block; }
-        .style-caption { padding: 0.5rem; text-align: center; font-size: 0.7rem; color: #b85a3a; background: rgba(184,90,58,0.04); }
+        .style-caption { padding: 0.5rem; text-align: center; font-size: 0.7rem; color: #b85a3a; background: rgba(255,255,255,0.2); }
         
-        /* ПУЛЬСАЦИЯ ДЛЯ ЗАГОЛОВКА ЛОТЕРЕИ */
         .pulse-title {
             animation: lotteryPulse 1.5s ease-in-out infinite;
             display: inline-block;
         }
         @keyframes lotteryPulse {
-            0% {
-                transform: scale(1);
-                text-shadow: 0 0 0 rgba(184, 90, 58, 0);
-            }
-            50% {
-                transform: scale(1.02);
-                text-shadow: 0 0 8px rgba(184, 90, 58, 0.5);
-            }
-            100% {
-                transform: scale(1);
-                text-shadow: 0 0 0 rgba(184, 90, 58, 0);
-            }
+            0% { transform: scale(1); text-shadow: 0 0 0 rgba(184, 90, 58, 0); }
+            50% { transform: scale(1.02); text-shadow: 0 0 8px rgba(184, 90, 58, 0.3); }
+            100% { transform: scale(1); text-shadow: 0 0 0 rgba(184, 90, 58, 0); }
         }
         
-        .lottery-block { text-align: center; padding: 1.5rem; border: 1px solid rgba(184, 90, 58, 0.2); transition: all 0.3s ease; }
-        .lottery-block:hover { border-color: #b85a3a; transform: translateY(-5px); }
         .lottery-icon { font-size: 2rem; margin-bottom: 0.5rem; }
         .lottery-title { font-size: 1.1rem; font-weight: 600; color: #b85a3a; margin-bottom: 0.8rem; }
-        .lottery-note { display: inline-block; padding: 0.4rem 0.8rem; border: 1px solid #b85a3a; margin-top: 0.5rem; font-size: 0.8rem; }
+        .lottery-note { display: inline-block; padding: 0.4rem 0.8rem; border: 1px solid rgba(184, 90, 58, 0.1); margin-top: 0.5rem; font-size: 0.8rem; background: rgba(255,255,255,0.2); border-radius: 0px; }
         
         .form-group { margin-bottom: 1.2rem; }
         .form-group label { font-weight: 500; display: block; margin-bottom: 0.4rem; font-size: 0.85rem; }
         .drink-group, .preference-group { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
-        .drink-option, .pref-option { padding: 0.4rem 0.8rem; background: white; cursor: pointer; border: 1px solid #e8ddd0; font-size: 0.8rem; }
+        .drink-option, .pref-option { padding: 0.4rem 0.8rem; background: rgba(255,255,255,0.5); cursor: pointer; border: 1px solid rgba(184, 90, 58, 0.08); font-size: 0.8rem; border-radius: 0px; }
         .drink-option.selected, .pref-option.selected { background: #b85a3a; color: white; border-color: #b85a3a; }
-        input, select, textarea { padding: 10px 14px; border: 1px solid #e8ddd0; font-family: inherit; font-size: 0.85rem; background: white; width: 100%; margin-bottom: 0.5rem; }
-        button { padding: 12px 20px; border: 1px solid #b85a3a; font-family: inherit; font-size: 0.9rem; font-weight: 500; background: transparent; color: #b85a3a; cursor: pointer; width: 100%; transition: all 0.2s ease; }
+        input, select, textarea { padding: 10px 14px; border: 1px solid rgba(184, 90, 58, 0.08); font-family: inherit; font-size: 0.85rem; background: rgba(255,255,255,0.5); width: 100%; margin-bottom: 0.5rem; border-radius: 0px; }
+        button { padding: 12px 20px; border: 1px solid #b85a3a; font-family: inherit; font-size: 0.9rem; font-weight: 500; background: rgba(255,255,255,0.5); color: #b85a3a; cursor: pointer; width: 100%; transition: all 0.2s ease; border-radius: 0px; }
         button:hover { background: #b85a3a; color: white; transform: translateY(-2px); }
         
-        .map-frame { width: 100%; height: 220px; border: 1px solid rgba(184, 90, 58, 0.2); }
-        .transfer-note { text-align: center; font-size: 0.8rem; margin: 0.8rem 0; }
-        .map-open-btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border: 1px solid #b85a3a; background: transparent; color: #b85a3a; text-decoration: none; transition: all 0.3s; font-size: 0.85rem; }
+        .map-frame { width: 100%; height: 220px; border: none; background: rgba(255,255,255,0.1); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.03); border-radius: 0px; }
+        .transfer-note { text-align: center; font-size: 0.8rem; margin: 0.8rem 0; background: rgba(255,255,255,0.15); padding: 0.8rem; backdrop-filter: blur(4px); border-radius: 0px; }
+        .map-open-btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border: 1px solid #b85a3a; background: rgba(255,255,255,0.4); color: #b85a3a; text-decoration: none; transition: all 0.3s; font-size: 0.85rem; border-radius: 0px; }
         .map-open-btn:hover { background: #b85a3a; color: white; }
         
         .contact-card { text-align: center; }
@@ -317,13 +375,13 @@
         .contact-phone { font-size: 1.1rem; margin: 0.8rem 0; }
         .contact-phone a { color: #2c2418; text-decoration: none; }
         .contact-links { display: flex; gap: 12px; justify-content: center; margin-top: 12px; flex-wrap: wrap; }
-        .contact-link { display: inline-flex; align-items: center; gap: 5px; padding: 8px 16px; text-decoration: none; transition: all 0.3s; border: 1px solid; font-size: 0.8rem; background: transparent; }
+        .contact-link { display: inline-flex; align-items: center; gap: 5px; padding: 8px 16px; text-decoration: none; transition: all 0.3s; border: 1px solid; font-size: 0.8rem; background: rgba(255,255,255,0.4); border-radius: 0px; }
         .tg-link { border-color: #0088cc; color: #0088cc; }
         .tg-link:hover { background: #0088cc; color: white; }
         .vk-link { border-color: #4c6c8c; color: #4c6c8c; }
         .vk-link:hover { background: #4c6c8c; color: white; }
         
-        .final-message { text-align: center; padding: 1.5rem 0; font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: #b85a3a; border-top: 1px solid rgba(184, 90, 58, 0.2); }
+        .final-message { text-align: center; padding: 1.5rem 0; font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: #b85a3a; border-top: 1px solid rgba(184, 90, 58, 0.08); }
         footer { text-align: center; margin-top: 1rem; font-size: 0.6rem; color: #b0886a; padding-bottom: 1rem; }
         
         .bounce-arrow { animation: bounce 1.5s infinite; display: inline-block; font-size: 1.8rem; }
@@ -360,14 +418,14 @@
 <div class="main-content" id="mainContent">
     <div class="container">
         
-        <!-- ПРИВЕТСТВИЕ С АНИМАЦИЕЙ -->
+        <!-- ПРИВЕТСТВИЕ -->
         <div class="hero fade-up">
             <div class="date-badge">4 СЕНТЯБРЯ 2026</div>
             <h1 class="animate-title">Мы женимся!</h1>
             <p class="animate-subtitle" style="margin-top: 0.3rem; font-weight: 300; font-size: 0.9rem;">Приглашаем Вас стать частью нашей истории</p>
         </div>
 
-        <!-- ТАЙМЕР И КАЛЕНДАРЬ -->
+        <!-- КАЛЕНДАРЬ -->
         <div class="fade-up delay-1">
             <div class="calendar-wrapper">
                 <div class="calendar-month">Сентябрь 2026</div>
@@ -429,7 +487,7 @@
             </div>
         </div>
 
-        <!-- ДРЕСС-КОД С КВАДРАТНЫМИ ЦВЕТАМИ -->
+        <!-- ДРЕСС-КОД -->
         <div class="card-luxury fade-up delay-3">
             <h2 class="section-title">Дресс-код</h2>
             <div class="dress-colors">
@@ -457,7 +515,7 @@
             </div>
         </div>
 
-        <!-- ЛОТЕРЕЯ С ПУЛЬСИРУЮЩИМ ЗАГОЛОВКОМ -->
+        <!-- ЛОТЕРЕЯ -->
         <div class="card-luxury fade-up delay-4">
             <div class="lottery-block">
                 <div class="lottery-icon">🎟️✨</div>
@@ -516,36 +574,30 @@
             </form>
         </div>
 
-   <!-- КАРТЫ МЕСТ ЦЕРЕМОНИИ И БАНКЕТА -->
-<div class="card-luxury fade-up delay-1">
-    <h2 class="section-title">📍 Где нас искать</h2>
-
-    <!-- Текст о трансфере теперь сверху -->
-    <div class="transfer-note" style="text-align: center; font-size: 0.9rem; margin-bottom: 1.5rem; background: rgba(184, 90, 58, 0.05); padding: 0.8rem; border-radius: 8px;">
-        🚐 Для вашего удобства будет организован общий трансфер, о котором мы сообщим дополнительно.
-    </div>
-    
-    <div class="maps-container" style="display: flex; flex-wrap: wrap; gap: 2rem; margin: 1rem 0;">
-        <!-- Место церемонии (выездная регистрация) -->
-        <div class="map-item" style="flex: 1 1 280px; min-width: 250px;">
-            <div class="map-item-title" style="text-align: center; font-weight: 700; color: #b85a3a; font-size: 1.1rem; margin-bottom: 0.8rem;">🌳 Церемония</div>
-            <iframe class="map-frame" style="width: 100%; height: 220px; border: 1px solid rgba(184, 90, 58, 0.2);" src="https://yandex.ru/map-widget/v1/?ll=43.812637,55.375875&z=17&pt=43.812637,55.375875,pm2rdm" allowfullscreen></iframe>
-            <div style="text-align: center; margin-top: 0.5rem;">
-                <a href="https://yandex.ru/maps/?ll=43.812637,55.375875&z=17&pt=43.812637,55.375875" target="_blank" class="map-open-btn" style="font-size: 0.75rem; padding: 6px 12px;">🗺 Открыть на карте</a>
+        <!-- КАРТЫ -->
+        <div class="card-luxury fade-up delay-1">
+            <h2 class="section-title">📍 Где нас искать</h2>
+            <div class="transfer-note" style="text-align: center; font-size: 0.9rem; margin-bottom: 1.5rem;">
+                🚐 Для вашего удобства будет организован общий трансфер, о котором мы сообщим дополнительно.
+            </div>
+            <div class="maps-container" style="display: flex; flex-wrap: wrap; gap: 2rem; margin: 1rem 0;">
+                <div class="map-item" style="flex: 1 1 280px; min-width: 250px;">
+                    <div class="map-item-title" style="text-align: center; font-weight: 700; color: #b85a3a; font-size: 1.1rem; margin-bottom: 0.8rem;">🌳 Церемония</div>
+                    <iframe class="map-frame" src="https://yandex.ru/map-widget/v1/?ll=43.812637,55.375875&z=17&pt=43.812637,55.375875,pm2rdm" allowfullscreen></iframe>
+                    <div style="text-align: center; margin-top: 0.5rem;">
+                        <a href="https://yandex.ru/maps/?ll=43.812637,55.375875&z=17&pt=43.812637,55.375875" target="_blank" class="map-open-btn">🗺 Открыть на карте</a>
+                    </div>
+                </div>
+                <div class="map-item" style="flex: 1 1 280px; min-width: 250px;">
+                    <div class="map-item-title" style="text-align: center; font-weight: 700; color: #b85a3a; font-size: 1.1rem; margin-bottom: 0.8rem;">🍽️ Банкет</div>
+                    <iframe class="map-frame" src="https://yandex.ru/map-widget/v1/?org-id=1026454122&ll=43.815570,55.423260&z=17&pt=43.815570,55.423260" allowfullscreen></iframe>
+                    <div class="transfer-note" style="font-size: 0.7rem; text-align: center; margin: 0.3rem 0;">📍 г. Арзамас, ул. Победы, 19</div>
+                    <div style="text-align: center; margin-top: 0.5rem;">
+                        <a href="https://yandex.ru/navi/org/davinci/1026454122" target="_blank" class="map-open-btn">🗺 Открыть на карте</a>
+                    </div>
+                </div>
             </div>
         </div>
-        
-        <!-- Место банкета (кафе DaVinci) -->
-        <div class="map-item" style="flex: 1 1 280px; min-width: 250px;">
-            <div class="map-item-title" style="text-align: center; font-weight: 700; color: #b85a3a; font-size: 1.1rem; margin-bottom: 0.8rem;">🍽️ Банкет</div>
-            <iframe class="map-frame" style="width: 100%; height: 220px; border: 1px solid rgba(184, 90, 58, 0.2);" src="https://yandex.ru/map-widget/v1/?org-id=1026454122&ll=43.815570,55.423260&z=17&pt=43.815570,55.423260" allowfullscreen></iframe>
-            <div class="transfer-note" style="font-size: 0.7rem; text-align: center; margin: 0.3rem 0;">📍 г. Арзамас, ул. Победы, 19</div>
-            <div style="text-align: center; margin-top: 0.5rem;">
-                <a href="https://yandex.ru/navi/org/davinci/1026454122" target="_blank" class="map-open-btn" style="font-size: 0.75rem; padding: 6px 12px;">🗺 Открыть на карте</a>
-            </div>
-        </div>
-    </div>
-</div>
 
         <!-- КОНТАКТЫ -->
         <div class="card-luxury fade-up delay-2">
@@ -563,18 +615,20 @@
             </div>
         </div>
 
-<div class="countdown-wrapper fade-up delay-3">
-                <div class="countdown-title">До нашей свадьбы осталось:</div>
-                <div class="countdown-timer" id="countdownTimer">
-                    <div class="countdown-block"><span class="countdown-number" id="days">00</span><span class="countdown-label">дней</span></div>
-                    <div class="countdown-separator">:</div>
-                    <div class="countdown-block"><span class="countdown-number" id="hours">00</span><span class="countdown-label">часов</span></div>
-                    <div class="countdown-separator">:</div>
-                    <div class="countdown-block"><span class="countdown-number" id="minutes">00</span><span class="countdown-label">минут</span></div>
-                    <div class="countdown-separator">:</div>
-                    <div class="countdown-block"><span class="countdown-number" id="seconds">00</span><span class="countdown-label">секунд</span></div>
-                </div>
+        <!-- ТАЙМЕР -->
+        <div class="countdown-wrapper fade-up delay-3">
+            <div class="countdown-title">До нашей свадьбы осталось:</div>
+            <div class="countdown-timer" id="countdownTimer">
+                <div class="countdown-block"><span class="countdown-number" id="days">00</span><span class="countdown-label">дней</span></div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-block"><span class="countdown-number" id="hours">00</span><span class="countdown-label">часов</span></div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-block"><span class="countdown-number" id="minutes">00</span><span class="countdown-label">минут</span></div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-block"><span class="countdown-number" id="seconds">00</span><span class="countdown-label">секунд</span></div>
             </div>
+        </div>
+
         <!-- ФИНАЛ -->
         <div class="final-message fade-up delay-4">
             До встречи на нашем празднике! <br>С любовью, Никита и Юля 🧡
@@ -604,7 +658,7 @@
         
         setTimeout(() => {
             const welcomeDiv = document.createElement('div');
-            welcomeDiv.style.cssText = 'border: 1px solid #b85a3a; background: transparent; padding: 14px 20px; margin: 20px 0; text-align: center;';
+            welcomeDiv.style.cssText = 'background: rgba(255,255,255,0.1); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); padding: 14px 20px; margin: 20px 0; text-align: center; border-radius: 0px;';
             
             const nameSpan = document.createElement('div');
             nameSpan.style.cssText = 'font-weight: 700; font-size: 1.1rem; color: #b85a3a; margin-bottom: 6px;';
@@ -613,29 +667,27 @@
             
             const textSpan = document.createElement('div');
             textSpan.style.cssText = 'font-weight: 400; font-size: 0.85rem; color: #4a3b2c;';
-
-// Определяем, пара это или один человек
-    const isCouple = fixedGuestName.includes(' и ') || 
-                     fixedGuestName.includes(' + ') || 
-                     fixedGuestName.includes('&');
     
-    // Выбираем правильное окончание
-    const you = isCouple ? 'Вами' : 'тобой';
+            const isCouple = fixedGuestName.includes(' и ') || 
+                             fixedGuestName.includes(' + ') || 
+                             fixedGuestName.includes('&');
+            
+            const you = isCouple ? 'Вами' : 'тобой';
+            
+            textSpan.innerHTML = `Мы будем счастливы разделить с ${you} радость неповторимого для нас дня!`;
+            
+            welcomeDiv.appendChild(nameSpan);
+            welcomeDiv.appendChild(textSpan);
+            
+            const hero = document.querySelector('.hero');
+            if (hero) hero.insertAdjacentElement('afterbegin', welcomeDiv);
+        }, 1000);
     
-    textSpan.innerHTML = `Мы будем счастливы разделить с ${you} радость неповторимого для нас дня!`;
-    
-    welcomeDiv.appendChild(nameSpan);
-    welcomeDiv.appendChild(textSpan);
-    
-    const hero = document.querySelector('.hero');
-    if (hero) hero.insertAdjacentElement('afterbegin', welcomeDiv);
-}, 1000);
-
     } else {
         const hero = document.querySelector('.hero');
         if (hero) {
             const warningDiv = document.createElement('div');
-            warningDiv.style.cssText = 'border: 1px solid #b85a3a; color: #b85a3a; padding: 10px 16px; margin: 15px 0; text-align: center; font-size: 0.8rem; background: transparent;';
+            warningDiv.style.cssText = 'background: rgba(255,255,255,0.1); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); color: #b85a3a; padding: 10px 16px; margin: 15px 0; text-align: center; font-size: 0.8rem; border-radius: 0px;';
             warningDiv.innerHTML = `⚠️ Пожалуйста, перейдите по <strong>вашей именной ссылке</strong> (параметр ?guest=ВашеИмя)`;
             hero.insertAdjacentElement('afterbegin', warningDiv);
         }
@@ -848,7 +900,7 @@
             dots.forEach((dot, index) => {
                 const dotRect = dot.getBoundingClientRect();
                 const wrapperRect = wrapper.getBoundingClientRect();
-                const relativeTop = dotRect.top - wrapperRect.top + dotRect.height / 2 - 13;
+                const relativeTop = dotRect.top - wrapperRect.top + dotRect.height / 2 - 14;
                 positions.push({ index, top: relativeTop });
             });
             return positions;
@@ -960,7 +1012,7 @@
     }
     generateCalendar();
 
-    // ========== ЭФФЕКТНОЕ ОТКРЫТИЕ (ВСПЫШКА + СЕРДЕЧКИ + ПОЯВЛЕНИЕ) ==========
+    // ========== ЭФФЕКТНОЕ ОТКРЫТИЕ ==========
     const splash = document.getElementById('splashScreen');
     const music = document.getElementById('bgMusic');
     const mainContent = document.getElementById('mainContent');
@@ -970,15 +1022,13 @@
         if (started) return;
         started = true;
         
-        // ВСПЫШКА
         const flash = document.createElement('div');
         flash.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:white; z-index:10000; opacity:0; pointer-events:none; transition:opacity 0.3s ease;';
         document.body.appendChild(flash);
-        setTimeout(() => { flash.style.opacity = '0.6'; }, 10);
+        setTimeout(() => { flash.style.opacity = '0.5'; }, 10);
         setTimeout(() => { flash.style.opacity = '0'; }, 200);
         setTimeout(() => { flash.remove(); }, 500);
         
-        // РАЗЛЕТАЮЩИЕСЯ СЕРДЕЧКИ
         for (let i = 0; i < 25; i++) {
             const heart = document.createElement('div');
             const hearts = ['❤️', '🧡', '💛', '💖', '💗', '💘', '💝'];
@@ -1003,7 +1053,6 @@
             setTimeout(() => { if(heart && heart.remove) heart.remove(); }, 900);
         }
         
-        // МУЗЫКА И ОТКРЫТИЕ
         music.play().catch(e => console.log('Авто-плей:', e));
         mainContent.classList.add('visible');
         splash.style.transition = 'opacity 0.8s ease, transform 6s ease';
