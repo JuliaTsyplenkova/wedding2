@@ -7,7 +7,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Montserrat', sans-serif; color: #2c2418; line-height: 1.5; background: #faf7f2; overflow-x: hidden; }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #2c2418;
+            line-height: 1.5;
+            background: linear-gradient(135deg, #f5ebe1 0%, #fdf8f2 40%, #f5ebe1 100%);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
         
         /* МЕРЦАЮЩИЕ ИСКРЫ */
         .sparkles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
@@ -77,12 +85,12 @@
             .hero p { animation: slideInFromRight 0.5s ease-out; }
         }
         
-        /* ===== ЭФФЕКТ СТЕКЛА (ПРОЗРАЧНЫЕ БЛОКИ) ===== */
+        /* ===== ПРОЗРАЧНЫЕ БЛОКИ СО СТЕКЛЯННЫМ ЭФФЕКТОМ ===== */
         .card-luxury {
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.35);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.25);
             padding: 2rem;
             margin-bottom: 2rem;
             transition: all 0.4s ease;
@@ -101,17 +109,17 @@
         }
         
         .card-luxury:hover {
-            background: rgba(255, 255, 255, 0.45);
+            background: rgba(255, 255, 255, 0.55);
             transform: translateY(-4px);
             box-shadow: 0 15px 40px rgba(184, 90, 58, 0.06);
         }
         
         /* Календарь — прозрачный */
         .calendar-wrapper {
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.35);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.25);
             padding: 1.2rem;
             margin-top: 1rem;
             transition: all 0.3s ease;
@@ -119,16 +127,16 @@
         }
         
         .calendar-wrapper:hover {
-            background: rgba(255, 255, 255, 0.45);
+            background: rgba(255, 255, 255, 0.55);
             transform: translateY(-3px);
         }
         
         /* Таймер — прозрачный */
         .countdown-wrapper {
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.35);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.25);
             text-align: center;
             margin: 2rem auto;
             padding: 1rem;
@@ -140,16 +148,16 @@
         .lottery-block {
             text-align: center;
             padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.35);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.25);
             transition: all 0.3s ease;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.03);
         }
         
         .lottery-block:hover {
-            background: rgba(255, 255, 255, 0.45);
+            background: rgba(255, 255, 255, 0.55);
             transform: translateY(-4px);
             border-color: rgba(184, 90, 58, 0.15);
         }
@@ -161,14 +169,14 @@
             transition: all 0.3s ease;
             cursor: pointer;
             border-left: 3px solid transparent;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .timeline-card-item.active {
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.7);
             border-left: 3px solid #b85a3a;
             box-shadow: 0 4px 15px rgba(0,0,0,0.04);
         }
@@ -185,7 +193,7 @@
             display: inline-block;
             width: 100%;
             text-transform: uppercase;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
         }
         .section-title::after {
             content: '';
@@ -254,7 +262,7 @@
         }
         
         .calendar-month { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: #b85a3a; text-align: center; display: block; margin-bottom: 1rem; }
-        .calendar-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 0.7rem; font-weight: 600; color: #b85a3a; margin-bottom: 0.5rem; padding: 0.3rem 0; border-bottom: 1px solid rgba(184, 90, 58, 0.2); }
+        .calendar-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 0.7rem; font-weight: 600; color: #b85a3a; margin-bottom: 0.5rem; padding: 0.3rem 0; border-bottom: 1px solid rgba(184, 90, 58, 0.15); }
         .calendar-days { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; gap: 4px; }
         .calendar-day { padding: 6px 4px; font-size: 0.8rem; color: #4a3b2c; cursor: default; }
         .calendar-day.other-month { color: #c0b0a0; }
@@ -390,7 +398,7 @@
         button:hover { background: #b85a3a; color: white; transform: translateY(-2px); }
         
         .map-frame { width: 100%; height: 220px; border: 1px solid rgba(255, 255, 255, 0.3); background: rgba(255,255,255,0.2); }
-        .transfer-note { text-align: center; font-size: 0.8rem; margin: 0.8rem 0; background: rgba(255,255,255,0.2); padding: 0.8rem; border-radius: 8px; backdrop-filter: blur(5px); }
+        .transfer-note { text-align: center; font-size: 0.8rem; margin: 0.8rem 0; background: rgba(255,255,255,0.3); padding: 0.8rem; border-radius: 8px; backdrop-filter: blur(5px); }
         .map-open-btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border: 1px solid #b85a3a; background: rgba(255,255,255,0.6); color: #b85a3a; text-decoration: none; transition: all 0.3s; font-size: 0.85rem; }
         .map-open-btn:hover { background: #b85a3a; color: white; }
         
@@ -450,7 +458,7 @@
             <p class="animate-subtitle" style="margin-top: 0.3rem; font-weight: 300; font-size: 0.9rem;">Приглашаем Вас стать частью нашей истории</p>
         </div>
 
-        <!-- ТАЙМЕР И КАЛЕНДАРЬ -->
+        <!-- КАЛЕНДАРЬ -->
         <div class="fade-up delay-1">
             <div class="calendar-wrapper">
                 <div class="calendar-month">Сентябрь 2026</div>
@@ -512,7 +520,7 @@
             </div>
         </div>
 
-        <!-- ДРЕСС-КОД С КВАДРАТНЫМИ ЦВЕТАМИ -->
+        <!-- ДРЕСС-КОД -->
         <div class="card-luxury fade-up delay-3">
             <h2 class="section-title">Дресс-код</h2>
             <div class="dress-colors">
@@ -540,7 +548,7 @@
             </div>
         </div>
 
-        <!-- ЛОТЕРЕЯ С ПУЛЬСИРУЮЩИМ ЗАГОЛОВКОМ -->
+        <!-- ЛОТЕРЕЯ -->
         <div class="card-luxury fade-up delay-4">
             <div class="lottery-block">
                 <div class="lottery-icon">🎟️✨</div>
@@ -599,36 +607,30 @@
             </form>
         </div>
 
-   <!-- КАРТЫ МЕСТ ЦЕРЕМОНИИ И БАНКЕТА -->
-<div class="card-luxury fade-up delay-1">
-    <h2 class="section-title">📍 Где нас искать</h2>
-
-    <!-- Текст о трансфере теперь сверху -->
-    <div class="transfer-note" style="text-align: center; font-size: 0.9rem; margin-bottom: 1.5rem;">
-        🚐 Для вашего удобства будет организован общий трансфер, о котором мы сообщим дополнительно.
-    </div>
-    
-    <div class="maps-container" style="display: flex; flex-wrap: wrap; gap: 2rem; margin: 1rem 0;">
-        <!-- Место церемонии (выездная регистрация) -->
-        <div class="map-item" style="flex: 1 1 280px; min-width: 250px;">
-            <div class="map-item-title" style="text-align: center; font-weight: 700; color: #b85a3a; font-size: 1.1rem; margin-bottom: 0.8rem;">🌳 Церемония</div>
-            <iframe class="map-frame" src="https://yandex.ru/map-widget/v1/?ll=43.812637,55.375875&z=17&pt=43.812637,55.375875,pm2rdm" allowfullscreen></iframe>
-            <div style="text-align: center; margin-top: 0.5rem;">
-                <a href="https://yandex.ru/maps/?ll=43.812637,55.375875&z=17&pt=43.812637,55.375875" target="_blank" class="map-open-btn">🗺 Открыть на карте</a>
+        <!-- КАРТЫ -->
+        <div class="card-luxury fade-up delay-1">
+            <h2 class="section-title">📍 Где нас искать</h2>
+            <div class="transfer-note" style="text-align: center; font-size: 0.9rem; margin-bottom: 1.5rem;">
+                🚐 Для вашего удобства будет организован общий трансфер, о котором мы сообщим дополнительно.
+            </div>
+            <div class="maps-container" style="display: flex; flex-wrap: wrap; gap: 2rem; margin: 1rem 0;">
+                <div class="map-item" style="flex: 1 1 280px; min-width: 250px;">
+                    <div class="map-item-title" style="text-align: center; font-weight: 700; color: #b85a3a; font-size: 1.1rem; margin-bottom: 0.8rem;">🌳 Церемония</div>
+                    <iframe class="map-frame" src="https://yandex.ru/map-widget/v1/?ll=43.812637,55.375875&z=17&pt=43.812637,55.375875,pm2rdm" allowfullscreen></iframe>
+                    <div style="text-align: center; margin-top: 0.5rem;">
+                        <a href="https://yandex.ru/maps/?ll=43.812637,55.375875&z=17&pt=43.812637,55.375875" target="_blank" class="map-open-btn">🗺 Открыть на карте</a>
+                    </div>
+                </div>
+                <div class="map-item" style="flex: 1 1 280px; min-width: 250px;">
+                    <div class="map-item-title" style="text-align: center; font-weight: 700; color: #b85a3a; font-size: 1.1rem; margin-bottom: 0.8rem;">🍽️ Банкет</div>
+                    <iframe class="map-frame" src="https://yandex.ru/map-widget/v1/?org-id=1026454122&ll=43.815570,55.423260&z=17&pt=43.815570,55.423260" allowfullscreen></iframe>
+                    <div class="transfer-note" style="font-size: 0.7rem; text-align: center; margin: 0.3rem 0;">📍 г. Арзамас, ул. Победы, 19</div>
+                    <div style="text-align: center; margin-top: 0.5rem;">
+                        <a href="https://yandex.ru/navi/org/davinci/1026454122" target="_blank" class="map-open-btn">🗺 Открыть на карте</a>
+                    </div>
+                </div>
             </div>
         </div>
-        
-        <!-- Место банкета (кафе DaVinci) -->
-        <div class="map-item" style="flex: 1 1 280px; min-width: 250px;">
-            <div class="map-item-title" style="text-align: center; font-weight: 700; color: #b85a3a; font-size: 1.1rem; margin-bottom: 0.8rem;">🍽️ Банкет</div>
-            <iframe class="map-frame" src="https://yandex.ru/map-widget/v1/?org-id=1026454122&ll=43.815570,55.423260&z=17&pt=43.815570,55.423260" allowfullscreen></iframe>
-            <div class="transfer-note" style="font-size: 0.7rem; text-align: center; margin: 0.3rem 0;">📍 г. Арзамас, ул. Победы, 19</div>
-            <div style="text-align: center; margin-top: 0.5rem;">
-                <a href="https://yandex.ru/navi/org/davinci/1026454122" target="_blank" class="map-open-btn">🗺 Открыть на карте</a>
-            </div>
-        </div>
-    </div>
-</div>
 
         <!-- КОНТАКТЫ -->
         <div class="card-luxury fade-up delay-2">
@@ -646,18 +648,20 @@
             </div>
         </div>
 
-<div class="countdown-wrapper fade-up delay-3">
-                <div class="countdown-title">До нашей свадьбы осталось:</div>
-                <div class="countdown-timer" id="countdownTimer">
-                    <div class="countdown-block"><span class="countdown-number" id="days">00</span><span class="countdown-label">дней</span></div>
-                    <div class="countdown-separator">:</div>
-                    <div class="countdown-block"><span class="countdown-number" id="hours">00</span><span class="countdown-label">часов</span></div>
-                    <div class="countdown-separator">:</div>
-                    <div class="countdown-block"><span class="countdown-number" id="minutes">00</span><span class="countdown-label">минут</span></div>
-                    <div class="countdown-separator">:</div>
-                    <div class="countdown-block"><span class="countdown-number" id="seconds">00</span><span class="countdown-label">секунд</span></div>
-                </div>
+        <!-- ТАЙМЕР (ПЕРЕНЕСЁН В КОНЕЦ) -->
+        <div class="countdown-wrapper fade-up delay-3">
+            <div class="countdown-title">До нашей свадьбы осталось:</div>
+            <div class="countdown-timer" id="countdownTimer">
+                <div class="countdown-block"><span class="countdown-number" id="days">00</span><span class="countdown-label">дней</span></div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-block"><span class="countdown-number" id="hours">00</span><span class="countdown-label">часов</span></div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-block"><span class="countdown-number" id="minutes">00</span><span class="countdown-label">минут</span></div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-block"><span class="countdown-number" id="seconds">00</span><span class="countdown-label">секунд</span></div>
             </div>
+        </div>
+
         <!-- ФИНАЛ -->
         <div class="final-message fade-up delay-4">
             До встречи на нашем празднике! <br>С любовью, Никита и Юля 🧡
