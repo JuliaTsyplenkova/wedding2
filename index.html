@@ -77,17 +77,17 @@
             .hero p { animation: slideInFromRight 0.5s ease-out; }
         }
         
-        /* ===== ЭФФЕКТ СТЕКЛА ===== */
+        /* ===== ЭФФЕКТ СТЕКЛА (ПРОЗРАЧНЫЕ БЛОКИ) ===== */
         .card-luxury {
-            background: rgba(255, 255, 255, 0.45);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             padding: 2rem;
             margin-bottom: 2rem;
             transition: all 0.4s ease;
             position: relative;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
         }
         
         .card-luxury::before {
@@ -101,16 +101,16 @@
         }
         
         .card-luxury:hover {
-            background: rgba(255, 255, 255, 0.7);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(184, 90, 58, 0.08);
+            background: rgba(255, 255, 255, 0.45);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(184, 90, 58, 0.06);
         }
         
-        /* Эффект стекла для календаря */
+        /* Календарь — прозрачный */
         .calendar-wrapper {
-            background: rgba(255, 255, 255, 0.45);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             padding: 1.2rem;
             margin-top: 1rem;
@@ -119,15 +119,15 @@
         }
         
         .calendar-wrapper:hover {
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.45);
             transform: translateY(-3px);
         }
         
-        /* Эффект стекла для таймера */
+        /* Таймер — прозрачный */
         .countdown-wrapper {
-            background: rgba(255, 255, 255, 0.45);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             text-align: center;
             margin: 2rem auto;
@@ -135,6 +135,70 @@
             max-width: 100%;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.03);
         }
+        
+        /* Лотерейный блок — прозрачный */
+        .lottery-block {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.03);
+        }
+        
+        .lottery-block:hover {
+            background: rgba(255, 255, 255, 0.45);
+            transform: translateY(-4px);
+            border-color: rgba(184, 90, 58, 0.15);
+        }
+        
+        /* Карточки тайминга — прозрачные */
+        .timeline-card-item {
+            padding: 0.8rem 1rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .timeline-card-item.active {
+            background: rgba(255, 255, 255, 0.6);
+            border-left: 3px solid #b85a3a;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+        }
+        
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 500;
+            color: #b85a3a;
+            text-align: center;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #b85a3a, #e8c4a0, #b85a3a, transparent);
+            margin: 0.8rem auto 0;
+        }
+        
+        .hero { text-align: center; margin-bottom: 2rem; }
+        .date-badge { font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 6px; color: #b85a3a; margin-bottom: 1rem; text-transform: uppercase; font-weight: 300; }
+        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 600; color: #2c2418; letter-spacing: 2px; margin: 0.5rem 0; }
         
         .countdown-title {
             font-size: 0.7rem;
@@ -189,49 +253,6 @@
             .countdown-separator { font-size: 1.6rem; }
         }
         
-        /* Эффект стекла для лотерейного блока */
-        .lottery-block {
-            text-align: center;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.45);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.03);
-        }
-        .lottery-block:hover {
-            background: rgba(255, 255, 255, 0.7);
-            transform: translateY(-5px);
-            border-color: rgba(184, 90, 58, 0.2);
-        }
-        
-        .section-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
-            font-weight: 500;
-            color: #b85a3a;
-            text-align: center;
-            margin-bottom: 2rem;
-            letter-spacing: 1px;
-            position: relative;
-            display: inline-block;
-            width: 100%;
-            text-transform: uppercase;
-        }
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #b85a3a, #e8c4a0, #b85a3a, transparent);
-            margin: 0.8rem auto 0;
-        }
-        
-        .hero { text-align: center; margin-bottom: 2rem; }
-        .date-badge { font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 6px; color: #b85a3a; margin-bottom: 1rem; text-transform: uppercase; font-weight: 300; }
-        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 600; color: #2c2418; letter-spacing: 2px; margin: 0.5rem 0; }
-        
         .calendar-month { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: #b85a3a; text-align: center; display: block; margin-bottom: 1rem; }
         .calendar-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 0.7rem; font-weight: 600; color: #b85a3a; margin-bottom: 0.5rem; padding: 0.3rem 0; border-bottom: 1px solid rgba(184, 90, 58, 0.2); }
         .calendar-days { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; gap: 4px; }
@@ -243,11 +264,11 @@
         
         .about-container { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
         .gallery-container { width: 100%; max-width: 350px; margin: 0 auto; }
-        .gallery-slider { position: relative; width: 100%; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.3); aspect-ratio: 3 / 4; margin: 0 auto; background: rgba(255, 255, 255, 0.3); }
+        .gallery-slider { position: relative; width: 100%; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.3); aspect-ratio: 3 / 4; margin: 0 auto; background: rgba(255, 255, 255, 0.2); }
         .gallery-track { display: flex; transition: transform 0.4s ease; height: 100%; cursor: grab; }
         .gallery-slide { flex: 0 0 100%; height: 100%; }
         .gallery-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .gallery-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; background: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.5); cursor: pointer; font-size: 1.2rem; color: #b85a3a; display: flex; align-items: center; justify-content: center; z-index: 10; backdrop-filter: blur(5px); }
+        .gallery-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; background: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.3); cursor: pointer; font-size: 1.2rem; color: #b85a3a; display: flex; align-items: center; justify-content: center; z-index: 10; backdrop-filter: blur(5px); }
         .gallery-nav.prev { left: 8px; }
         .gallery-nav.next { right: 8px; }
         .gallery-dots { display: flex; justify-content: center; gap: 8px; margin-top: 12px; }
@@ -270,8 +291,6 @@
         .timeline-dot { position: absolute; left: 50%; transform: translateX(-50%); width: 10px; height: 10px; background: #b85a3a; border: 2px solid #faf7f2; border-radius: 50%; box-shadow: 0 0 0 2px #b85a3a; z-index: 2; }
         .timeline-slider { position: absolute; left: 50%; transform: translateX(-50%); width: 26px; height: 26px; background: #b85a3a; border: 2px solid #faf7f2; border-radius: 50%; box-shadow: 0 0 0 2px #b85a3a; z-index: 10; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; transition: top 0.4s ease-out; pointer-events: none; }
         .timeline-cards { flex: 1; }
-        .timeline-card-item { padding: 0.8rem 1rem; margin-bottom: 1.5rem; transition: all 0.3s ease; cursor: pointer; border-left: 3px solid transparent; background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(5px); border-radius: 8px; }
-        .timeline-card-item.active { background: rgba(255, 255, 255, 0.8); border-left: 3px solid #b85a3a; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .timeline-time { font-weight: 600; color: #b85a3a; font-size: 0.9rem; margin-bottom: 0.2rem; }
         .timeline-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 0.2rem; color: #2c2418; }
         .timeline-desc { font-size: 0.7rem; color: #8b735a; }
@@ -321,7 +340,7 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
             transition: all 0.3s ease;
             animation: imagePulse 3s ease-in-out infinite;
-            background: rgba(255, 255, 255, 0.45);
+            background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(5px);
         }
         @keyframes imagePulse {
@@ -364,15 +383,15 @@
         .form-group { margin-bottom: 1.2rem; }
         .form-group label { font-weight: 500; display: block; margin-bottom: 0.4rem; font-size: 0.85rem; }
         .drink-group, .preference-group { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
-        .drink-option, .pref-option { padding: 0.4rem 0.8rem; background: rgba(255,255,255,0.8); cursor: pointer; border: 1px solid rgba(184, 90, 58, 0.2); font-size: 0.8rem; border-radius: 4px; }
+        .drink-option, .pref-option { padding: 0.4rem 0.8rem; background: rgba(255,255,255,0.6); cursor: pointer; border: 1px solid rgba(184, 90, 58, 0.2); font-size: 0.8rem; border-radius: 4px; }
         .drink-option.selected, .pref-option.selected { background: #b85a3a; color: white; border-color: #b85a3a; }
-        input, select, textarea { padding: 10px 14px; border: 1px solid rgba(184, 90, 58, 0.2); font-family: inherit; font-size: 0.85rem; background: rgba(255,255,255,0.8); width: 100%; margin-bottom: 0.5rem; backdrop-filter: blur(5px); }
-        button { padding: 12px 20px; border: 1px solid #b85a3a; font-family: inherit; font-size: 0.9rem; font-weight: 500; background: rgba(255,255,255,0.8); color: #b85a3a; cursor: pointer; width: 100%; transition: all 0.2s ease; backdrop-filter: blur(5px); }
+        input, select, textarea { padding: 10px 14px; border: 1px solid rgba(184, 90, 58, 0.2); font-family: inherit; font-size: 0.85rem; background: rgba(255,255,255,0.6); width: 100%; margin-bottom: 0.5rem; }
+        button { padding: 12px 20px; border: 1px solid #b85a3a; font-family: inherit; font-size: 0.9rem; font-weight: 500; background: rgba(255,255,255,0.6); color: #b85a3a; cursor: pointer; width: 100%; transition: all 0.2s ease; }
         button:hover { background: #b85a3a; color: white; transform: translateY(-2px); }
         
-        .map-frame { width: 100%; height: 220px; border: 1px solid rgba(255, 255, 255, 0.3); background: rgba(255, 255, 255, 0.3); }
-        .transfer-note { text-align: center; font-size: 0.8rem; margin: 0.8rem 0; }
-        .map-open-btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border: 1px solid #b85a3a; background: rgba(255,255,255,0.8); color: #b85a3a; text-decoration: none; transition: all 0.3s; font-size: 0.85rem; backdrop-filter: blur(5px); }
+        .map-frame { width: 100%; height: 220px; border: 1px solid rgba(255, 255, 255, 0.3); background: rgba(255,255,255,0.2); }
+        .transfer-note { text-align: center; font-size: 0.8rem; margin: 0.8rem 0; background: rgba(255,255,255,0.2); padding: 0.8rem; border-radius: 8px; backdrop-filter: blur(5px); }
+        .map-open-btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border: 1px solid #b85a3a; background: rgba(255,255,255,0.6); color: #b85a3a; text-decoration: none; transition: all 0.3s; font-size: 0.85rem; }
         .map-open-btn:hover { background: #b85a3a; color: white; }
         
         .contact-card { text-align: center; }
@@ -381,7 +400,7 @@
         .contact-phone { font-size: 1.1rem; margin: 0.8rem 0; }
         .contact-phone a { color: #2c2418; text-decoration: none; }
         .contact-links { display: flex; gap: 12px; justify-content: center; margin-top: 12px; flex-wrap: wrap; }
-        .contact-link { display: inline-flex; align-items: center; gap: 5px; padding: 8px 16px; text-decoration: none; transition: all 0.3s; border: 1px solid; font-size: 0.8rem; background: rgba(255,255,255,0.8); backdrop-filter: blur(5px); }
+        .contact-link { display: inline-flex; align-items: center; gap: 5px; padding: 8px 16px; text-decoration: none; transition: all 0.3s; border: 1px solid; font-size: 0.8rem; background: rgba(255,255,255,0.6); }
         .tg-link { border-color: #0088cc; color: #0088cc; }
         .tg-link:hover { background: #0088cc; color: white; }
         .vk-link { border-color: #4c6c8c; color: #4c6c8c; }
@@ -585,7 +604,7 @@
     <h2 class="section-title">📍 Где нас искать</h2>
 
     <!-- Текст о трансфере теперь сверху -->
-    <div class="transfer-note" style="text-align: center; font-size: 0.9rem; margin-bottom: 1.5rem; background: rgba(255,255,255,0.3); padding: 0.8rem; border-radius: 8px; backdrop-filter: blur(5px);">
+    <div class="transfer-note" style="text-align: center; font-size: 0.9rem; margin-bottom: 1.5rem;">
         🚐 Для вашего удобства будет организован общий трансфер, о котором мы сообщим дополнительно.
     </div>
     
@@ -593,19 +612,19 @@
         <!-- Место церемонии (выездная регистрация) -->
         <div class="map-item" style="flex: 1 1 280px; min-width: 250px;">
             <div class="map-item-title" style="text-align: center; font-weight: 700; color: #b85a3a; font-size: 1.1rem; margin-bottom: 0.8rem;">🌳 Церемония</div>
-            <iframe class="map-frame" style="width: 100%; height: 220px; border: 1px solid rgba(255, 255, 255, 0.3); background: rgba(255,255,255,0.3);" src="https://yandex.ru/map-widget/v1/?ll=43.812637,55.375875&z=17&pt=43.812637,55.375875,pm2rdm" allowfullscreen></iframe>
+            <iframe class="map-frame" src="https://yandex.ru/map-widget/v1/?ll=43.812637,55.375875&z=17&pt=43.812637,55.375875,pm2rdm" allowfullscreen></iframe>
             <div style="text-align: center; margin-top: 0.5rem;">
-                <a href="https://yandex.ru/maps/?ll=43.812637,55.375875&z=17&pt=43.812637,55.375875" target="_blank" class="map-open-btn" style="font-size: 0.75rem; padding: 6px 12px;">🗺 Открыть на карте</a>
+                <a href="https://yandex.ru/maps/?ll=43.812637,55.375875&z=17&pt=43.812637,55.375875" target="_blank" class="map-open-btn">🗺 Открыть на карте</a>
             </div>
         </div>
         
         <!-- Место банкета (кафе DaVinci) -->
         <div class="map-item" style="flex: 1 1 280px; min-width: 250px;">
             <div class="map-item-title" style="text-align: center; font-weight: 700; color: #b85a3a; font-size: 1.1rem; margin-bottom: 0.8rem;">🍽️ Банкет</div>
-            <iframe class="map-frame" style="width: 100%; height: 220px; border: 1px solid rgba(255, 255, 255, 0.3); background: rgba(255,255,255,0.3);" src="https://yandex.ru/map-widget/v1/?org-id=1026454122&ll=43.815570,55.423260&z=17&pt=43.815570,55.423260" allowfullscreen></iframe>
+            <iframe class="map-frame" src="https://yandex.ru/map-widget/v1/?org-id=1026454122&ll=43.815570,55.423260&z=17&pt=43.815570,55.423260" allowfullscreen></iframe>
             <div class="transfer-note" style="font-size: 0.7rem; text-align: center; margin: 0.3rem 0;">📍 г. Арзамас, ул. Победы, 19</div>
             <div style="text-align: center; margin-top: 0.5rem;">
-                <a href="https://yandex.ru/navi/org/davinci/1026454122" target="_blank" class="map-open-btn" style="font-size: 0.75rem; padding: 6px 12px;">🗺 Открыть на карте</a>
+                <a href="https://yandex.ru/navi/org/davinci/1026454122" target="_blank" class="map-open-btn">🗺 Открыть на карте</a>
             </div>
         </div>
     </div>
@@ -668,7 +687,7 @@
         
         setTimeout(() => {
             const welcomeDiv = document.createElement('div');
-            welcomeDiv.style.cssText = 'border: 1px solid #b85a3a; background: rgba(255,255,255,0.5); backdrop-filter: blur(8px); padding: 14px 20px; margin: 20px 0; text-align: center;';
+            welcomeDiv.style.cssText = 'border: 1px solid #b85a3a; background: rgba(255,255,255,0.25); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 14px 20px; margin: 20px 0; text-align: center;';
             
             const nameSpan = document.createElement('div');
             nameSpan.style.cssText = 'font-weight: 700; font-size: 1.1rem; color: #b85a3a; margin-bottom: 6px;';
@@ -677,29 +696,27 @@
             
             const textSpan = document.createElement('div');
             textSpan.style.cssText = 'font-weight: 400; font-size: 0.85rem; color: #4a3b2c;';
-
-// Определяем, пара это или один человек
-    const isCouple = fixedGuestName.includes(' и ') || 
-                     fixedGuestName.includes(' + ') || 
-                     fixedGuestName.includes('&');
     
-    // Выбираем правильное окончание
-    const you = isCouple ? 'Вами' : 'тобой';
+            const isCouple = fixedGuestName.includes(' и ') || 
+                             fixedGuestName.includes(' + ') || 
+                             fixedGuestName.includes('&');
+            
+            const you = isCouple ? 'Вами' : 'тобой';
+            
+            textSpan.innerHTML = `Мы будем счастливы разделить с ${you} радость неповторимого для нас дня!`;
+            
+            welcomeDiv.appendChild(nameSpan);
+            welcomeDiv.appendChild(textSpan);
+            
+            const hero = document.querySelector('.hero');
+            if (hero) hero.insertAdjacentElement('afterbegin', welcomeDiv);
+        }, 1000);
     
-    textSpan.innerHTML = `Мы будем счастливы разделить с ${you} радость неповторимого для нас дня!`;
-    
-    welcomeDiv.appendChild(nameSpan);
-    welcomeDiv.appendChild(textSpan);
-    
-    const hero = document.querySelector('.hero');
-    if (hero) hero.insertAdjacentElement('afterbegin', welcomeDiv);
-}, 1000);
-
     } else {
         const hero = document.querySelector('.hero');
         if (hero) {
             const warningDiv = document.createElement('div');
-            warningDiv.style.cssText = 'border: 1px solid #b85a3a; background: rgba(255,255,255,0.5); backdrop-filter: blur(8px); color: #b85a3a; padding: 10px 16px; margin: 15px 0; text-align: center; font-size: 0.8rem;';
+            warningDiv.style.cssText = 'border: 1px solid #b85a3a; background: rgba(255,255,255,0.25); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: #b85a3a; padding: 10px 16px; margin: 15px 0; text-align: center; font-size: 0.8rem;';
             warningDiv.innerHTML = `⚠️ Пожалуйста, перейдите по <strong>вашей именной ссылке</strong> (параметр ?guest=ВашеИмя)`;
             hero.insertAdjacentElement('afterbegin', warningDiv);
         }
